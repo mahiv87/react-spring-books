@@ -1,0 +1,104 @@
+import { useState } from 'react';
+
+const Navbar = () => {
+	const [navOpen, setNavOpen] = useState(false);
+	return (
+		<header className="bg-teal-500">
+			<div className="mx-auto flex h-24 max-w-screen-xl justify-between items-center gap-8 px-4 sm:px-6 lg:px-8">
+				<span className="block text-2xl md:text-3xl text-white">
+					React Spring Books
+				</span>
+				<div
+					className={
+						navOpen
+							? 'absolute z-10 top-20 left-0 bg-teal-500 w-full flex flex-col items-center text-center animate-slide-down'
+							: 'flex flex-1 items-center justify-end md:justify-between'
+					}
+				>
+					<nav
+						aria-label="Global"
+						className={navOpen ? 'block' : 'hidden md:block'}
+					>
+						<ul
+							className={
+								navOpen
+									? 'flex flex-col mx-auto gap-2 px-4 sm:px-6'
+									: 'flex items-center gap-6 text-lg'
+							}
+						>
+							<li>
+								<a
+									className="text-gray-100 transition hover:text-gray-100/75"
+									href="#"
+								>
+									Home
+								</a>
+							</li>
+							<li>
+								<a
+									className="text-gray-100 transition hover:text-gray-100/75"
+									href="#"
+								>
+									Search Books
+								</a>
+							</li>
+						</ul>
+					</nav>
+					<div className="flex items-center gap-4">
+						<div
+							className={
+								navOpen
+									? 'flex flex-col gap-4 my-4 px-4 sm:px-6'
+									: 'sm:flex sm:gap-4'
+							}
+						>
+							<a
+								className={
+									navOpen
+										? 'block rounded-md bg-teal-600 px-5 py-2.5 text-sm font-medium text-white transition hover:bg-teal-700'
+										: 'hidden md:block rounded-md bg-teal-600 px-5 py-2.5 text-sm font-medium text-white transition hover:bg-teal-700'
+								}
+								href="#"
+							>
+								Login
+							</a>
+
+							<a
+								className={
+									navOpen
+										? 'block rounded-md bg-gray-100 px-5 py-2.5 text-sm font-medium text-teal-600 transition hover:text-teal-600/75'
+										: 'hidden md:block rounded-md bg-gray-100 px-5 py-2.5 text-sm font-medium text-teal-600 transition hover:text-teal-600/75'
+								}
+								href="#"
+							>
+								Register
+							</a>
+						</div>
+					</div>
+				</div>
+				<button
+					className="block rounded bg-gray-100 p-2.5 text-gray-600 transition hover:text-gray-600/75 md:hidden"
+					onClick={() => setNavOpen(!navOpen)}
+				>
+					<span className="sr-only">Toggle menu</span>
+					<svg
+						xmlns="http://www.w3.org/2000/svg"
+						className="h-5 w-5"
+						fill="none"
+						viewBox="0 0 24 24"
+						stroke="currentColor"
+						strokeWidth="2"
+					>
+						<path
+							strokeLinecap="round"
+							strokeLinejoin="round"
+							d="M4 6h16M4 12h16M4 18h16"
+						/>
+					</svg>
+				</button>
+			</div>
+		</header>
+	);
+};
+
+export default Navbar;
