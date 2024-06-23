@@ -2,59 +2,6 @@ import './App.css';
 
 function App() {
 	return (
-		// <nav className="flex flex-col lg:flex-row main-color p-3">
-		// 	<div className="w-full">
-		// 		<span className="text-xl font-semibold mr-4">React Spring Books</span>
-		// 		<button
-		// 			className="block lg:hidden px-2 py-1 border rounded border-gray-400"
-		// 			type="button"
-		// 			data-bs-toggle="collapse"
-		// 			data-bs-target="#navbarNavDropdown"
-		// 			aria-controls="navbarNavDropdown"
-		// 			aria-expanded="false"
-		// 			aria-label="Toggle Navigation"
-		// 		>
-		// 			<svg
-		// 				className="w-6 h-6"
-		// 				fill="none"
-		// 				stroke="currentColor"
-		// 				viewBox="0 0 24 24"
-		// 				xmlns="http://www.w3.org/2000/svg"
-		// 			>
-		// 				<path
-		// 					strokeLinecap="round"
-		// 					strokeLinejoin="round"
-		// 					strokeWidth="2"
-		// 					d="M4 6h16M4 12h16m-7 6h7"
-		// 				></path>
-		// 			</svg>
-		// 		</button>
-		// 		<div
-		// 			className="hidden w-full lg:flex lg:items-center lg:w-auto"
-		// 			id="navbarNavDropdown"
-		// 		>
-		// 			<ul className="lg:flex lg:flex-row lg:space-x-4">
-		// 				<li className="list-none">
-		// 					<a href="#" className="list-none">
-		// 						Home
-		// 					</a>
-		// 				</li>
-		// 				<li className="list-none">
-		// 					<a href="#" className="list-none">
-		// 						Search Books
-		// 					</a>
-		// 				</li>
-		// 			</ul>
-		// 			<ul className="flex ml-auto">
-		// 				<li className="list-none m-1">
-		// 					<button className="rounded-lg border border-solid border-neutral-50 p-2">
-		// 						Sign in
-		// 					</button>
-		// 				</li>
-		// 			</ul>
-		// 		</div>
-		// 	</div>
-		// </nav>
 		<header className="bg-white">
 			<div className="mx-auto flex h-16 max-w-screen-xl items-center gap-8 px-4 sm:px-6 lg:px-8">
 				<span className="block text-xl text-teal-600">React Spring Books</span>
