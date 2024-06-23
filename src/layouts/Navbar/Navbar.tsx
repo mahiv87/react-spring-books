@@ -5,7 +5,7 @@ const Navbar = () => {
 	return (
 		<header className="bg-teal-500">
 			<div className="mx-auto flex h-24 max-w-screen-xl justify-between items-center gap-8 px-4 sm:px-6 lg:px-8">
-				<span className="block text-2xl md:text-3xl text-white">
+				<span className="block text-2xl md:text-3xl font-bold text-white">
 					React Spring Books
 				</span>
 				<div
