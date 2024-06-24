@@ -1,4 +1,4 @@
-import bookSlide from './../../../Images/BooksImages/book-luv2code-1000.png';
+import ReturnBook from './ReturnBook';
 
 const Carousel = () => {
 	return (
@@ -11,24 +11,14 @@ const Carousel = () => {
 					Find your next "I stayed up too late reading" book
 				</h3>
 			</div>
-			<div className="carousel rounded-box w-80">
+			<div className="carousel rounded-box w-11/12 ">
 				<div
 					id="slide1"
-					className="carousel-item relative w-full flex-col justify-center items-center"
+					className="carousel-item relative w-full justify-center items-center"
 				>
-					<img
-						src={bookSlide}
-						className="w-1/2"
-						alt="Tailwind CSS Carousel component"
-					/>
-					<h6 className="mt-2">book</h6>
-					<p>Luv2Code</p>
-					<a
-						href="#"
-						className="main-color text-white py-3 px-6 text-lg rounded-lg hover:bg-teal-500/75"
-					>
-						Reserve
-					</a>
+					<ReturnBook />
+					<ReturnBook />
+					<ReturnBook />
 					<div className="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between text-center">
 						<a
 							href="#slide7"
@@ -46,21 +36,11 @@ const Carousel = () => {
 				</div>
 				<div
 					id="slide2"
-					className="carousel-item relative w-full flex-col justify-center items-center"
+					className="carousel-item relative w-full justify-center items-center"
 				>
-					<img
-						src={bookSlide}
-						className="w-1/2"
-						alt="Tailwind CSS Carousel component"
-					/>
-					<h6 className="mt-2">book</h6>
-					<p>Luv2Code</p>
-					<a
-						href="#"
-						className="main-color text-white py-3 px-6 text-lg rounded-lg hover:bg-teal-500/75"
-					>
-						Reserve
-					</a>
+					<ReturnBook />
+					<ReturnBook />
+					<ReturnBook />
 					<div className="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between text-center">
 						<a
 							href="#slide1"
@@ -78,21 +58,11 @@ const Carousel = () => {
 				</div>
 				<div
 					id="slide3"
-					className="carousel-item relative w-full flex-col justify-center items-center"
+					className="carousel-item relative w-full justify-center items-center"
 				>
-					<img
-						src={bookSlide}
-						className="w-1/2"
-						alt="Tailwind CSS Carousel component"
-					/>
-					<h6 className="mt-2">book</h6>
-					<p>Luv2Code</p>
-					<a
-						href="#"
-						className="main-color text-white py-3 px-6 text-lg rounded-lg hover:bg-teal-500/75"
-					>
-						Reserve
-					</a>
+					<ReturnBook />
+					<ReturnBook />
+					<ReturnBook />
 					<div className="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between text-center">
 						<a
 							href="#slide2"
@@ -110,21 +80,11 @@ const Carousel = () => {
 				</div>
 				<div
 					id="slide4"
-					className="carousel-item relative w-full flex-col justify-center items-center"
+					className="carousel-item relative w-full justify-center items-center"
 				>
-					<img
-						src={bookSlide}
-						className="w-1/2"
-						alt="Tailwind CSS Carousel component"
-					/>
-					<h6 className="mt-2">book</h6>
-					<p>Luv2Code</p>
-					<a
-						href="#"
-						className="main-color text-white py-3 px-6 text-lg rounded-lg hover:bg-teal-500/75"
-					>
-						Reserve
-					</a>
+					<ReturnBook />
+					<ReturnBook />
+					<ReturnBook />
 					<div className="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between text-center">
 						<a
 							href="#slide3"
@@ -142,21 +102,11 @@ const Carousel = () => {
 				</div>
 				<div
 					id="slide5"
-					className="carousel-item relative w-full flex-col justify-center items-center"
+					className="carousel-item relative w-full justify-center items-center"
 				>
-					<img
-						src={bookSlide}
-						className="w-1/2"
-						alt="Tailwind CSS Carousel component"
-					/>
-					<h6 className="mt-2">book</h6>
-					<p>Luv2Code</p>
-					<a
-						href="#"
-						className="main-color text-white py-3 px-6 text-lg rounded-lg hover:bg-teal-500/75"
-					>
-						Reserve
-					</a>
+					<ReturnBook />
+					<ReturnBook />
+					<ReturnBook />
 					<div className="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between text-center">
 						<a
 							href="#slide4"
@@ -174,21 +124,11 @@ const Carousel = () => {
 				</div>
 				<div
 					id="slide6"
-					className="carousel-item relative w-full flex-col justify-center items-center"
+					className="carousel-item relative w-full justify-center items-center"
 				>
-					<img
-						src={bookSlide}
-						className="w-1/2"
-						alt="Tailwind CSS Carousel component"
-					/>
-					<h6 className="mt-2">book</h6>
-					<p>Luv2Code</p>
-					<a
-						href="#"
-						className="main-color text-white py-3 px-6 text-lg rounded-lg hover:bg-teal-500/75"
-					>
-						Reserve
-					</a>
+					<ReturnBook />
+					<ReturnBook />
+					<ReturnBook />
 					<div className="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between text-center">
 						<a
 							href="#slide5"
@@ -206,21 +146,11 @@ const Carousel = () => {
 				</div>
 				<div
 					id="slide7"
-					className="carousel-item relative w-full flex-col justify-center items-center"
+					className="carousel-item relative w-full justify-center items-center"
 				>
-					<img
-						src={bookSlide}
-						className="w-1/2"
-						alt="Tailwind CSS Carousel component"
-					/>
-					<h6 className="mt-2">book</h6>
-					<p>Luv2Code</p>
-					<a
-						href="#"
-						className="main-color text-white py-3 px-6 text-lg rounded-lg hover:bg-teal-500/75"
-					>
-						Reserve
-					</a>
+					<ReturnBook />
+					<ReturnBook />
+					<ReturnBook />
 					<div className="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between text-center">
 						<a
 							href="#slide6"
@@ -236,6 +166,14 @@ const Carousel = () => {
 						</a>
 					</div>
 				</div>
+			</div>
+			<div className="homepage-carousel-title mt-3">
+				<a
+					className="py-3 px-6 text-lg border border-solid rounded-lg hover:bg-neutral-500/50 hover:text-white"
+					href="#"
+				>
+					View More
+				</a>
 			</div>
 		</div>
 	);
