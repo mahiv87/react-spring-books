@@ -1,11 +1,13 @@
 const Carousel = () => {
 	return (
 		<div
-			className="container flex flex-col w-full mx-auto justify-center items-center"
+			className="container flex flex-col w-full mx-auto justify-start items-center"
 			style={{ height: 550 }}
 		>
 			<div className="homepage-carousel-title">
-				<h3>Find your next "I stayed up too late reading" book</h3>
+				<h3 className="text-2xl text-neutral-900 pb-4">
+					Find your next "I stayed up too late reading" book
+				</h3>
 			</div>
 			<div className="carousel rounded-box w-80">
 				<div id="slide1" className="carousel-item relative w-full">
