@@ -4,6 +4,9 @@ export default {
 	content: ['./src/**/*.{html,js,jsx,ts,tsx}'],
 	theme: {
 		extend: {
+			screens: {
+				'3xl': '2570px'
+			},
 			keyframes: {
 				'slide-down': {
 					'0%': { transform: 'translateY(-10%)', opacity: '0' },
