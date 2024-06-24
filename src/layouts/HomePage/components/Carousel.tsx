@@ -32,13 +32,13 @@ const Carousel = () => {
 					<div className="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between text-center">
 						<a
 							href="#slide7"
-							className="w-10 border border-accent text-accent hover:text-white hover:bg-teal-500 rounded-lg"
+							className="text-xl text-neutral-500 hover:text-neutral-500/50"
 						>
 							❮
 						</a>
 						<a
 							href="#slide2"
-							className="w-10 border border-accent text-accent hover:text-white hover:bg-teal-500 rounded-lg"
+							className="text-xl text-neutral-500 hover:text-neutral-500/50"
 						>
 							❯
 						</a>
@@ -64,13 +64,13 @@ const Carousel = () => {
 					<div className="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between text-center">
 						<a
 							href="#slide1"
-							className="w-10 border border-accent text-accent hover:text-white hover:bg-teal-500 rounded-lg"
+							className="text-xl text-neutral-500 hover:text-neutral-500/50"
 						>
 							❮
 						</a>
 						<a
 							href="#slide3"
-							className="w-10 border border-accent text-accent hover:text-white hover:bg-teal-500 rounded-lg"
+							className="text-xl text-neutral-500 hover:text-neutral-500/50"
 						>
 							❯
 						</a>
@@ -96,13 +96,13 @@ const Carousel = () => {
 					<div className="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between text-center">
 						<a
 							href="#slide2"
-							className="w-10 border border-accent text-accent hover:text-white hover:bg-teal-500 rounded-lg"
+							className="text-xl text-neutral-500 hover:text-neutral-500/50"
 						>
 							❮
 						</a>
 						<a
 							href="#slide4"
-							className="w-10 border border-accent text-accent hover:text-white hover:bg-teal-500 rounded-lg"
+							className="text-xl text-neutral-500 hover:text-neutral-500/50"
 						>
 							❯
 						</a>
@@ -128,13 +128,13 @@ const Carousel = () => {
 					<div className="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between text-center">
 						<a
 							href="#slide3"
-							className="w-10 border border-accent text-accent hover:text-white hover:bg-teal-500 rounded-lg"
+							className="text-xl text-neutral-500 hover:text-neutral-500/50"
 						>
 							❮
 						</a>
 						<a
 							href="#slide5"
-							className="w-10 border border-accent text-accent hover:text-white hover:bg-teal-500 rounded-lg"
+							className="text-xl text-neutral-500 hover:text-neutral-500/50"
 						>
 							❯
 						</a>
@@ -160,13 +160,13 @@ const Carousel = () => {
 					<div className="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between text-center">
 						<a
 							href="#slide4"
-							className="w-10 border border-accent text-accent hover:text-white hover:bg-teal-500 rounded-lg"
+							className="text-xl text-neutral-500 hover:text-neutral-500/50"
 						>
 							❮
 						</a>
 						<a
 							href="#slide6"
-							className="w-10 border border-accent text-accent hover:text-white hover:bg-teal-500 rounded-lg"
+							className="text-xl text-neutral-500 hover:text-neutral-500/50"
 						>
 							❯
 						</a>
@@ -192,13 +192,13 @@ const Carousel = () => {
 					<div className="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between text-center">
 						<a
 							href="#slide5"
-							className="w-10 border border-accent text-accent hover:text-white hover:bg-teal-500 rounded-lg"
+							className="text-xl text-neutral-500 hover:text-neutral-500/50"
 						>
 							❮
 						</a>
 						<a
 							href="#slide7"
-							className="w-10 border border-accent text-accent hover:text-white hover:bg-teal-500 rounded-lg"
+							className="text-xl text-neutral-500 hover:text-neutral-500/50"
 						>
 							❯
 						</a>
@@ -224,13 +224,13 @@ const Carousel = () => {
 					<div className="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between text-center">
 						<a
 							href="#slide6"
-							className="w-10 border border-accent text-accent hover:text-white hover:bg-teal-500 rounded-lg"
+							className="text-xl text-neutral-500 hover:text-neutral-500/50"
 						>
 							❮
 						</a>
 						<a
 							href="#slide1"
-							className="w-10 border border-accent text-accent hover:text-white hover:bg-teal-500 rounded-lg"
+							className="text-xl text-neutral-500 hover:text-neutral-500/50"
 						>
 							❯
 						</a>
