@@ -1,26 +1,45 @@
+import bookSlide from './../../../Images/BooksImages/book-luv2code-1000.png';
+
 const Carousel = () => {
 	return (
 		<div
 			className="container flex flex-col w-full mx-auto justify-start items-center"
 			style={{ height: 550 }}
 		>
-			<div className="homepage-carousel-title">
+			<div className="homepage-carousel-title text-center">
 				<h3 className="text-2xl text-neutral-900 pb-4">
 					Find your next "I stayed up too late reading" book
 				</h3>
 			</div>
 			<div className="carousel rounded-box w-80">
-				<div id="slide1" className="carousel-item relative w-full">
+				<div
+					id="slide1"
+					className="carousel-item relative w-full flex-col justify-center items-center"
+				>
 					<img
-						src="https://img.daisyui.com/images/stock/photo-1559703248-dcaaec9fab78.jpg"
-						className="w-full"
+						src={bookSlide}
+						className="w-1/2"
 						alt="Tailwind CSS Carousel component"
 					/>
-					<div className="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
-						<a href="#slide7" className="btn btn-circle">
+					<h6 className="mt-2">book</h6>
+					<p>Luv2Code</p>
+					<a
+						href="#"
+						className="main-color text-white py-3 px-6 text-lg rounded-lg hover:bg-teal-500/75"
+					>
+						Reserve
+					</a>
+					<div className="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between text-center">
+						<a
+							href="#slide7"
+							className="w-10 border border-accent text-accent hover:text-white hover:bg-teal-500 rounded-lg"
+						>
 							❮
 						</a>
-						<a href="#slide2" className="btn btn-circle">
+						<a
+							href="#slide2"
+							className="w-10 border border-accent text-accent hover:text-white hover:bg-teal-500 rounded-lg"
+						>
 							❯
 						</a>
 					</div>
