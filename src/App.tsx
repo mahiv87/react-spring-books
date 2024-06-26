@@ -1,19 +1,13 @@
 import './App.css';
-import Footer from './layouts/Footer/Footer';
-import Carousel from './layouts/HomePage/components/Carousel';
-import ExploreTopBooks from './layouts/HomePage/components/ExploreTopBooks';
-import Hero from './layouts/HomePage/components/Hero';
-import LibraryService from './layouts/HomePage/components/LibraryService';
 import Navbar from './layouts/Navbar/Navbar';
+import Homepage from './layouts/HomePage/Homepage';
+import Footer from './layouts/Footer/Footer';
 
 function App() {
 	return (
 		<>
 			<Navbar />
-			<ExploreTopBooks />
-			<Carousel />
-			<Hero />
-			<LibraryService />
+			<Homepage />
 			<Footer />
 		</>
 	);
