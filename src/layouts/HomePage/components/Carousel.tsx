@@ -7,38 +7,38 @@ const Carousel = () => {
 	const [isLoading, setIsLoading] = useState(true);
 	const [httpError, setHttpError] = useState(null);
 
-	// useEffect(() => {
-	// 	const fetchBooks = async () => {
-	// 		const baseUrl: string = 'http://localhost:8080/api/books';
-	// 		const url: string = `${baseUrl}?page=0size=9`;
+	useEffect(() => {
+		const fetchBooks = async () => {
+			const baseUrl: string = 'http://localhost:8080/api/books';
+			const url: string = `${baseUrl}?page=0size=9`;
 
-	// 		const response = await fetch(url);
-	// 		if (!response.ok) {
-	// 			throw new Error('Something went wrong...');
-	// 		}
+			const response = await fetch(url);
+			if (!response.ok) {
+				throw new Error('Something went wrong...');
+			}
 
-	// 		const responseJson = await response.json();
-	// 		const responseData = responseJson._embedded.books;
+			const responseJson = await response.json();
+			const responseData = responseJson._embedded.books;
 
-	// 		const loadedBooks = responseData.map((book: BookModel) => ({
-	// 			id: book.id,
-	// 			title: book.title,
-	// 			author: book.author,
-	// 			description: book.description,
-	// 			copies: book.copies,
-	// 			copiesAvailable: book.copiesAvailable,
-	// 			category: book.category,
-	// 			img: book.img
-	// 		}));
+			const loadedBooks = responseData.map((book: BookModel) => ({
+				id: book.id,
+				title: book.title,
+				author: book.author,
+				description: book.description,
+				copies: book.copies,
+				copiesAvailable: book.copiesAvailable,
+				category: book.category,
+				img: book.img
+			}));
 
-	// 		setBooks(loadedBooks);
-	// 		setIsLoading(false);
-	// 	};
-	// 	fetchBooks().catch((error) => {
-	// 		setIsLoading(false);
-	// 		setHttpError(error.message);
-	// 	});
-	// }, []);
+			setBooks(loadedBooks);
+			setIsLoading(false);
+		};
+		fetchBooks().catch((error) => {
+			setIsLoading(false);
+			setHttpError(error.message);
+		});
+	}, []);
 
 	if (isLoading) {
 		return (
@@ -56,7 +56,7 @@ const Carousel = () => {
 
 	if (httpError) {
 		return (
-			<div className="container mx-auto my-5">
+			<div className="container mx-auto my-5" style={{ height: 550 }}>
 				<p>{httpError}</p>
 			</div>
 		);
@@ -64,7 +64,7 @@ const Carousel = () => {
 
 	return (
 		<div
-			className="container flex flex-col w-full mx-auto justify-start items-center"
+			className="container flex flex-col w-full mx-auto justify-start items-center my-10"
 			style={{ height: 550 }}
 		>
 			<div className="homepage-carousel-title text-center">
@@ -72,17 +72,17 @@ const Carousel = () => {
 					Find your next "I stayed up too late reading" book
 				</h3>
 			</div>
-			<div className="carousel rounded-box w-11/12 ">
+			<div className="carousel rounded-box w-11/12">
 				<div
 					id="slide1"
 					className="carousel-item relative w-full justify-center items-center"
 				>
-					<ReturnBook />
-					<ReturnBook />
-					<ReturnBook />
+					{books.slice(0, 3).map((book) => (
+						<ReturnBook book={book} key={book.id} />
+					))}
 					<div className="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between text-center">
 						<a
-							href="#slide7"
+							href="#slide3"
 							className="text-xl text-neutral-500 hover:text-neutral-500/50"
 						>
 							❮
@@ -99,9 +99,9 @@ const Carousel = () => {
 					id="slide2"
 					className="carousel-item relative w-full justify-center items-center"
 				>
-					<ReturnBook />
-					<ReturnBook />
-					<ReturnBook />
+					{books.slice(3, 6).map((book) => (
+						<ReturnBook book={book} key={book.id} />
+					))}
 					<div className="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between text-center">
 						<a
 							href="#slide1"
@@ -121,100 +121,12 @@ const Carousel = () => {
 					id="slide3"
 					className="carousel-item relative w-full justify-center items-center"
 				>
-					<ReturnBook />
-					<ReturnBook />
-					<ReturnBook />
+					{books.slice(6, 9).map((book) => (
+						<ReturnBook book={book} key={book.id} />
+					))}
 					<div className="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between text-center">
 						<a
 							href="#slide2"
-							className="text-xl text-neutral-500 hover:text-neutral-500/50"
-						>
-							❮
-						</a>
-						<a
-							href="#slide4"
-							className="text-xl text-neutral-500 hover:text-neutral-500/50"
-						>
-							❯
-						</a>
-					</div>
-				</div>
-				<div
-					id="slide4"
-					className="carousel-item relative w-full justify-center items-center"
-				>
-					<ReturnBook />
-					<ReturnBook />
-					<ReturnBook />
-					<div className="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between text-center">
-						<a
-							href="#slide3"
-							className="text-xl text-neutral-500 hover:text-neutral-500/50"
-						>
-							❮
-						</a>
-						<a
-							href="#slide5"
-							className="text-xl text-neutral-500 hover:text-neutral-500/50"
-						>
-							❯
-						</a>
-					</div>
-				</div>
-				<div
-					id="slide5"
-					className="carousel-item relative w-full justify-center items-center"
-				>
-					<ReturnBook />
-					<ReturnBook />
-					<ReturnBook />
-					<div className="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between text-center">
-						<a
-							href="#slide4"
-							className="text-xl text-neutral-500 hover:text-neutral-500/50"
-						>
-							❮
-						</a>
-						<a
-							href="#slide6"
-							className="text-xl text-neutral-500 hover:text-neutral-500/50"
-						>
-							❯
-						</a>
-					</div>
-				</div>
-				<div
-					id="slide6"
-					className="carousel-item relative w-full justify-center items-center"
-				>
-					<ReturnBook />
-					<ReturnBook />
-					<ReturnBook />
-					<div className="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between text-center">
-						<a
-							href="#slide5"
-							className="text-xl text-neutral-500 hover:text-neutral-500/50"
-						>
-							❮
-						</a>
-						<a
-							href="#slide7"
-							className="text-xl text-neutral-500 hover:text-neutral-500/50"
-						>
-							❯
-						</a>
-					</div>
-				</div>
-				<div
-					id="slide7"
-					className="carousel-item relative w-full justify-center items-center"
-				>
-					<ReturnBook />
-					<ReturnBook />
-					<ReturnBook />
-					<div className="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between text-center">
-						<a
-							href="#slide6"
 							className="text-xl text-neutral-500 hover:text-neutral-500/50"
 						>
 							❮
