@@ -1,6 +1,6 @@
 const LibraryService = () => {
 	return (
-		<div className="container mx-auto mt-10 ">
+		<div className="container mx-auto m-10 ">
 			<div className="flex flex-wrap p-4 items-center border shadow-lg">
 				<div className="lg:7/12 p-3">
 					<h1 className="text-3xl font-bold">

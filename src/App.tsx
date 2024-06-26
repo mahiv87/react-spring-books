@@ -1,4 +1,5 @@
 import './App.css';
+import Footer from './layouts/Footer/Footer';
 import Carousel from './layouts/HomePage/components/Carousel';
 import ExploreTopBooks from './layouts/HomePage/components/ExploreTopBooks';
 import Hero from './layouts/HomePage/components/Hero';
@@ -13,6 +14,7 @@ function App() {
 			<Carousel />
 			<Hero />
 			<LibraryService />
+			<Footer />
 		</>
 	);
 }
