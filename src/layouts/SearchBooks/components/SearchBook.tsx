@@ -12,8 +12,12 @@ const SearchBook: React.FC<{ book: BookModel }> = ({ book }) => {
 				)}
 			</figure>
 			<div className="card-body lg:w-2/3 lg:mx-auto">
-				<h2 className="card-title font-bold text-2xl">{book.title}</h2>
-				<h4 className="text-lg italic">{book.author}</h4>
+				<h2 className="card-title font-bold text-2xl text-neutral-500">
+					{book.title}
+				</h2>
+				<h4 className="text-lg italic text-neutral-500/80 font-semibold">
+					{book.author}
+				</h4>
 				<p>{book.description}</p>
 				<div className="card-actions justify-center lg:justify-end">
 					<button className="btn bg-neutral-500 border-neutral-500 hover:bg-neutral-500/80 hover:border-neutral-500 text-white">
