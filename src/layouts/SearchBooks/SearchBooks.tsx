@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import BookModel from '../../models/BookModel';
 import Spinner from '../utils/Spinner';
+import SearchBook from './components/SearchBook';
 
 const SearchBooks = () => {
 	const [books, setBooks] = useState<BookModel[]>([]);
@@ -56,23 +57,23 @@ const SearchBooks = () => {
 		<div>
 			<div className="container mx-auto my-5">
 				<div>
-					<div className="flex flex-wrap mt-5">
+					<div className="flex flex-wrap justify-center items-center mt-5">
 						<div className="w-1/2">
 							<div className="flex">
 								<input
 									type="search"
-									className="form-input mr-2 bg-white border border-solid border-teal-500 rounded-lg pl-2"
+									className="form-input w-80 italic text-lg mr-2 bg-white border border-solid border-teal-500 rounded-lg pl-2"
 									placeholder="Search"
 									aria-labelledby="Search"
 								/>
-								<button className="py-3 px-6 text-lg border border-solid border-teal-500 rounded-lg hover:bg-teal-500 hover:text-white">
+								<button className="btn bg-teal-500 text-white border-solid border-teal-500 rounded-lg hover:bg-teal-500/80 hover:border-teal-500 hover:text-white">
 									Search
 								</button>
 							</div>
 						</div>
-						<div className="w-1/3">
+						<div className="w-1/3 text-center">
 							<details className="dropdown">
-								<summary className="py-3 px-6 text-lg border border-solid border-teal-500 rounded-lg list-none hover:bg-teal-500 hover:text-white hover:border-teal-500">
+								<summary className="btn bg-teal-500 text-white border-solid border-teal-500 list-none hover:bg-teal-500/80 hover:text-white hover:border-teal-500">
 									Category
 								</summary>
 								<ul className="menu dropdown-content bg-white rounded-lg z-[1] w-52 p-2 shadow">
@@ -95,6 +96,14 @@ const SearchBooks = () => {
 							</details>
 						</div>
 					</div>
+
+					<div className=" mt-3">
+						<h5>Number of results: (22)</h5>
+					</div>
+					<p className="flex justify-end">1 to 5 of 22 items</p>
+					{books.map((book) => (
+						<SearchBook book={book} key={book.id} />
+					))}
 				</div>
 			</div>
 		</div>
