@@ -15,8 +15,39 @@ const Pagination: React.FC<{
 	}
 
 	return (
-		<nav>
-			<div>Pagination</div>
+		<nav aria-label="...">
+			<ul className="flex justify-center gap-1 text-xs font-medium">
+				<li onClick={() => paginate(1)}>
+					<a
+						href="#"
+						className="inline-flex size-8 items-center justify-center rounded border border-gray-100 bg-white text-gray-900"
+					>
+						First
+					</a>
+				</li>
+				{pageNumbers.map((number) => (
+					<li
+						key={number}
+						onClick={() => paginate(number)}
+						className={currentPage === number ? 'bg-neutral-500' : ''}
+					>
+						<a
+							href="#"
+							className="block size-8 rounded border border-gray-100 bg-white text-center leading-8 text-gray-900"
+						>
+							{number}
+						</a>
+					</li>
+				))}
+				<li onClick={() => paginate(totalPages)}>
+					<a
+						href="#"
+						className="inline-flex size-8 items-center justify-center rounded border border-gray-100 bg-white text-gray-900 rtl:rotate-180"
+					>
+						Last
+					</a>
+				</li>
+			</ul>
 		</nav>
 	);
 };
