@@ -12,13 +12,23 @@ const SearchBooks = () => {
 	const [booksPerPage] = useState(5);
 	const [totalAmountOfBooks, setTotalAmountOfBooks] = useState(0);
 	const [totalPages, setTotalPages] = useState(0);
+	const [search, setSearch] = useState('');
+	const [searchUrl, setSearchUrl] = useState('');
 
 	useEffect(() => {
 		const fetchBooks = async () => {
 			const baseUrl: string = 'http://localhost:8080/api/books';
-			const url: string = `${baseUrl}?page=${
-				currentPage - 1
-			}&size=${booksPerPage}`;
+			let url: string = '';
+
+			if (searchUrl === '') {
+				url = `${baseUrl}?page=${currentPage - 1}&size=${booksPerPage}`;
+			} else {
+				const searchWithPage = searchUrl.replace(
+					'<pageNumber>',
+					`${currentPage - 1}`
+				);
+				url = baseUrl + searchWithPage;
+			}
 
 			const response = await fetch(url);
 			if (!response.ok) {
@@ -50,7 +60,7 @@ const SearchBooks = () => {
 			setHttpError(error.message);
 		});
 		window.scrollTo(0, 0);
-	}, [currentPage]);
+	}, [currentPage, searchUrl]);
 
 	if (isLoading) {
 		return <Spinner />;
@@ -64,9 +74,20 @@ const SearchBooks = () => {
 		);
 	}
 
+	const searchHandleChange = () => {
+		setCurrentPage(1);
+		if (search === '') {
+			setSearchUrl('');
+		} else {
+			setSearchUrl(
+				`/search/findByTitleContaining?title=${search}&page=0&size=${booksPerPage}`
+			);
+		}
+	};
+
 	const indexOfLastBook: number = currentPage * booksPerPage;
 	const indexOfFirstBook: number = indexOfLastBook - booksPerPage;
-	let lastItem =
+	const lastItem =
 		booksPerPage * currentPage <= totalAmountOfBooks
 			? booksPerPage * currentPage
 			: totalAmountOfBooks;
@@ -85,8 +106,12 @@ const SearchBooks = () => {
 									className="form-input w-80 h-12 italic text-lg mr-2 bg-white border border-solid border-teal-500 rounded-lg pl-2"
 									placeholder="Search"
 									aria-labelledby="Search"
+									onChange={(e) => setSearch(e.target.value)}
 								/>
-								<button className="w-24 btn bg-teal-500 text-white border-solid border-teal-500 mt-2 md:mt-0 hover:bg-teal-500/80 hover:border-teal-500 hover:text-white">
+								<button
+									onClick={() => searchHandleChange()}
+									className="w-24 btn bg-teal-500 text-white border-solid border-teal-500 mt-2 md:mt-0 hover:bg-teal-500/80 hover:border-teal-500 hover:text-white"
+								>
 									Search
 								</button>
 							</div>
