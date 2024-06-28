@@ -103,7 +103,7 @@ const SearchBooks = () => {
 							<div className="flex flex-col md:flex-row justify-center items-center ">
 								<input
 									type="search"
-									className="form-input w-80 h-12 italic text-lg mr-2 bg-white border border-solid border-teal-500 rounded-lg pl-2"
+									className="form-input w-80 h-12 text-neutral-500 text-lg mr-2 bg-white border border-solid border-teal-500 rounded-lg pl-2"
 									placeholder="Search"
 									aria-labelledby="Search"
 									onChange={(e) => setSearch(e.target.value)}
@@ -142,15 +142,31 @@ const SearchBooks = () => {
 						</div>
 					</div>
 
-					<div className="text-neutral-500 font-semibold mt-3">
-						<h5>Number of results: ({totalAmountOfBooks})</h5>
-					</div>
-					<p className="flex justify-end text-neutral-500">
-						{indexOfFirstBook + 1} - {lastItem} of {totalAmountOfBooks} books
-					</p>
-					{books.map((book) => (
-						<SearchBook book={book} key={book.id} />
-					))}
+					{totalAmountOfBooks > 0 ? (
+						<>
+							<div className="text-neutral-500 font-semibold mt-3">
+								<h5>Number of results: ({totalAmountOfBooks})</h5>
+							</div>
+							<p className="flex justify-end text-neutral-500">
+								{indexOfFirstBook + 1} - {lastItem} of {totalAmountOfBooks}{' '}
+								books
+							</p>
+							{books.map((book) => (
+								<SearchBook book={book} key={book.id} />
+							))}
+						</>
+					) : (
+						<div className="h-dvh container flex flex-col justify-start items-center mt-20 mx-5">
+							<h3 className="text-3xl">Can't find what you're looking for?</h3>
+							<a
+								href="#"
+								type="button"
+								className="btn bg-neutral-500 border-neutral-500 mt-4 hover:bg-neutral-500/80 hover:border-neutral-500 text-white"
+							>
+								Library Services
+							</a>
+						</div>
+					)}
 				</div>
 				{totalPages > 1 && (
 					<Pagination
