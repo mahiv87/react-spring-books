@@ -29,7 +29,7 @@ const Navbar = () => {
 							<li>
 								<a
 									className="text-gray-100 transition hover:text-gray-100/75"
-									href="#"
+									href="/"
 								>
 									Home
 								</a>
@@ -37,7 +37,7 @@ const Navbar = () => {
 							<li>
 								<a
 									className="text-gray-100 transition hover:text-gray-100/75"
-									href="#"
+									href="/search"
 								>
 									Search Books
 								</a>
