@@ -14,6 +14,7 @@ const SearchBooks = () => {
 	const [totalPages, setTotalPages] = useState(0);
 	const [search, setSearch] = useState('');
 	const [searchUrl, setSearchUrl] = useState('');
+	const [categorySelection, setCategorySelection] = useState('Category');
 
 	useEffect(() => {
 		const fetchBooks = async () => {
@@ -85,6 +86,24 @@ const SearchBooks = () => {
 		}
 	};
 
+	const categoryField = (value: string) => {
+		setCurrentPage(1);
+		if (
+			value.toLowerCase() === 'fe' ||
+			value.toLowerCase() === 'be' ||
+			value.toLowerCase() === 'data' ||
+			value.toLowerCase() === 'devops'
+		) {
+			setCategorySelection(value);
+			setSearchUrl(
+				`/search/findByCategory?category=${value}&page=<pageNumber>&size=${booksPerPage}`
+			);
+		} else {
+			setCategorySelection('All');
+			setSearchUrl(`?page=<pageNumber>&size=${booksPerPage}`);
+		}
+	};
+
 	const indexOfLastBook: number = currentPage * booksPerPage;
 	const indexOfFirstBook: number = indexOfLastBook - booksPerPage;
 	const lastItem =
@@ -119,22 +138,22 @@ const SearchBooks = () => {
 						<div className="md:w-1/3 text-center mt-2 md:mt-0">
 							<details className="dropdown">
 								<summary className="w-24 btn bg-teal-500 text-white border-solid border-teal-500 list-none hover:bg-teal-500/80 hover:text-white hover:border-teal-500">
-									Category
+									{categorySelection}
 								</summary>
 								<ul className="menu dropdown-content bg-gray-100 rounded-lg z-[1] w-52 p-2 absolute left-1/2 transform -translate-x-1/2 shadow-lg">
-									<li>
+									<li onClick={() => categoryField('All')}>
 										<a>All</a>
 									</li>
-									<li>
+									<li onClick={() => categoryField('fe')}>
 										<a>Front End</a>
 									</li>
-									<li>
+									<li onClick={() => categoryField('be')}>
 										<a>Back End</a>
 									</li>
-									<li>
+									<li onClick={() => categoryField('data')}>
 										<a>Data</a>
 									</li>
-									<li>
+									<li onClick={() => categoryField('devops')}>
 										<a>DevOps</a>
 									</li>
 								</ul>
@@ -157,7 +176,9 @@ const SearchBooks = () => {
 						</>
 					) : (
 						<div className="h-dvh container flex flex-col justify-start items-center mt-20 mx-5">
-							<h3 className="text-3xl">Can't find what you're looking for?</h3>
+							<h3 className="text-3xl font-semibold text-neutral-600">
+								Can't find what you're looking for?
+							</h3>
 							<a
 								href="#"
 								type="button"
