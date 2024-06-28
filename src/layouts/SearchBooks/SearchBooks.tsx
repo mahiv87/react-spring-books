@@ -81,9 +81,10 @@ const SearchBooks = () => {
 			setSearchUrl('');
 		} else {
 			setSearchUrl(
-				`/search/findByTitleContaining?title=${search}&page=0&size=${booksPerPage}`
+				`/search/findByTitleContaining?title=${search}&page=<pageNumber>&size=${booksPerPage}`
 			);
 		}
+		setCategorySelection('Category');
 	};
 
 	const categoryField = (value: string) => {
