@@ -29,7 +29,11 @@ const Pagination: React.FC<{
 					<li
 						key={number}
 						onClick={() => paginate(number)}
-						className={currentPage === number ? 'bg-neutral-500' : ''}
+						className={
+							currentPage === number
+								? ' border border-solid border-teal-600 rounded-md'
+								: ''
+						}
 					>
 						<a
 							href="#"

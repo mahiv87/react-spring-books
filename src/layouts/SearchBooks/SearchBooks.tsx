@@ -49,7 +49,8 @@ const SearchBooks = () => {
 			setIsLoading(false);
 			setHttpError(error.message);
 		});
-	}, []);
+		window.scrollTo(0, 0);
+	}, [currentPage]);
 
 	if (isLoading) {
 		return <Spinner />;
@@ -116,15 +117,23 @@ const SearchBooks = () => {
 						</div>
 					</div>
 
-					<div className=" mt-3">
-						<h5>Number of results: (22)</h5>
+					<div className="text-neutral-500 font-semibold mt-3">
+						<h5>Number of results: ({totalAmountOfBooks})</h5>
 					</div>
-					<p className="flex justify-end">1 to 5 of 22 items</p>
+					<p className="flex justify-end text-neutral-500">
+						{indexOfFirstBook + 1} - {lastItem} of {totalAmountOfBooks} books
+					</p>
 					{books.map((book) => (
 						<SearchBook book={book} key={book.id} />
 					))}
 				</div>
-				<Pagination />
+				{totalPages > 1 && (
+					<Pagination
+						currentPage={currentPage}
+						totalPages={totalPages}
+						paginate={paginate}
+					/>
+				)}
 			</div>
 		</div>
 	);
