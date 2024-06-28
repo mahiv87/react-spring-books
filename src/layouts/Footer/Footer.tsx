@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 const Footer = () => {
 	return (
 		<div className="main-color">
@@ -5,14 +7,14 @@ const Footer = () => {
 				<p className="md:w-1/3 mb-0 text-white">© React Spring Books, Inc</p>
 				<ul className="md:w-1/3 flex justify-end">
 					<li>
-						<a href="#" className="mx-2 px-2 text-white">
+						<Link to="/" className="mx-2 px-2 text-white">
 							Home
-						</a>
+						</Link>
 					</li>
 					<li>
-						<a href="#" className="mx-2 px-2 text-white">
+						<Link to="/search" className="mx-2 px-2 text-white">
 							Search Books
-						</a>
+						</Link>
 					</li>
 				</ul>
 			</div>

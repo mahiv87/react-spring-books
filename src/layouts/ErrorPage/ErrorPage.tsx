@@ -1,4 +1,4 @@
-import { useRouteError } from 'react-router-dom';
+import { Link, useRouteError } from 'react-router-dom';
 
 const ErrorPage: React.FC = () => {
 	const error = useRouteError();
@@ -15,12 +15,12 @@ const ErrorPage: React.FC = () => {
 
 				<p className="mt-4 text-gray-500">We can't find that page.</p>
 
-				<a
-					href="/"
+				<Link
+					to="/"
 					className="mt-6 inline-block rounded bg-teal-600 px-5 py-3 text-sm font-medium text-white hover:bg-teal-700 focus:outline-none focus:ring"
 				>
 					Go Back Home
-				</a>
+				</Link>
 			</div>
 		</div>
 	);

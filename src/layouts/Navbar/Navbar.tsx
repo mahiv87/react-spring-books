@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
 	const [navOpen, setNavOpen] = useState(false);
@@ -27,20 +28,20 @@ const Navbar = () => {
 							}
 						>
 							<li>
-								<a
+								<Link
 									className="text-gray-100 transition hover:text-gray-100/75"
-									href="/"
+									to="/"
 								>
 									Home
-								</a>
+								</Link>
 							</li>
 							<li>
-								<a
+								<Link
 									className="text-gray-100 transition hover:text-gray-100/75"
-									href="/search"
+									to="/search"
 								>
 									Search Books
-								</a>
+								</Link>
 							</li>
 						</ul>
 					</nav>

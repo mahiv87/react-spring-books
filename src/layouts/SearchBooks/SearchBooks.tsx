@@ -176,7 +176,7 @@ const SearchBooks = () => {
 							))}
 						</>
 					) : (
-						<div className="h-dvh container flex flex-col justify-start items-center mt-20 mx-5">
+						<div className="container flex flex-col justify-start items-center mt-20 mx-5">
 							<h3 className="text-3xl font-semibold text-neutral-600">
 								Can't find what you're looking for?
 							</h3>

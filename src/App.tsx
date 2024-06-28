@@ -5,11 +5,13 @@ import { Outlet } from 'react-router-dom';
 
 function App() {
 	return (
-		<>
+		<div className="flex flex-col min-h-dvh">
 			<Navbar />
-			<Outlet />
+			<div className="flex-1">
+				<Outlet />
+			</div>
 			<Footer />
-		</>
+		</div>
 	);
 }
 
