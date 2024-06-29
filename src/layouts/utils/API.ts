@@ -1,4 +1,5 @@
-import BookModel from '../../models/BookModel';
+import { BookModel } from '../../models/BookModel';
+import { ReviewModel } from '../../models/ReviewModel';
 
 // Fetch books for Carousel
 export const fetchBooks = async (query: string): Promise<BookModel[]> => {
@@ -51,4 +52,30 @@ export const fetchBook = async (query: string): Promise<BookModel> => {
 	};
 
 	return singleBook;
+};
+
+export const fetchBookReviews = async (
+	bookId: number
+): Promise<ReviewModel[]> => {
+	const url: string = `http://localhost:8080/api/reviews/search/findByBookId?bookId=${bookId}`;
+
+	const response = await fetch(url);
+
+	if (!response.ok) {
+		throw new Error('Something went wrong...');
+	}
+
+	const responseJsonReviews = await response.json();
+	const responseData = responseJsonReviews._embedded.reviews;
+
+	const loadedReviews = responseData.map((review: ReviewModel) => ({
+		id: review.id,
+		userEmail: review.userEmail,
+		date: review.date,
+		rating: review.rating,
+		book_id: review.bookId,
+		reviewDescription: review.reviewDescription
+	}));
+
+	return loadedReviews;
 };

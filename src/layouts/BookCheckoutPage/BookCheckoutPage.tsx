@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
-import BookModel from '../../models/BookModel';
+import { BookModel } from '../../models/BookModel';
+import { ReviewModel } from '../../models/ReviewModel';
 import { fetchBook } from '../utils/API';
 import Spinner from '../utils/Spinner';
 import defaultBook from '../../Images/BooksImages/book-luv2code-1000.png';
@@ -11,6 +12,8 @@ const BookCheckoutPage = () => {
 	const [isLoading, setIsLoading] = useState(true);
 	const [httpError, setHttpError] = useState(null);
 	const [rating, setRating] = useState(0);
+	const [reviews, setReviews] = useState<ReviewModel[]>([]);
+	const [isLoadingReview, setIsLoadingReview] = useState(true);
 
 	const bookId = window.location.pathname.split('/')[2];
 

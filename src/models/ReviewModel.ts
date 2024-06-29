@@ -1,10 +1,10 @@
 export class ReviewModel {
 	constructor(
-		private id: number,
-		private userEmail: string,
-		private date: string,
-		private rating: number,
-		private bookId: number,
-		private reviewDescription?: string
+		public id: number,
+		public userEmail: string,
+		public date: string,
+		public rating: number,
+		public bookId: number,
+		public reviewDescription?: string
 	) {}
 }
