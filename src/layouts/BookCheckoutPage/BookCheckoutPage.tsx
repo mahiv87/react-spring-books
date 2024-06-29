@@ -9,6 +9,7 @@ const BookCheckoutPage = () => {
 	const [book, setBook] = useState<BookModel>();
 	const [isLoading, setIsLoading] = useState(true);
 	const [httpError, setHttpError] = useState(null);
+	const [rating, setRating] = useState(0);
 
 	const bookId = window.location.pathname.split('/')[2];
 
@@ -63,7 +64,7 @@ const BookCheckoutPage = () => {
 						</div>
 					</div>
 				</div>
-				<StarRating rating={0} />
+				<StarRating rating={rating} />
 				<div className="divider "></div>
 			</div>
 		</div>

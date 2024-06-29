@@ -15,6 +15,7 @@ const StarRating: React.FC<{ rating: number }> = ({ rating }) => {
 							? 'rating-hidden'
 							: `mask mask-star-2 ${
 									value % 1 === 0.5 ? 'mask-half-1' : 'mask-half-2'
+									// eslint-disable-next-line no-mixed-spaces-and-tabs
 							  } bg-yellow-400 pointer-events-none`
 					}
 					data-type={value}
