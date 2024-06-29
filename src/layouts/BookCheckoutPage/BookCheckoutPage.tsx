@@ -58,7 +58,7 @@ const BookCheckoutPage = () => {
 			});
 	}, []);
 
-	if (isLoading) {
+	if (isLoading || isLoadingReview) {
 		return <Spinner />;
 	}
 

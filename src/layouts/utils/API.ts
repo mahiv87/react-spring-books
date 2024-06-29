@@ -54,6 +54,7 @@ export const fetchBook = async (query: string): Promise<BookModel> => {
 	return singleBook;
 };
 
+// Fetch Reviews
 export const fetchBookReviews = async (
 	bookId: string
 ): Promise<ReviewModel[]> => {
