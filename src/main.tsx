@@ -6,6 +6,7 @@ import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import Homepage from './layouts/HomePage/Homepage.tsx';
 import SearchBooks from './layouts/SearchBooks/SearchBooks.tsx';
 import ErrorPage from './layouts/ErrorPage/ErrorPage.tsx';
+import BookCheckoutPage from './layouts/BookCheckoutPage/BookCheckoutPage.tsx';
 
 const router = createBrowserRouter([
 	{
@@ -20,6 +21,10 @@ const router = createBrowserRouter([
 			{
 				path: 'search',
 				element: <SearchBooks />
+			},
+			{
+				path: '/checkout/:bookId',
+				element: <BookCheckoutPage />
 			}
 		]
 	}
