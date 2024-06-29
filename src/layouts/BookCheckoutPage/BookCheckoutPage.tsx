@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import BookModel from '../../models/BookModel';
-import { fetchBooks } from '../utils/fetchBooks';
+import { fetchBook } from '../utils/API';
 
 const BookCheckoutPage = () => {
 	const [book, setBook] = useState<BookModel>();
@@ -10,9 +10,10 @@ const BookCheckoutPage = () => {
 	const bookId = window.location.pathname.split('/')[2];
 
 	useEffect(() => {
-		const query = `/checkout/${bookId}`;
-		fetchBooks(query)
-			.then(([loadedBooks, singleBook]) => {
+		const query = `/${bookId}`;
+
+		fetchBook(query)
+			.then((singleBook) => {
 				setBook(singleBook);
 				setIsLoading(false);
 			})

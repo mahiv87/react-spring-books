@@ -3,7 +3,7 @@ import ReturnBook from './ReturnBook';
 import BookModel from '../../../models/BookModel';
 import Spinner from '../../utils/Spinner';
 import { Link } from 'react-router-dom';
-import { fetchBooks } from '../../utils/fetchBooks';
+import { fetchBooks } from '../../utils/API';
 
 const Carousel = () => {
 	const [books, setBooks] = useState<BookModel[]>([]);
@@ -13,7 +13,7 @@ const Carousel = () => {
 	useEffect(() => {
 		const query = '?page=0size=9';
 		fetchBooks(query)
-			.then(([loadedBooks]) => {
+			.then((loadedBooks) => {
 				setBooks(loadedBooks);
 				setIsLoading(false);
 			})
