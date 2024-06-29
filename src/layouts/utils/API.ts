@@ -55,7 +55,7 @@ export const fetchBook = async (query: string): Promise<BookModel> => {
 };
 
 export const fetchBookReviews = async (
-	bookId: number
+	bookId: string
 ): Promise<ReviewModel[]> => {
 	const url: string = `http://localhost:8080/api/reviews/search/findByBookId?bookId=${bookId}`;
 

@@ -1,7 +1,7 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { BookModel } from '../../models/BookModel';
 import { ReviewModel } from '../../models/ReviewModel';
-import { fetchBook } from '../utils/API';
+import { fetchBook, fetchBookReviews } from '../utils/API';
 import Spinner from '../utils/Spinner';
 import defaultBook from '../../Images/BooksImages/book-luv2code-1000.png';
 import StarRating from '../utils/StarRating';
@@ -17,6 +17,8 @@ const BookCheckoutPage = () => {
 
 	const bookId = window.location.pathname.split('/')[2];
 
+	const weightedStarReviews = useRef<number>(0);
+
 	useEffect(() => {
 		const query = `/${bookId}`;
 
@@ -27,6 +29,31 @@ const BookCheckoutPage = () => {
 			})
 			.catch((error) => {
 				setIsLoading(false);
+				setHttpError(error.message);
+			});
+	}, []);
+
+	useEffect(() => {
+		fetchBookReviews(bookId)
+			.then((reviews) => {
+				let totalRating = 0;
+				reviews.forEach((review) => {
+					totalRating += review.rating;
+				});
+				weightedStarReviews.current = totalRating;
+
+				if (reviews.length > 0) {
+					const rounded = (
+						Math.round((totalRating / reviews.length) * 2) / 2
+					).toFixed(1);
+					setRating(Number(rounded));
+				}
+
+				setReviews(reviews);
+				setIsLoadingReview(false);
+			})
+			.catch((error) => {
+				setIsLoadingReview(false);
 				setHttpError(error.message);
 			});
 	}, []);
