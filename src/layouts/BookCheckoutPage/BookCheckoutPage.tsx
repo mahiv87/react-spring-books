@@ -3,6 +3,7 @@ import BookModel from '../../models/BookModel';
 import { fetchBook } from '../utils/API';
 import Spinner from '../utils/Spinner';
 import defaultBook from '../../Images/BooksImages/book-luv2code-1000.png';
+import StarRating from '../utils/StarRating';
 
 const BookCheckoutPage = () => {
 	const [book, setBook] = useState<BookModel>();
@@ -62,6 +63,7 @@ const BookCheckoutPage = () => {
 						</div>
 					</div>
 				</div>
+				<StarRating />
 				<div className="divider "></div>
 			</div>
 		</div>
