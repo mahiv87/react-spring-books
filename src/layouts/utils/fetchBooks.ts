@@ -1,8 +1,10 @@
 import BookModel from '../../models/BookModel';
 
-export const fetchBooks = async (): Promise<BookModel[]> => {
+export const fetchBooks = async (
+	query: string
+): Promise<[BookModel[], BookModel]> => {
 	const baseUrl: string = 'http://localhost:8080/api/books';
-	const url: string = `${baseUrl}?page=0size=9`;
+	const url: string = `${baseUrl}${query}`;
 
 	const response = await fetch(url);
 	if (!response.ok) {
@@ -12,7 +14,7 @@ export const fetchBooks = async (): Promise<BookModel[]> => {
 	const responseJson = await response.json();
 	const responseData = responseJson._embedded.books;
 
-	const loadedBooks = responseData.map((book: BookModel) => ({
+	const loadedBooks: BookModel[] = responseData.map((book: BookModel) => ({
 		id: book.id,
 		title: book.title,
 		author: book.author,
@@ -23,5 +25,6 @@ export const fetchBooks = async (): Promise<BookModel[]> => {
 		img: book.img
 	}));
 
-	return loadedBooks;
+	const singleBook: BookModel = loadedBooks[0];
+	return [loadedBooks, singleBook];
 };
