@@ -62,7 +62,7 @@ const BookCheckoutPage = () => {
 						</div>
 					</div>
 				</div>
-				<div className="divider"></div>
+				<div className="divider "></div>
 			</div>
 		</div>
 	);

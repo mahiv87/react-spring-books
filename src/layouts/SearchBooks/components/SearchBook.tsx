@@ -1,5 +1,6 @@
 import BookModel from '../../../models/BookModel';
 import defaultImg from '../../../Images/BooksImages/book-luv2code-1000.png';
+import { Link } from 'react-router-dom';
 
 const SearchBook: React.FC<{ book: BookModel }> = ({ book }) => {
 	return (
@@ -20,9 +21,12 @@ const SearchBook: React.FC<{ book: BookModel }> = ({ book }) => {
 				</h4>
 				<p>{book.description}</p>
 				<div className="card-actions justify-center lg:justify-end">
-					<button className="btn bg-neutral-500 border-neutral-500 hover:bg-neutral-500/80 hover:border-neutral-500 text-white">
+					<Link
+						to={`/checkout/${book.id}`}
+						className="btn bg-neutral-500 border-neutral-500 hover:bg-neutral-500/80 hover:border-neutral-500 text-white"
+					>
 						View Details
-					</button>
+					</Link>
 				</div>
 			</div>
 		</div>
