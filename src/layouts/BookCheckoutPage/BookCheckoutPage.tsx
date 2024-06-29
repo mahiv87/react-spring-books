@@ -63,7 +63,7 @@ const BookCheckoutPage = () => {
 						</div>
 					</div>
 				</div>
-				<StarRating />
+				<StarRating rating={0} />
 				<div className="divider "></div>
 			</div>
 		</div>
