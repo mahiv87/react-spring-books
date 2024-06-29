@@ -39,8 +39,8 @@ const BookCheckoutPage = () => {
 
 	return (
 		<div>
-			<div className="container flex">
-				<div className="flex md:flex-row flex-col justify-center items-center mt-5">
+			<div className="container flex flex-col mx-auto">
+				<div className="flex md:flex-row flex-col md:justify-evenly md:items-start justify-center items-center mt-5">
 					<div className="sm:w-1/6 md:w-1/6">
 						{book?.img ? (
 							<img src={book.img} width="226" height="349" alt="book image" />
@@ -53,6 +53,7 @@ const BookCheckoutPage = () => {
 							/>
 						)}
 					</div>
+
 					<div className="container w-1/3 md:w-1/3 mt-4 md:mt-0">
 						<div className="ml-2">
 							<h2 className="text-2xl font-semibold">{book?.title}</h2>
@@ -61,8 +62,8 @@ const BookCheckoutPage = () => {
 						</div>
 					</div>
 				</div>
+				<div className="divider"></div>
 			</div>
-			;
 		</div>
 	);
 };
