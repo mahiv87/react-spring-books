@@ -20,13 +20,13 @@ const CheckoutAndReview: React.FC<{ book: BookModel | undefined }> = ({
 					<h4 className="text-orange-500">Wait List</h4>
 				)}
 				<div className="flex">
-					<p className="w-1/2 text-lg font-light my-4">
+					<p className="w-1/2 text-lg  my-4">
 						<span className="font-semibold mr-1">{book?.copies}</span>
 						copies
 					</p>
-					<p className="w-1/2 text-lg font-light my-4">
+					<p className="w-1/2 text-lg my-4">
 						<span className="font-semibold mr-1">{book?.copiesAvailable}</span>
-						avaiable
+						available
 					</p>
 				</div>
 				<div className="card-actions justify-end">
