@@ -4,6 +4,7 @@ import { fetchBook } from '../utils/API';
 import Spinner from '../utils/Spinner';
 import defaultBook from '../../Images/BooksImages/book-luv2code-1000.png';
 import StarRating from '../utils/StarRating';
+import CheckoutAndReview from './CheckoutAndReview';
 
 const BookCheckoutPage = () => {
 	const [book, setBook] = useState<BookModel>();
@@ -41,7 +42,7 @@ const BookCheckoutPage = () => {
 
 	return (
 		<div>
-			<div className="container flex flex-col mx-auto">
+			<div className="container flex flex-col md:mx-auto">
 				<div className="flex md:flex-row flex-col md:justify-evenly md:items-start justify-center items-center mt-5">
 					<div className="sm:w-1/6 md:w-1/6">
 						{book?.img ? (
@@ -56,15 +57,16 @@ const BookCheckoutPage = () => {
 						)}
 					</div>
 
-					<div className="container w-1/3 md:w-1/3 mt-4 md:mt-0">
+					<div className="container w-11/12 md:w-1/3 mt-4 md:mt-0">
 						<div className="ml-2">
 							<h2 className="text-2xl font-semibold">{book?.title}</h2>
 							<h5 className="">{book?.author}</h5>
 							<p className="text-lg font-light my-4">{book?.description}</p>
+							<StarRating rating={rating} />
 						</div>
 					</div>
+					<CheckoutAndReview book={book} />
 				</div>
-				<StarRating rating={rating} />
 				<div className="divider "></div>
 			</div>
 		</div>
