@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { ReviewModel } from '../../models/ReviewModel';
+import Review from '../utils/Review';
 
 const LatestReviews: React.FC<{
 	reviews: ReviewModel[];
