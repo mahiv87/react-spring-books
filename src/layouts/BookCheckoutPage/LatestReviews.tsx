@@ -19,7 +19,11 @@ const LatestReviews: React.FC<{
 						))}
 
 						<div className="m-3">
-							<Link to="#" type="button" className="btn main-color text-white">
+							<Link
+								to="#"
+								type="button"
+								className="btn bg-neutral-500 border-neutral-500 hover:bg-neutral-500/80 hover:border-neutral-500/80 text-white"
+							>
 								Reach all reviews
 							</Link>
 						</div>

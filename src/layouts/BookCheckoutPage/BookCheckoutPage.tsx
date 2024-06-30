@@ -6,6 +6,7 @@ import Spinner from '../utils/Spinner';
 import defaultBook from '../../Images/BooksImages/book-luv2code-1000.png';
 import StarRating from '../utils/StarRating';
 import CheckoutAndReview from './CheckoutAndReview';
+import LatestReviews from './LatestReviews';
 
 const BookCheckoutPage = () => {
 	const [book, setBook] = useState<BookModel>();
@@ -39,13 +40,13 @@ const BookCheckoutPage = () => {
 				let totalRating = 0;
 				reviews.forEach((review) => {
 					totalRating += review.rating;
+					console.log(totalRating);
 				});
 				weightedStarReviews.current = totalRating;
 
 				if (reviews.length > 0) {
-					const rounded = (
-						Math.round((totalRating / reviews.length) * 2) / 2
-					).toFixed(1);
+					const avgRating = totalRating / reviews.length;
+					const rounded = Math.floor(avgRating * 2) / 2;
 					setRating(Number(rounded));
 				}
 
@@ -56,7 +57,7 @@ const BookCheckoutPage = () => {
 				setIsLoadingReview(false);
 				setHttpError(error.message);
 			});
-	}, []);
+	}, [bookId]);
 
 	if (isLoading || isLoadingReview) {
 		return <Spinner />;
@@ -98,6 +99,7 @@ const BookCheckoutPage = () => {
 					<CheckoutAndReview book={book} />
 				</div>
 				<div className="divider "></div>
+				<LatestReviews reviews={reviews} bookId={book?.id} />
 			</div>
 		</div>
 	);
