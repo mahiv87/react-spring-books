@@ -1,8 +1,19 @@
+import { useOktaAuth } from '@okta/okta-react';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import Spinner from '../utils/Spinner';
 
 const Navbar = () => {
 	const [navOpen, setNavOpen] = useState(false);
+	const { oktaAuth, authState } = useOktaAuth();
+
+	if (!authState) {
+		return <Spinner />;
+	}
+
+	const handleLogout = async () => oktaAuth.signOut();
+	// console.log(authState);
+
 	return (
 		<header className="bg-teal-500">
 			<div className="mx-auto flex h-24 max-w-screen-xl justify-between items-center gap-8 px-4 sm:px-6 lg:px-8">
@@ -53,27 +64,41 @@ const Navbar = () => {
 									: 'sm:flex sm:gap-4'
 							}
 						>
-							<Link
-								className={
-									navOpen
-										? 'block rounded-md bg-teal-600 px-5 py-2.5 text-sm font-medium text-white transition hover:bg-teal-700'
-										: 'hidden md:block rounded-md bg-teal-600 px-5 py-2.5 text-sm font-medium text-white transition hover:bg-teal-700'
-								}
-								to="/login"
-							>
-								Login
-							</Link>
-
-							<a
-								className={
-									navOpen
-										? 'block rounded-md bg-gray-100 px-5 py-2.5 text-sm font-medium text-teal-600 transition hover:text-teal-600/75'
-										: 'hidden md:block rounded-md bg-gray-100 px-5 py-2.5 text-sm font-medium text-teal-600 transition hover:text-teal-600/75'
-								}
-								href="#"
-							>
-								Register
-							</a>
+							{!authState.isAuthenticated ? (
+								<>
+									<Link
+										className={
+											navOpen
+												? 'block rounded-md bg-teal-600 px-5 py-2.5 text-sm font-medium text-white transition hover:bg-teal-700'
+												: 'hidden md:block rounded-md bg-teal-600 px-5 py-2.5 text-sm font-medium text-white transition hover:bg-teal-700'
+										}
+										to="/login"
+									>
+										Login
+									</Link>
+									<Link
+										className={
+											navOpen
+												? 'block rounded-md bg-gray-100 px-5 py-2.5 text-sm font-medium text-teal-600 transition hover:text-teal-600/75'
+												: 'hidden md:block rounded-md bg-gray-100 px-5 py-2.5 text-sm font-medium text-teal-600 transition hover:text-teal-600/75'
+										}
+										to="#"
+									>
+										Register
+									</Link>
+								</>
+							) : (
+								<button
+									className={
+										navOpen
+											? 'block rounded-md bg-gray-100 px-5 py-2.5 text-sm font-medium text-teal-600 transition hover:text-teal-600/75'
+											: 'hidden md:block rounded-md bg-gray-100 px-5 py-2.5 text-sm font-medium text-teal-600 transition hover:text-teal-600/75'
+									}
+									onClick={handleLogout}
+								>
+									Logout
+								</button>
+							)}
 						</div>
 					</div>
 				</div>
