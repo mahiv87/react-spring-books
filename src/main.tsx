@@ -7,6 +7,9 @@ import Homepage from './layouts/HomePage/Homepage.tsx';
 import SearchBooks from './layouts/SearchBooks/SearchBooks.tsx';
 import ErrorPage from './layouts/ErrorPage/ErrorPage.tsx';
 import BookCheckoutPage from './layouts/BookCheckoutPage/BookCheckoutPage.tsx';
+import LoginWidget from './auth/LoginWidget.jsx';
+import { oktaConfig } from './lib/oktaConfig.ts';
+import { LoginCallback } from '@okta/okta-react';
 
 const router = createBrowserRouter([
 	{
@@ -23,8 +26,16 @@ const router = createBrowserRouter([
 				element: <SearchBooks />
 			},
 			{
-				path: '/checkout/:bookId',
+				path: 'checkout/:bookId',
 				element: <BookCheckoutPage />
+			},
+			{
+				path: 'login',
+				element: <LoginWidget config={oktaConfig} />
+			},
+			{
+				path: 'login/callback',
+				element: <LoginCallback />
 			}
 		]
 	}
