@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import ReturnBook from './ReturnBook';
-import BookModel from '../../../models/BookModel';
+import { BookModel } from '../../../models/BookModel';
 import Spinner from '../../utils/Spinner';
 import { Link } from 'react-router-dom';
 import { fetchBooks } from '../../utils/API';

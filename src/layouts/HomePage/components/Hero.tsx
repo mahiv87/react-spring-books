@@ -1,4 +1,9 @@
+import { useOktaAuth } from '@okta/okta-react';
+import { Link } from 'react-router-dom';
+
 const Hero = () => {
+	const { authState } = useOktaAuth();
+
 	return (
 		<div>
 			<div className="hidden lg:block 3xl:container w-full mx-auto">
@@ -14,12 +19,21 @@ const Hero = () => {
 								Whether it is to learn a new skill or grow within one, we will
 								be able to provide the top content for you!
 							</p>
-							<a
-								className="hidden lg:block w-28 main-color text-white py-3 px-6 text-lg rounded-lg hover:bg-teal-500/75"
-								href="#"
-							>
-								Sign up
-							</a>
+							{authState?.isAuthenticated ? (
+								<Link
+									className="hidden lg:block w-max main-color text-white py-3 px-6 text-lg rounded-lg hover:bg-teal-500/75"
+									to="search"
+								>
+									Explore top books
+								</Link>
+							) : (
+								<Link
+									className="hidden lg:block w-28 main-color text-white py-3 px-6 text-lg rounded-lg hover:bg-teal-500/75"
+									to="login"
+								>
+									Sign up
+								</Link>
+							)}
 						</div>
 					</div>
 				</div>

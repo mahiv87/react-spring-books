@@ -1,4 +1,5 @@
-import BookModel from '../../../models/BookModel';
+import { Link } from 'react-router-dom';
+import { BookModel } from '../../../models/BookModel';
 import bookImg from './../../../Images/BooksImages/book-luv2code-1000.png';
 
 const ReturnBook: React.FC<{ book: BookModel }> = ({ book }) => {
@@ -11,12 +12,12 @@ const ReturnBook: React.FC<{ book: BookModel }> = ({ book }) => {
 			)}
 			<h6 className="mt-2">{book.title}</h6>
 			<p>{book.author}</p>
-			<a
-				href="#"
+			<Link
+				to={`checkout/${book.id}`}
 				className="main-color text-white py-3 px-6 my-2 text-lg rounded-lg hover:bg-teal-500/75"
 			>
 				Reserve
-			</a>
+			</Link>
 		</div>
 	);
 };
