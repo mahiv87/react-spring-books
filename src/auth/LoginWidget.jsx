@@ -1,7 +1,23 @@
-function LoginWidget() {
+import { useOktaAuth } from '@okta/okta-react';
+import Spinner from '../layouts/utils/Spinner';
+
+function LoginWidget({ config }) {
+	const { oktaAuth, authState } = useOktaAuth();
+	const onSuccess = (tokens) => {
+		oktaAuth.handleLoginRedirect(tokens);
+	};
+
+	const onError = (err) => {
+		console.log('Sign in error: ', err);
+	};
+
+	if (!authState) {
+		return <Spinner />;
+	}
+
 	return (
 		<div>
-			<div>LoginWidget</div>
+			<div>Login Widget</div>
 		</div>
 	);
 }
