@@ -23,7 +23,7 @@ const OktaSignInWidget = ({ onSuccess, onError }) => {
 		return () => widget.remove();
 	}, [onSuccess, onError]);
 
-	return <div>{widgetRef}</div>;
+	return <div ref={widgetRef}></div>;
 };
 
 export default OktaSignInWidget;

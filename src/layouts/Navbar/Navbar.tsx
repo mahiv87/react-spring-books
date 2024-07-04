@@ -53,16 +53,16 @@ const Navbar = () => {
 									: 'sm:flex sm:gap-4'
 							}
 						>
-							<a
+							<Link
 								className={
 									navOpen
 										? 'block rounded-md bg-teal-600 px-5 py-2.5 text-sm font-medium text-white transition hover:bg-teal-700'
 										: 'hidden md:block rounded-md bg-teal-600 px-5 py-2.5 text-sm font-medium text-white transition hover:bg-teal-700'
 								}
-								href="#"
+								to="/login"
 							>
 								Login
-							</a>
+							</Link>
 
 							<a
 								className={
