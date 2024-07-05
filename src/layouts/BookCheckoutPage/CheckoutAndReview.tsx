@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import BookModel from '../../models/BookModel';
+import { BookModel } from '../../models/BookModel';
 import { useOktaAuth } from '@okta/okta-react';
 
 const CheckoutAndReview: React.FC<{ book: BookModel | undefined }> = ({
