@@ -1,9 +1,12 @@
 import { Link } from 'react-router-dom';
 import BookModel from '../../models/BookModel';
+import { useOktaAuth } from '@okta/okta-react';
 
 const CheckoutAndReview: React.FC<{ book: BookModel | undefined }> = ({
 	book
 }) => {
+	const { authState } = useOktaAuth();
+
 	return (
 		<div className="card flex mt-5 w-11/12 md:w-1/4 md:container md:mb-5 shadow-xl">
 			<div className="card-body">
@@ -29,13 +32,22 @@ const CheckoutAndReview: React.FC<{ book: BookModel | undefined }> = ({
 						available
 					</p>
 				</div>
-				<div className="card-actions justify-end">
-					<Link
-						to="/#"
-						className="btn border-teal-500 bg-teal-500 hover:bg-teal-500/80 hover:border-teal-500/80 text-white"
-					>
-						Checkout
-					</Link>
+				<div className="card-actions justify-start">
+					{!authState?.isAuthenticated ? (
+						<Link
+							to="/#"
+							className="btn border-teal-500 bg-teal-500 hover:bg-teal-500/80 hover:border-teal-500/80 text-white"
+						>
+							Sign in
+						</Link>
+					) : (
+						<Link
+							to="/#"
+							className="btn border-teal-500 bg-teal-500 hover:bg-teal-500/80 hover:border-teal-500/80 text-white"
+						>
+							Checkout
+						</Link>
+					)}
 				</div>
 				<div className="divider"></div>
 				<p className="mt-3">
