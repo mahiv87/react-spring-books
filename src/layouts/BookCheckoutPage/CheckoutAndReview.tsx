@@ -16,7 +16,8 @@ const CheckoutAndReview: React.FC<{
 			<div className="card-body">
 				<div className="mt-3">
 					<p>
-						<span className="font-semibold mr-1">{currentLoansCount}/5</span>
+						You have
+						<span className="font-semibold mx-1">{currentLoansCount}/5</span>
 						books checked out
 					</p>
 					<div className="divider "></div>
