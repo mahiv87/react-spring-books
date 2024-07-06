@@ -4,6 +4,7 @@ import { ReviewModel } from '../../models/ReviewModel';
 import {
 	fetchBook,
 	fetchBookReviews,
+	fetchUserCheckedOutBook,
 	fetchUserCurrentLoansCount
 } from '../utils/API';
 import Spinner from '../utils/Spinner';
@@ -19,12 +20,8 @@ const BookCheckoutPage = () => {
 	const [httpError, setHttpError] = useState(null);
 	const [rating, setRating] = useState(0);
 	const [reviews, setReviews] = useState<ReviewModel[]>([]);
-	const [isLoadingReview, setIsLoadingReview] = useState(true);
 	const [currentLoansCount, setCurrentLoansCount] = useState(0);
-	const [isLoadingCurrentLoansCount, setIsLoadingCurrentLoansCount] =
-		useState(true);
 	const [isCheckedOut, setIsCheckedOut] = useState(false);
-	const [isLoadingBookCheckedOut, setIsLoadingBookCheckedOut] = useState(true);
 
 	const { authState } = useOktaAuth();
 
@@ -63,10 +60,10 @@ const BookCheckoutPage = () => {
 				}
 
 				setReviews(reviews);
-				setIsLoadingReview(false);
+				setIsLoading(false);
 			})
 			.catch((error) => {
-				setIsLoadingReview(false);
+				setIsLoading(false);
 				setHttpError(error.message);
 			});
 	}, [bookId]);
@@ -76,15 +73,30 @@ const BookCheckoutPage = () => {
 		fetchUserCurrentLoansCount(clcAuthState)
 			.then((count) => {
 				setCurrentLoansCount(count);
-				setIsLoadingCurrentLoansCount(false);
+				setIsLoading(false);
 			})
 			.catch((error) => {
-				setIsLoadingCurrentLoansCount(false);
+				setIsLoading(false);
 				setHttpError(error.message);
 			});
 	}, [authState]);
 
-	if (isLoading || isLoadingReview || isLoadingCurrentLoansCount) {
+	useEffect(() => {
+		const bookCheckoutAuthState = authState;
+		const query = `${bookId}`;
+
+		fetchUserCheckedOutBook(bookCheckoutAuthState, query)
+			.then((book) => {
+				setIsCheckedOut(book);
+				setIsLoading(false);
+			})
+			.catch((error) => {
+				setIsLoading(false);
+				setHttpError(error.message);
+			});
+	}, [authState, bookId]);
+
+	if (isLoading) {
 		return <Spinner />;
 	}
 
