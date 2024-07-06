@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { AuthState } from '@okta/okta-auth-js';
 import { BookModel } from '../../models/BookModel';
 import { ReviewModel } from '../../models/ReviewModel';
@@ -111,10 +112,10 @@ export const fetchUserCurrentLoansCount = async (
 // Fetch to see if book is already checked out by user
 export const fetchUserCheckedOutBook = async (
 	authState: AuthState | null,
-	query: string
-) => {
-	if (authState && authState.isAuthenticate) {
-		const url = `http://localhost:8080/api/books/secure/ischeckedout/byuser/?bookId=${query}`;
+	bookId: string
+): Promise<any> => {
+	if (authState && authState.isAuthenticated) {
+		const url = `http://localhost:8080/api/books/secure/ischeckedout/byuser?bookId=${bookId}`;
 		const requestOptions = {
 			method: 'GET',
 			headers: {

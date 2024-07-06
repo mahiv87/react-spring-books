@@ -49,7 +49,7 @@ const BookCheckoutPage = () => {
 				let totalRating = 0;
 				reviews.forEach((review) => {
 					totalRating += review.rating;
-					console.log(totalRating);
+					// console.log(totalRating);
 				});
 				weightedStarReviews.current = totalRating;
 
@@ -82,10 +82,7 @@ const BookCheckoutPage = () => {
 	}, [authState]);
 
 	useEffect(() => {
-		const bookCheckoutAuthState = authState;
-		const query = `${bookId}`;
-
-		fetchUserCheckedOutBook(bookCheckoutAuthState, query)
+		fetchUserCheckedOutBook(authState, bookId)
 			.then((book) => {
 				setIsCheckedOut(book);
 				setIsLoading(false);
@@ -136,6 +133,7 @@ const BookCheckoutPage = () => {
 					<CheckoutAndReview
 						book={book}
 						currentLoansCount={currentLoansCount}
+						isCheckedOut={isCheckedOut}
 					/>
 				</div>
 				<div className="divider "></div>

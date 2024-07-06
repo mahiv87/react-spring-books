@@ -5,7 +5,8 @@ import { useOktaAuth } from '@okta/okta-react';
 const CheckoutAndReview: React.FC<{
 	book: BookModel | undefined;
 	currentLoansCount: number;
-}> = ({ book, currentLoansCount }) => {
+	isCheckedOut: boolean;
+}> = ({ book, currentLoansCount, isCheckedOut }) => {
 	const { authState } = useOktaAuth();
 
 	return (
@@ -42,12 +43,21 @@ const CheckoutAndReview: React.FC<{
 							Sign in
 						</Link>
 					) : (
-						<Link
-							to="/#"
-							className="btn border-teal-500 bg-teal-500 hover:bg-teal-500/80 hover:border-teal-500/80 text-white"
-						>
-							Checkout
-						</Link>
+						<>
+							{!isCheckedOut && currentLoansCount < 5 ? (
+								<Link
+									to="/#"
+									className="btn border-teal-500 bg-teal-500 hover:bg-teal-500/80 hover:border-teal-500/80 text-white"
+								>
+									Checkout
+								</Link>
+							) : (
+								<h3>
+									You've already checked out this book or you've checked out the
+									maximum allowed number of books!{' '}
+								</h3>
+							)}
+						</>
 					)}
 				</div>
 				<div className="divider"></div>
