@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Link } from 'react-router-dom';
 import { BookModel } from '../../models/BookModel';
 import { useOktaAuth } from '@okta/okta-react';
@@ -6,7 +7,8 @@ const CheckoutAndReview: React.FC<{
 	book: BookModel | undefined;
 	currentLoansCount: number;
 	isCheckedOut: boolean;
-}> = ({ book, currentLoansCount, isCheckedOut }) => {
+	checkoutBook: any;
+}> = ({ book, currentLoansCount, isCheckedOut, checkoutBook }) => {
 	const { authState } = useOktaAuth();
 
 	return (
@@ -45,12 +47,12 @@ const CheckoutAndReview: React.FC<{
 					) : (
 						<>
 							{!isCheckedOut && currentLoansCount < 5 ? (
-								<Link
-									to="/#"
+								<button
+									onClick={() => checkoutBook()}
 									className="btn border-teal-500 bg-teal-500 hover:bg-teal-500/80 hover:border-teal-500/80 text-white"
 								>
 									Checkout
-								</Link>
+								</button>
 							) : (
 								<h3 className="font-semibold">
 									You've already checked out this book or you've checked out the

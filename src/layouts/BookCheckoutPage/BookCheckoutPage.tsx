@@ -41,7 +41,7 @@ const BookCheckoutPage = () => {
 				setIsLoading(false);
 				setHttpError(error.message);
 			});
-	}, []);
+	}, [bookId, isCheckedOut]);
 
 	useEffect(() => {
 		fetchBookReviews(bookId)
@@ -85,7 +85,7 @@ const BookCheckoutPage = () => {
 			setCurrentLoansCount(0);
 			setIsLoading(false);
 		}
-	}, [authState]);
+	}, [authState, isCheckedOut]);
 
 	useEffect(() => {
 		fetchUserCheckedOutBook(authState, bookId)
@@ -111,7 +111,22 @@ const BookCheckoutPage = () => {
 		);
 	}
 
-	console.log('loans count', currentLoansCount);
+	const checkoutBook = async () => {
+		const url = `http://localhost:8080/api/books/secure/checkout?bookId=${book?.id}`;
+		const requestOptions = {
+			method: 'PUT',
+			headers: {
+				Authorization: `Bearer ${authState?.accessToken?.accessToken}`,
+				'Content-Type': 'application/json'
+			}
+		};
+
+		const response = await fetch(url, requestOptions);
+		if (!response.ok) {
+			throw new Error('Something went wrong');
+		}
+		setIsCheckedOut(true);
+	};
 
 	return (
 		<div>
@@ -142,6 +157,7 @@ const BookCheckoutPage = () => {
 						book={book}
 						currentLoansCount={currentLoansCount}
 						isCheckedOut={isCheckedOut}
+						checkoutBook={checkoutBook}
 					/>
 				</div>
 				<div className="divider "></div>
