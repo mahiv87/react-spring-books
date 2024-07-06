@@ -70,15 +70,21 @@ const BookCheckoutPage = () => {
 
 	useEffect(() => {
 		const clcAuthState = authState;
-		fetchUserCurrentLoansCount(clcAuthState)
-			.then((count) => {
-				setCurrentLoansCount(count);
-				setIsLoading(false);
-			})
-			.catch((error) => {
-				setIsLoading(false);
-				setHttpError(error.message);
-			});
+
+		if (clcAuthState && clcAuthState.isAuthenticated) {
+			fetchUserCurrentLoansCount(clcAuthState)
+				.then((count) => {
+					setCurrentLoansCount(count);
+					setIsLoading(false);
+				})
+				.catch((error) => {
+					setIsLoading(false);
+					setHttpError(error.message);
+				});
+		} else {
+			setCurrentLoansCount(0);
+			setIsLoading(false);
+		}
 	}, [authState]);
 
 	useEffect(() => {
@@ -105,6 +111,8 @@ const BookCheckoutPage = () => {
 		);
 	}
 
+	console.log('loans count', currentLoansCount);
+
 	return (
 		<div>
 			<div className="container flex flex-col md:mx-auto">
@@ -124,9 +132,9 @@ const BookCheckoutPage = () => {
 
 					<div className="container w-11/12 md:w-1/3 mt-4 md:mt-0">
 						<div className="ml-2">
-							<h2 className="text-2xl font-semibold">{book?.title}</h2>
-							<h5 className="">{book?.author}</h5>
-							<p className="text-lg font-light my-4">{book?.description}</p>
+							<h2 className="text-3xl font-semibold">{book?.title}</h2>
+							<h5 className="text-xl">{book?.author}</h5>
+							<p className="text-lg my-4">{book?.description}</p>
 							<StarRating rating={rating} />
 						</div>
 					</div>

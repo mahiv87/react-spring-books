@@ -52,7 +52,7 @@ const CheckoutAndReview: React.FC<{
 									Checkout
 								</Link>
 							) : (
-								<h3>
+								<h3 className="font-semibold">
 									You've already checked out this book or you've checked out the
 									maximum allowed number of books!{' '}
 								</h3>
