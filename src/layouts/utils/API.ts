@@ -82,6 +82,7 @@ export const fetchBookReviews = async (
 	return loadedReviews;
 };
 
+// Fetch a users current loan count
 export const fetchUserCurrentLoansCount = async (
 	authState: AuthState | null
 ) => {
@@ -104,5 +105,31 @@ export const fetchUserCurrentLoansCount = async (
 		const responseJsonCLC = await responseCLC.json();
 
 		return responseJsonCLC;
+	}
+};
+
+// Fetch to see if book is already checked out by user
+export const fetchUserCheckedOutBook = async (
+	authState: AuthState | null,
+	query: string
+) => {
+	if (authState && authState.isAuthenticate) {
+		const url = `http://localhost:8080/api/books/secure/ischeckedout/byuser/?bookId=${query}`;
+		const requestOptions = {
+			method: 'GET',
+			headers: {
+				Authorization: `Bearer ${authState.accessToken?.accessToken}`,
+				'Content-Type': 'application/json'
+			}
+		};
+		const response = await fetch(url, requestOptions);
+
+		if (!response.ok) {
+			throw new Error('Something went wrong');
+		}
+
+		const responseJson = await response.json();
+
+		return responseJson;
 	}
 };

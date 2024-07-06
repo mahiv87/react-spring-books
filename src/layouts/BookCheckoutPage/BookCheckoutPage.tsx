@@ -23,6 +23,8 @@ const BookCheckoutPage = () => {
 	const [currentLoansCount, setCurrentLoansCount] = useState(0);
 	const [isLoadingCurrentLoansCount, setIsLoadingCurrentLoansCount] =
 		useState(true);
+	const [isCheckedOut, setIsCheckedOut] = useState(false);
+	const [isLoadingBookCheckedOut, setIsLoadingBookCheckedOut] = useState(true);
 
 	const { authState } = useOktaAuth();
 
