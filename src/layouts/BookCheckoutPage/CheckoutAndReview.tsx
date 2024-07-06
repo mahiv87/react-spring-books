@@ -2,9 +2,10 @@ import { Link } from 'react-router-dom';
 import { BookModel } from '../../models/BookModel';
 import { useOktaAuth } from '@okta/okta-react';
 
-const CheckoutAndReview: React.FC<{ book: BookModel | undefined }> = ({
-	book
-}) => {
+const CheckoutAndReview: React.FC<{
+	book: BookModel | undefined;
+	currentLoansCount: number;
+}> = ({ book, currentLoansCount }) => {
 	const { authState } = useOktaAuth();
 
 	return (
@@ -12,7 +13,7 @@ const CheckoutAndReview: React.FC<{ book: BookModel | undefined }> = ({
 			<div className="card-body">
 				<div className="mt-3">
 					<p>
-						<span className="font-semibold mr-1">0/5</span>
+						<span className="font-semibold mr-1">{currentLoansCount}/5</span>
 						books checked out
 					</p>
 					<div className="divider "></div>

@@ -1,3 +1,4 @@
+import { AuthState } from '@okta/okta-auth-js';
 import { BookModel } from '../../models/BookModel';
 import { ReviewModel } from '../../models/ReviewModel';
 
@@ -79,4 +80,29 @@ export const fetchBookReviews = async (
 	}));
 
 	return loadedReviews;
+};
+
+export const fetchUserCurrentLoansCount = async (
+	authState: AuthState | null
+) => {
+	if (authState && authState.isAuthenticated) {
+		const url = `http://localhost:8080/api/books/secure/currentloans/count`;
+		const requestOptions = {
+			method: 'GET',
+			headers: {
+				Authorization: `Bearer ${authState.accessToken?.accessToken}`,
+				'Content-Type': 'application/json'
+			}
+		};
+
+		const responseCLC = await fetch(url, requestOptions);
+
+		if (!responseCLC.ok) {
+			throw new Error('Something went wrong');
+		}
+
+		const responseJsonCLC = await responseCLC.json();
+
+		return responseJsonCLC;
+	}
 };

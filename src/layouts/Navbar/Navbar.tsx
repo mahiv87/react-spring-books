@@ -12,7 +12,7 @@ const Navbar = () => {
 	}
 
 	const handleLogout = async () => oktaAuth.signOut();
-	// console.log(authState);
+	console.log(authState);
 
 	return (
 		<header className="bg-teal-500">

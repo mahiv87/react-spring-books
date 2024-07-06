@@ -1,12 +1,17 @@
 import { useEffect, useRef, useState } from 'react';
 import { BookModel } from '../../models/BookModel';
 import { ReviewModel } from '../../models/ReviewModel';
-import { fetchBook, fetchBookReviews } from '../utils/API';
+import {
+	fetchBook,
+	fetchBookReviews,
+	fetchUserCurrentLoansCount
+} from '../utils/API';
 import Spinner from '../utils/Spinner';
 import defaultBook from '../../Images/BooksImages/book-luv2code-1000.png';
 import StarRating from '../utils/StarRating';
 import CheckoutAndReview from './CheckoutAndReview';
 import LatestReviews from './LatestReviews';
+import { useOktaAuth } from '@okta/okta-react';
 
 const BookCheckoutPage = () => {
 	const [book, setBook] = useState<BookModel>();
@@ -15,6 +20,11 @@ const BookCheckoutPage = () => {
 	const [rating, setRating] = useState(0);
 	const [reviews, setReviews] = useState<ReviewModel[]>([]);
 	const [isLoadingReview, setIsLoadingReview] = useState(true);
+	const [currentLoansCount, setCurrentLoansCount] = useState(0);
+	const [isLoadingCurrentLoansCount, setIsLoadingCurrentLoansCount] =
+		useState(true);
+
+	const { authState } = useOktaAuth();
 
 	const bookId = window.location.pathname.split('/')[2];
 
@@ -59,7 +69,20 @@ const BookCheckoutPage = () => {
 			});
 	}, [bookId]);
 
-	if (isLoading || isLoadingReview) {
+	useEffect(() => {
+		const clcAuthState = authState;
+		fetchUserCurrentLoansCount(clcAuthState)
+			.then((count) => {
+				setCurrentLoansCount(count);
+				setIsLoadingCurrentLoansCount(false);
+			})
+			.catch((error) => {
+				setIsLoadingCurrentLoansCount(false);
+				setHttpError(error.message);
+			});
+	}, [authState]);
+
+	if (isLoading || isLoadingReview || isLoadingCurrentLoansCount) {
 		return <Spinner />;
 	}
 
@@ -96,7 +119,10 @@ const BookCheckoutPage = () => {
 							<StarRating rating={rating} />
 						</div>
 					</div>
-					<CheckoutAndReview book={book} />
+					<CheckoutAndReview
+						book={book}
+						currentLoansCount={currentLoansCount}
+					/>
 				</div>
 				<div className="divider "></div>
 				<LatestReviews reviews={reviews} bookId={book?.id} />
