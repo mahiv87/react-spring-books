@@ -76,17 +76,18 @@ const ReviewListPage = () => {
 	const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
 
 	return (
-		<div className="container mt-5">
-			<div>
-				<h3>Comments: ({reviews.length})</h3>
+		<div className="container mx-auto m-5 p-2">
+			<div className="flex justify-between mb-5">
+				<h3 className="text-xl font-semibold mb-2">
+					Comments: ({reviews.length})
+				</h3>
+				<p className="">
+					{indexOfFirstReview + 1} to {lastItem} of {totalAmountOfReviews}{' '}
+					reviews
+				</p>
 			</div>
 
-			<p>
-				{indexOfFirstReview + 1} to {lastItem} of {totalAmountOfReviews}{' '}
-				reviews:
-			</p>
-
-			<div className="flex">
+			<div className="flex flex-col">
 				{reviews.map((review) => (
 					<Review review={review} key={review.id} />
 				))}

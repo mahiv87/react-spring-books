@@ -13,10 +13,10 @@ const Review: React.FC<{ review: ReviewModel }> = ({ review }) => {
 	return (
 		<div>
 			<div className="sm:w-2/3">
-				<h5>{review.userEmail}</h5>
-				<div className="flex">
-					<div className="flex-col">{fullDate}</div>
-					<div className="flex-col">
+				<h5 className="font-semibold">{review.userEmail}</h5>
+				<div className="flex justify-between items-center md:w-1/3">
+					<div className="italic">{fullDate}</div>
+					<div>
 						<StarRating rating={review.rating} />
 					</div>
 				</div>
