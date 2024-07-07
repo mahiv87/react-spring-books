@@ -72,18 +72,25 @@ const CheckoutAndReview: React.FC<{
 				</div>
 				<div className="divider"></div>
 
-				<p className="my-3">
+				<p className="mb-3">
 					This number can change until placing order has been complete.
 				</p>
-				{authState?.isAuthenticated && isAlreadyReviewed ? (
-					<button
-						onClick={() => checkoutBook()}
-						className="btn border-teal-500 bg-teal-500 hover:bg-teal-500/80 hover:border-teal-500/80 text-white"
-					>
-						Leave a Review
-					</button>
+
+				{authState?.isAuthenticated ? (
+					<>
+						{!isAlreadyReviewed ? (
+							<button className="btn border-teal-500 bg-teal-500 hover:bg-teal-500/80 hover:border-teal-500/80 text-white">
+								Leave a review
+							</button>
+						) : (
+							<p className="font-semibold">Thank you for your review!</p>
+						)}
+					</>
 				) : (
-					<p>Sign in to leave a review.</p>
+					<div>
+						<hr />
+						<p className="mt-3 font-semibold">Log in to leave a review</p>
+					</div>
 				)}
 			</div>
 		</div>
