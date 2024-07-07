@@ -2,6 +2,7 @@
 import { Link } from 'react-router-dom';
 import { BookModel } from '../../models/BookModel';
 import { useOktaAuth } from '@okta/okta-react';
+import LeaveReview from '../utils/LeaveReview';
 
 const CheckoutAndReview: React.FC<{
 	book: BookModel | undefined;
@@ -82,10 +83,11 @@ const CheckoutAndReview: React.FC<{
 					{authState?.isAuthenticated ? (
 						<>
 							{!isAlreadyReviewed ? (
-								<button className="btn border-teal-500 bg-teal-500 hover:bg-teal-500/80 hover:border-teal-500/80 text-white">
-									Leave a review
-								</button>
+								<LeaveReview />
 							) : (
+								// <button className="btn border-teal-500 bg-teal-500 hover:bg-teal-500/80 hover:border-teal-500/80 text-white">
+								// 	Leave a review
+								// </button>
 								<p className="font-semibold">Thank you for your review!</p>
 							)}
 						</>
