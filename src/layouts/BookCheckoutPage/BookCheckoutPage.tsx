@@ -5,7 +5,8 @@ import {
 	fetchBook,
 	fetchBookReviews,
 	fetchUserCheckedOutBook,
-	fetchUserCurrentLoansCount
+	fetchUserCurrentLoansCount,
+	fetchUserReviewBook
 } from '../utils/API';
 import Spinner from '../utils/Spinner';
 import defaultBook from '../../Images/BooksImages/book-luv2code-1000.png';
@@ -22,6 +23,7 @@ const BookCheckoutPage = () => {
 	const [reviews, setReviews] = useState<ReviewModel[]>([]);
 	const [currentLoansCount, setCurrentLoansCount] = useState(0);
 	const [isCheckedOut, setIsCheckedOut] = useState(false);
+	const [isAlreadyReviewed, setIsAlreadyReviewed] = useState(false);
 
 	const { authState } = useOktaAuth();
 
@@ -66,7 +68,19 @@ const BookCheckoutPage = () => {
 				setIsLoading(false);
 				setHttpError(error.message);
 			});
-	}, [bookId]);
+	}, [bookId, isAlreadyReviewed]);
+
+	useEffect(() => {
+		fetchUserReviewBook(authState, bookId)
+			.then((review) => {
+				setIsAlreadyReviewed(review);
+				setIsLoading(false);
+			})
+			.catch((error) => {
+				setIsLoading(false);
+				setHttpError(error.message);
+			});
+	}, [authState, bookId]);
 
 	useEffect(() => {
 		const clcAuthState = authState;

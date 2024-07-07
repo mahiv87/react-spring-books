@@ -140,7 +140,7 @@ export const fetchUserReviewBook = async (
 	bookId: string
 ): Promise<any> => {
 	if (authState && authState.isAuthenticated) {
-		const url = `http://localhost:8080/api/reviews/secure/user/book/?bookId=${bookId}`;
+		const url = `http://localhost:8080/api/reviews/secure/user/book?bookId=${bookId}`;
 		const requestOptions = {
 			method: 'GET',
 			headers: {
@@ -152,7 +152,7 @@ export const fetchUserReviewBook = async (
 		const response = await fetch(url, requestOptions);
 
 		if (!response.ok) {
-			throw new Error('Something went wrong!');
+			throw new Error('Something went wrong');
 		}
 
 		const responseJson = await response.json();
