@@ -134,3 +134,29 @@ export const fetchUserCheckedOutBook = async (
 		return responseJson;
 	}
 };
+
+export const fetchUserReviewBook = async (
+	authState: AuthState | null,
+	bookId: string
+): Promise<any> => {
+	if (authState && authState.isAuthenticated) {
+		const url = `http://localhost:8080/api/reviews/secure/user/book/?bookId=${bookId}`;
+		const requestOptions = {
+			method: 'GET',
+			headers: {
+				Authorization: `Bearer ${authState.accessToken?.accessToken}`,
+				'Content-Type': 'application/json'
+			}
+		};
+
+		const response = await fetch(url, requestOptions);
+
+		if (!response.ok) {
+			throw new Error('Something went wrong!');
+		}
+
+		const responseJson = await response.json();
+
+		return responseJson;
+	}
+};
