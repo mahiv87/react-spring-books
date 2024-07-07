@@ -1,7 +1,8 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useRef, useState } from 'react';
 import StarRating from './StarRating';
 
-const LeaveReview: React.FC<{}> = () => {
+const LeaveReview: React.FC<{ submitReview: any }> = ({ submitReview }) => {
 	const [starInput, setStarInput] = useState(0);
 	const [displayInput, setDisplayInput] = useState(false);
 	const [reviewDescription, setReviewDescription] = useState('');
@@ -92,6 +93,7 @@ const LeaveReview: React.FC<{}> = () => {
 
 						<div className="flex items-center justify-end gap-2 py-3">
 							<button
+								onClick={() => submitReview(starInput, reviewDescription)}
 								type="button"
 								className="rounded bg-orange-400 px-3 py-1.5 text-sm font-medium text-white hover:bg-orange-500"
 							>

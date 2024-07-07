@@ -10,12 +10,14 @@ const CheckoutAndReview: React.FC<{
 	isCheckedOut: boolean;
 	checkoutBook: any;
 	isAlreadyReviewed: boolean;
+	submitReview: any;
 }> = ({
 	book,
 	currentLoansCount,
 	isCheckedOut,
 	checkoutBook,
-	isAlreadyReviewed
+	isAlreadyReviewed,
+	submitReview
 }) => {
 	const { authState } = useOktaAuth();
 
@@ -83,7 +85,7 @@ const CheckoutAndReview: React.FC<{
 					{authState?.isAuthenticated ? (
 						<>
 							{!isAlreadyReviewed ? (
-								<LeaveReview />
+								<LeaveReview submitReview={submitReview} />
 							) : (
 								<p className="font-semibold">Thank you for your review!</p>
 							)}

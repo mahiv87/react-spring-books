@@ -14,6 +14,7 @@ import StarRating from '../utils/StarRating';
 import CheckoutAndReview from './CheckoutAndReview';
 import LatestReviews from './LatestReviews';
 import { useOktaAuth } from '@okta/okta-react';
+import { ReviewRequestModel } from '../../models/ReviewRequestModel';
 
 const BookCheckoutPage = () => {
 	const [book, setBook] = useState<BookModel>();
@@ -142,6 +143,37 @@ const BookCheckoutPage = () => {
 		setIsCheckedOut(true);
 	};
 
+	const submitReview = async (starInput: number, reviewDescription: string) => {
+		let bookId: number = 0;
+
+		if (book?.id) {
+			bookId = book.id;
+		}
+
+		const reviewRequestModel = new ReviewRequestModel(
+			starInput,
+			bookId,
+			reviewDescription
+		);
+		const url = `http://localhost:8080/api/reviews/secure`;
+		const requestOptions = {
+			method: 'POST',
+			headers: {
+				Authorization: `Bearer ${authState?.accessToken?.accessToken}`,
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify(reviewRequestModel)
+		};
+
+		const response = await fetch(url, requestOptions);
+
+		if (!response.ok) {
+			throw new Error('Something went wrong');
+		}
+
+		setIsAlreadyReviewed(true);
+	};
+
 	return (
 		<div>
 			<div className="container flex flex-col md:mx-auto">
@@ -173,6 +205,7 @@ const BookCheckoutPage = () => {
 						isCheckedOut={isCheckedOut}
 						checkoutBook={checkoutBook}
 						isAlreadyReviewed={isAlreadyReviewed}
+						submitReview={submitReview}
 					/>
 				</div>
 				<div className="divider "></div>
