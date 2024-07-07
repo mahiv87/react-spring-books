@@ -172,6 +172,7 @@ const BookCheckoutPage = () => {
 						currentLoansCount={currentLoansCount}
 						isCheckedOut={isCheckedOut}
 						checkoutBook={checkoutBook}
+						isAlreadyReviewed={isAlreadyReviewed}
 					/>
 				</div>
 				<div className="divider "></div>

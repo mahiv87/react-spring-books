@@ -7,9 +7,9 @@ const LatestReviews: React.FC<{
 	bookId: number | undefined;
 }> = ({ reviews }) => {
 	return (
-		<div className="mt-3 md:flex md:mt-5">
-			<div className="sm:w-1/6">
-				<h2>LatestReviews</h2>
+		<div className="mt-3 mx-3 md:flex md:mt-5">
+			<div className="sm:w-1/6 md:mx-3 mb-3">
+				<h2 className="text-3xl font-semibold">Latest Reviews:</h2>
 			</div>
 			<div className="sm:w-5/6">
 				{reviews.length > 0 ? (

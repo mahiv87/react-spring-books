@@ -8,7 +8,14 @@ const CheckoutAndReview: React.FC<{
 	currentLoansCount: number;
 	isCheckedOut: boolean;
 	checkoutBook: any;
-}> = ({ book, currentLoansCount, isCheckedOut, checkoutBook }) => {
+	isAlreadyReviewed: boolean;
+}> = ({
+	book,
+	currentLoansCount,
+	isCheckedOut,
+	checkoutBook,
+	isAlreadyReviewed
+}) => {
 	const { authState } = useOktaAuth();
 
 	return (
@@ -64,10 +71,20 @@ const CheckoutAndReview: React.FC<{
 					)}
 				</div>
 				<div className="divider"></div>
-				<p className="mt-3">
+
+				<p className="my-3">
 					This number can change until placing order has been complete.
 				</p>
-				<p>Sign in to leave a review.</p>
+				{authState?.isAuthenticated && isAlreadyReviewed ? (
+					<button
+						onClick={() => checkoutBook()}
+						className="btn border-teal-500 bg-teal-500 hover:bg-teal-500/80 hover:border-teal-500/80 text-white"
+					>
+						Leave a Review
+					</button>
+				) : (
+					<p>Sign in to leave a review.</p>
+				)}
 			</div>
 		</div>
 	);
