@@ -1,16 +1,31 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import StarRating from './StarRating';
 
 const LeaveReview: React.FC<{}> = () => {
 	const [starInput, setStarInput] = useState(0);
+	const [isOpen, setIsOpen] = useState(false);
+	const detailsRef = useRef<HTMLDetailsElement>(null);
 
 	const starValue = (value: number) => {
 		setStarInput(value);
+		setIsOpen(false);
+
+		if (detailsRef.current) {
+			detailsRef.current.removeAttribute('open');
+		}
+	};
+
+	const toggleDropdown = () => {
+		setIsOpen(!isOpen);
 	};
 
 	return (
 		<>
-			<details className="dropdown mb-2">
+			<details
+				className="dropdown mb-2"
+				ref={detailsRef}
+				onToggle={toggleDropdown}
+			>
 				<summary className="w-full btn border-teal-500 bg-teal-500 hover:bg-teal-500/80 hover:border-teal-500/80 text-white text-lg">
 					Leave a review?
 				</summary>

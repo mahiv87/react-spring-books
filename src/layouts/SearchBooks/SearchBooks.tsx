@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { BookModel } from '../../models/BookModel';
 import Spinner from '../utils/Spinner';
 import SearchBook from './components/SearchBook';
@@ -15,6 +15,8 @@ const SearchBooks = () => {
 	const [search, setSearch] = useState('');
 	const [searchUrl, setSearchUrl] = useState('');
 	const [categorySelection, setCategorySelection] = useState('Category');
+	const [isOpen, setIsOpen] = useState(false);
+	const detailsRef = useRef<HTMLDetailsElement>(null);
 
 	useEffect(() => {
 		const fetchBooks = async () => {
@@ -99,10 +101,24 @@ const SearchBooks = () => {
 			setSearchUrl(
 				`/search/findByCategory?category=${value}&page=<pageNumber>&size=${booksPerPage}`
 			);
+			setIsOpen(false);
+
+			if (detailsRef.current) {
+				detailsRef.current.removeAttribute('open');
+			}
 		} else {
 			setCategorySelection('All');
 			setSearchUrl(`?page=<pageNumber>&size=${booksPerPage}`);
+			setIsOpen(false);
+
+			if (detailsRef.current) {
+				detailsRef.current.removeAttribute('open');
+			}
 		}
+	};
+
+	const toggleDropdown = () => {
+		setIsOpen(!isOpen);
 	};
 
 	const indexOfLastBook: number = currentPage * booksPerPage;
@@ -137,7 +153,11 @@ const SearchBooks = () => {
 							</div>
 						</div>
 						<div className="md:w-1/3 text-center mt-2 md:mt-0">
-							<details className="dropdown">
+							<details
+								className="dropdown"
+								ref={detailsRef}
+								onToggle={toggleDropdown}
+							>
 								<summary className="w-24 btn bg-teal-500 text-white border-solid border-teal-500 list-none hover:bg-teal-500/80 hover:text-white hover:border-teal-500">
 									{categorySelection}
 								</summary>
