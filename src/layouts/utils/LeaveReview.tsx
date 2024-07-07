@@ -3,16 +3,21 @@ import StarRating from './StarRating';
 
 const LeaveReview: React.FC<{}> = () => {
 	const [starInput, setStarInput] = useState(0);
+	const [displayInput, setDisplayInput] = useState(false);
+	const [reviewDescription, setReviewDescription] = useState('');
 	const [isOpen, setIsOpen] = useState(false);
 	const detailsRef = useRef<HTMLDetailsElement>(null);
 
 	const starValue = (value: number) => {
 		setStarInput(value);
+		console.log('rating', starInput);
 		setIsOpen(false);
 
 		if (detailsRef.current) {
 			detailsRef.current.removeAttribute('open');
 		}
+
+		setDisplayInput(true);
 	};
 
 	const toggleDropdown = () => {
@@ -69,6 +74,33 @@ const LeaveReview: React.FC<{}> = () => {
 				</ul>
 			</details>
 			<StarRating rating={starInput} />
+
+			{displayInput && (
+				<form method="POST" action="#" className="mt-3">
+					<label htmlFor="ReviewDescription" className="sr-only">
+						Review Description
+					</label>
+
+					<div className="overflow-hidden">
+						<textarea
+							id="ReviewDescription"
+							className="w-full resize-none bg-white border-2 border-gray-200 pl-1 align-top sm:text-sm"
+							rows={4}
+							placeholder="Leave a review..."
+							onChange={(e) => setReviewDescription(e.target.value)}
+						></textarea>
+
+						<div className="flex items-center justify-end gap-2 py-3">
+							<button
+								type="button"
+								className="rounded bg-orange-400 px-3 py-1.5 text-sm font-medium text-white hover:bg-orange-500"
+							>
+								Submit Review
+							</button>
+						</div>
+					</div>
+				</form>
+			)}
 		</>
 	);
 };

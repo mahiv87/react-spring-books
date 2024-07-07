@@ -85,9 +85,6 @@ const CheckoutAndReview: React.FC<{
 							{!isAlreadyReviewed ? (
 								<LeaveReview />
 							) : (
-								// <button className="btn border-teal-500 bg-teal-500 hover:bg-teal-500/80 hover:border-teal-500/80 text-white">
-								// 	Leave a review
-								// </button>
 								<p className="font-semibold">Thank you for your review!</p>
 							)}
 						</>
