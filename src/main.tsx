@@ -10,6 +10,7 @@ import BookCheckoutPage from './layouts/BookCheckoutPage/BookCheckoutPage.tsx';
 import LoginWidget from './auth/LoginWidget.jsx';
 import { oktaConfig } from './lib/oktaConfig.ts';
 import { LoginCallback } from '@okta/okta-react';
+import ReviewListPage from './layouts/BookCheckoutPage/ReviewListPage/ReviewListPage.tsx';
 
 const router = createBrowserRouter([
 	{
@@ -20,6 +21,10 @@ const router = createBrowserRouter([
 			{
 				index: true,
 				element: <Homepage />
+			},
+			{
+				path: 'reviewlist/:bookId',
+				element: <ReviewListPage />
 			},
 			{
 				path: 'search',

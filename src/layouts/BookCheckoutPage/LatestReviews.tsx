@@ -5,7 +5,7 @@ import Review from '../utils/Review';
 const LatestReviews: React.FC<{
 	reviews: ReviewModel[];
 	bookId: number | undefined;
-}> = ({ reviews }) => {
+}> = ({ reviews, bookId }) => {
 	return (
 		<div className="mt-3 mx-3 md:flex md:mt-5">
 			<div className="sm:w-1/6 md:mx-3 mb-3">
@@ -20,7 +20,7 @@ const LatestReviews: React.FC<{
 
 						<div className="m-3">
 							<Link
-								to="#"
+								to={`/reviewlist/${bookId}`}
 								type="button"
 								className="btn bg-neutral-500 border-neutral-500 hover:bg-neutral-500/80 hover:border-neutral-500/80 text-white"
 							>

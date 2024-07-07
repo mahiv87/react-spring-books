@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import { ReviewModel } from '../../../models/ReviewModel';
 import Spinner from '../../utils/Spinner';
+import Pagination from '../../utils/Pagination';
+import Review from '../../utils/Review';
 
 const ReviewListPage = () => {
 	const [reviews, setReviews] = useState<ReviewModel[]>([]);
@@ -63,9 +65,40 @@ const ReviewListPage = () => {
 		);
 	}
 
+	const indexOfLastReview: number = currentPage * reviewsPerPage;
+	const indexOfFirstReview: number = indexOfLastReview - reviewsPerPage;
+
+	const lastItem =
+		reviewsPerPage * currentPage <= totalAmountOfReviews
+			? reviewsPerPage * currentPage
+			: totalAmountOfReviews;
+
+	const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
+
 	return (
-		<div>
-			<div>ReviewListPage</div>
+		<div className="container mt-5">
+			<div>
+				<h3>Comments: ({reviews.length})</h3>
+			</div>
+
+			<p>
+				{indexOfFirstReview + 1} to {lastItem} of {totalAmountOfReviews}{' '}
+				reviews:
+			</p>
+
+			<div className="flex">
+				{reviews.map((review) => (
+					<Review review={review} key={review.id} />
+				))}
+			</div>
+
+			{totalPages > 1 && (
+				<Pagination
+					currentPage={currentPage}
+					totalPages={totalPages}
+					paginate={paginate}
+				/>
+			)}
 		</div>
 	);
 };
