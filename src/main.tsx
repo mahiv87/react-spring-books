@@ -11,6 +11,7 @@ import LoginWidget from './auth/LoginWidget.jsx';
 import { oktaConfig } from './lib/oktaConfig.ts';
 import { LoginCallback } from '@okta/okta-react';
 import ReviewListPage from './layouts/BookCheckoutPage/ReviewListPage/ReviewListPage.tsx';
+import UsersBooksPage from './layouts/UsersBooksPage/UsersBooksPage.tsx';
 
 const router = createBrowserRouter([
 	{
@@ -33,6 +34,10 @@ const router = createBrowserRouter([
 			{
 				path: 'checkout/:bookId',
 				element: <BookCheckoutPage />
+			},
+			{
+				path: 'shelf',
+				element: <UsersBooksPage />
 			},
 			{
 				path: 'login',
