@@ -4,6 +4,7 @@ import { UsersCurrentLoans } from '../../../models/UsersCurrentLoans';
 import Spinner from '../../utils/Spinner';
 import { fetchUserCurrentLoans } from '../../utils/API';
 import { Link } from 'react-router-dom';
+import { LoansModal } from './LoansModal';
 
 const Loans = () => {
 	const { authState } = useOktaAuth();
@@ -37,6 +38,10 @@ const Loans = () => {
 			</div>
 		);
 	}
+
+	const handleModal = () => {
+		document.getElementById('my_modal_1').showModal();
+	};
 
 	return (
 		<div>
@@ -84,7 +89,10 @@ const Loans = () => {
 													</p>
 												)}
 												<div className="flex flex-col w-5/6 md:w-3/4 mx-auto mt-3">
-													<button className="btn my-2 border-teal-500 bg-teal-500 hover:bg-teal-500/80 hover:border-teal-500/80 text-white">
+													<button
+														onClick={() => handleModal()}
+														className="btn my-2 border-teal-500 bg-teal-500 hover:bg-teal-500/80 hover:border-teal-500/80 text-white"
+													>
 														Manage Loan
 													</button>
 													<Link
@@ -110,6 +118,9 @@ const Loans = () => {
 									</div>
 								</div>
 								<hr />
+								<dialog id="my_modal_1" className="modal">
+									<LoansModal usersCurrentLoans={loan} />
+								</dialog>
 							</div>
 						))}
 					</>
