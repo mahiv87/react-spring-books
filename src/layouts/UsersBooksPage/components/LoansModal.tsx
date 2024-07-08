@@ -4,7 +4,8 @@ import { UsersCurrentLoans } from '../../../models/UsersCurrentLoans';
 export const LoansModal: React.FC<{
 	usersCurrentLoans: UsersCurrentLoans;
 	returnBook: any;
-}> = ({ usersCurrentLoans, returnBook }) => {
+	renewLoan: any;
+}> = ({ usersCurrentLoans, returnBook, renewLoan }) => {
 	return (
 		<div className="modal-box bg-white" key={usersCurrentLoans.book.id}>
 			<h3 className="font-bold text-2xl mb-2">Loan Options</h3>
@@ -61,7 +62,14 @@ export const LoansModal: React.FC<{
 								Return Book
 							</button>
 							{usersCurrentLoans.daysLeft > 0 ? (
-								<button className="btn my-2 border-teal-500 bg-teal-500 hover:bg-teal-500/80 hover:border-teal-500/80 text-white">
+								<button
+									onClick={
+										usersCurrentLoans.daysLeft < 0
+											? (e) => e.preventDefault()
+											: () => renewLoan(usersCurrentLoans.book.id)
+									}
+									className="btn my-2 border-teal-500 bg-teal-500 hover:bg-teal-500/80 hover:border-teal-500/80 text-white"
+								>
 									Renew book for 7 days
 								</button>
 							) : (

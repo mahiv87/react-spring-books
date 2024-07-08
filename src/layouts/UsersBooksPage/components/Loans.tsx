@@ -59,6 +59,25 @@ const Loans = () => {
 		setCheckout(!checkout);
 	};
 
+	const renewLoan = async (bookId: number) => {
+		const url = `http://localhost:8080/api/books/secure/renew/loan?bookId=${bookId}`;
+		const requestOptions = {
+			method: 'PUT',
+			headers: {
+				Authorization: `Bearer ${authState?.accessToken?.accessToken}`,
+				'Content-Type': 'application/json'
+			}
+		};
+
+		const response = await fetch(url, requestOptions);
+
+		if (!response.ok) {
+			throw new Error('Something went wrong');
+		}
+
+		setCheckout(!checkout);
+	};
+
 	const handleModal = (id: string) => {
 		const dialog = document.getElementById(id) as HTMLDialogElement | null;
 		if (dialog && typeof dialog.showModal === 'function') {
@@ -149,6 +168,7 @@ const Loans = () => {
 									<LoansModal
 										usersCurrentLoans={loan}
 										returnBook={returnBook}
+										renewLoan={renewLoan}
 									/>
 								</dialog>
 							</div>
