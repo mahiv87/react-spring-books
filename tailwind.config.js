@@ -4,6 +4,9 @@ export default {
 	content: ['./src/**/*.{html,js,jsx,ts,tsx}'],
 	theme: {
 		extend: {
+			colors: {
+				'main-color': '#14b8a6'
+			},
 			screens: {
 				'3xl': '2570px'
 			},
