@@ -13,6 +13,7 @@ const Loans = () => {
 		UsersCurrentLoans[]
 	>([]);
 	const [isLoading, setIsLoading] = useState(true);
+	const [checkout, setCheckout] = useState(false);
 
 	useEffect(() => {
 		fetchUserCurrentLoans(authState)
@@ -25,7 +26,7 @@ const Loans = () => {
 				setHttpError(error.message);
 			});
 		window.scrollTo(0, 0);
-	}, [authState]);
+	}, [authState, checkout]);
 
 	if (isLoading) {
 		return <Spinner />;
@@ -38,6 +39,25 @@ const Loans = () => {
 			</div>
 		);
 	}
+
+	const returnBook = async (bookId: number) => {
+		const url = `http://localhost:8080/api/books/secure/return?bookId=${bookId}`;
+		const requestOptions = {
+			method: 'PUT',
+			headers: {
+				Authorization: `Bearer ${authState?.accessToken?.accessToken}`,
+				'Content-Type': 'application/json'
+			}
+		};
+
+		const response = await fetch(url, requestOptions);
+
+		if (!response.ok) {
+			throw new Error('Something went wrong');
+		}
+
+		setCheckout(!checkout);
+	};
 
 	const handleModal = (id: string) => {
 		const dialog = document.getElementById(id) as HTMLDialogElement | null;
@@ -126,7 +146,10 @@ const Loans = () => {
 								</div>
 								<hr />
 								<dialog id={`${loan.book.id}`} className="modal">
-									<LoansModal usersCurrentLoans={loan} />
+									<LoansModal
+										usersCurrentLoans={loan}
+										returnBook={returnBook}
+									/>
 								</dialog>
 							</div>
 						))}

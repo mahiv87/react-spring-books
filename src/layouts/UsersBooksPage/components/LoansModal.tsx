@@ -1,8 +1,10 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { UsersCurrentLoans } from '../../../models/UsersCurrentLoans';
 
 export const LoansModal: React.FC<{
 	usersCurrentLoans: UsersCurrentLoans;
-}> = ({ usersCurrentLoans }) => {
+	returnBook: any;
+}> = ({ usersCurrentLoans, returnBook }) => {
 	return (
 		<div className="modal-box bg-white" key={usersCurrentLoans.book.id}>
 			<h3 className="font-bold text-2xl mb-2">Loan Options</h3>
@@ -52,7 +54,10 @@ export const LoansModal: React.FC<{
 							</p>
 						)}
 						<div className="flex flex-col w-5/6 md:w-3/4 mx-auto mt-3">
-							<button className="btn my-2 border-teal-500 bg-teal-500 hover:bg-teal-500/80 hover:border-teal-500/80 text-white">
+							<button
+								onClick={() => returnBook(usersCurrentLoans.book.id)}
+								className="btn my-2 border-teal-500 bg-teal-500 hover:bg-teal-500/80 hover:border-teal-500/80 text-white"
+							>
 								Return Book
 							</button>
 							{usersCurrentLoans.daysLeft > 0 ? (
