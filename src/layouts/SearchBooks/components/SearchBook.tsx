@@ -1,4 +1,4 @@
-import BookModel from '../../../models/BookModel';
+import { BookModel } from '../../../models/BookModel';
 import defaultImg from '../../../Images/BooksImages/book-luv2code-1000.png';
 import { Link } from 'react-router-dom';
 
