@@ -1,3 +1,5 @@
+import Loans from './components/Loans';
+
 const UsersBooksPage = () => {
 	return (
 		<div className="container mx-auto">
@@ -12,7 +14,7 @@ const UsersBooksPage = () => {
 						defaultChecked
 					/>
 					<div role="tabpanel" className="tab-content p-10 ">
-						<p>Loans</p>
+						<Loans />
 					</div>
 
 					<input
