@@ -39,8 +39,15 @@ const Loans = () => {
 		);
 	}
 
-	const handleModal = () => {
-		document.getElementById('my_modal_1').showModal();
+	const handleModal = (id: string) => {
+		const dialog = document.getElementById(id) as HTMLDialogElement | null;
+		if (dialog && typeof dialog.showModal === 'function') {
+			dialog.showModal();
+		} else {
+			console.error(
+				'Dialog element not found or showModal method not supported.'
+			);
+		}
 	};
 
 	return (
@@ -90,7 +97,7 @@ const Loans = () => {
 												)}
 												<div className="flex flex-col w-5/6 md:w-3/4 mx-auto mt-3">
 													<button
-														onClick={() => handleModal()}
+														onClick={() => handleModal(`${loan.book.id}`)}
 														className="btn my-2 border-teal-500 bg-teal-500 hover:bg-teal-500/80 hover:border-teal-500/80 text-white"
 													>
 														Manage Loan
@@ -118,7 +125,7 @@ const Loans = () => {
 									</div>
 								</div>
 								<hr />
-								<dialog id="my_modal_1" className="modal">
+								<dialog id={`${loan.book.id}`} className="modal">
 									<LoansModal usersCurrentLoans={loan} />
 								</dialog>
 							</div>

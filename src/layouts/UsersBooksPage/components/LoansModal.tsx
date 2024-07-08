@@ -1,5 +1,4 @@
 import { UsersCurrentLoans } from '../../../models/UsersCurrentLoans';
-import { useState } from 'react';
 
 export const LoansModal: React.FC<{
 	usersCurrentLoans: UsersCurrentLoans;
