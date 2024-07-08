@@ -8,7 +8,7 @@ export const LoansModal: React.FC<{
 }> = ({ usersCurrentLoans, returnBook, renewLoan }) => {
 	return (
 		<div className="modal-box bg-white" key={usersCurrentLoans.book.id}>
-			<h3 className="font-bold text-2xl mb-2">Loan Options</h3>
+			<h3 className="font-bold text-2xl text-neutral-500 mb-2">Loan Options</h3>
 			<hr />
 			<div className="container">
 				<div className="mt-3">
@@ -30,7 +30,7 @@ export const LoansModal: React.FC<{
 								/>
 							)}
 						</div>
-						<div className="w-4/6 ">
+						<div className="w-4/6 text-neutral-500 ">
 							<h4 className="text-xl font-semibold">
 								{usersCurrentLoans.book.title}
 							</h4>
@@ -39,7 +39,7 @@ export const LoansModal: React.FC<{
 							</h6>
 						</div>
 					</div>
-					<div className="my-3">
+					<div className="my-3 font-semibold">
 						<hr />
 						{usersCurrentLoans.daysLeft > 0 && (
 							<p className="text-neutral-500">
