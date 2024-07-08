@@ -88,7 +88,7 @@ const Loans = () => {
 														Manage Loan
 													</button>
 													<Link
-														to={`search`}
+														to={`/search`}
 														className="btn my-2 border-teal-500 bg-teal-500 hover:bg-teal-500/80 hover:border-teal-500/80 text-white"
 													>
 														Search more books?
@@ -117,7 +117,7 @@ const Loans = () => {
 					<>
 						<h3 className="mt-3">Currently no loans</h3>
 						<Link
-							to={`search`}
+							to={`/search`}
 							className="btn border-teal-500 bg-teal-500 hover:bg-teal-500/80 hover:border-teal-500/80 text-white"
 						>
 							Search for a new book
