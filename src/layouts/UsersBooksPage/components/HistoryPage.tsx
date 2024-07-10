@@ -61,34 +61,17 @@ export const HistoryPage = () => {
 	const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
 
 	return (
-		<div className="mt-2">
+		<div className="mt-2 text-neutral-500">
 			{histories.length > 0 ? (
 				<>
-					<h3 className="font-bold text-2xl">Recent History:</h3>
+					<h3 className="font-bold text-2xl mb-5">Recent History:</h3>
 
 					{histories.map((history) => (
 						<div key={history.id}>
-							<div className="card flex my-3 w-5/6 container mx-auto shadow-xl">
-								<div className="flex gap-0">
-									<div className="flex flex-col w-2/3 justify-center items-center">
-										<div className="hidden lg:block">
-											{history.img ? (
-												<img
-													src={history.img}
-													width="123"
-													height="196"
-													alt="Book"
-												/>
-											) : (
-												<img
-													src={require('../../../Images/BooksImages/book-luv2code-1000.png')}
-													width="123"
-													height="196"
-													alt="Book"
-												/>
-											)}
-										</div>
-										<div className="lg:hidden flex justify-center items-center">
+							<div className="card flex my-3 md:w-2/3 container mx-auto shadow-xl">
+								<div className="flex flex-col md:flex-row justify-center items-center gap-0">
+									<div className="flex flex-col w-1/2 md:w-1/4 justify-center items-center">
+										<div className="block">
 											{history.img ? (
 												<img
 													src={history.img}
@@ -107,14 +90,20 @@ export const HistoryPage = () => {
 										</div>
 									</div>
 
-									<div className="flex flex-col">
+									<div className="flex flex-col md:w-3/4">
 										<div className="card-body">
-											<h4>{history.title}</h4>
-											<h5>{history.author}</h5>
+											<h4 className="font-semibold text-xl">{history.title}</h4>
+											<h5 className="italic text-lg ">{history.author}</h5>
 											<p>{history.description}</p>
 											<hr />
-											<p>Checked out on: {history.checkoutDate}</p>
-											<p>Returned on: {history.returnedDate} </p>
+											<p className="font-semibold">
+												<span className="text-main-color">Checked out on:</span>{' '}
+												{history.checkoutDate}
+											</p>
+											<p className="font-semibold">
+												<span className=" text-main-color">Returned on:</span>{' '}
+												{history.returnedDate}{' '}
+											</p>
 										</div>
 									</div>
 								</div>

@@ -91,7 +91,7 @@ const Loans = () => {
 
 	return (
 		<div>
-			<div className="block mt-2">
+			<div className="block mt-2 text-neutral-500">
 				{usersCurrentLoans.length > 0 ? (
 					<>
 						<h3 className="text-2xl font-bold">Current Loans:</h3>
