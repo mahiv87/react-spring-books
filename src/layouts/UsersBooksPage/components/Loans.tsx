@@ -94,7 +94,7 @@ const Loans = () => {
 			<div className="block mt-2">
 				{usersCurrentLoans.length > 0 ? (
 					<>
-						<h4 className="text-2xl font-bold">Current Loans:</h4>
+						<h3 className="text-2xl font-bold">Current Loans:</h3>
 						<hr />
 
 						{usersCurrentLoans.map((loan) => (
