@@ -8,6 +8,11 @@ export const PostMessage = () => {
 	const [displayWarning, setDisplayWarning] = useState(false);
 	const [displaySuccess, setDisplaySuccess] = useState(false);
 
+	const handleClear = () => {
+		setTitle('');
+		setQuestion('');
+	};
+
 	return (
 		<div className="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">
 			<div className="mx-auto max-w-lg text-center">
@@ -41,8 +46,9 @@ export const PostMessage = () => {
 
 					<div className="relative">
 						<input
+							id="title"
 							type="text"
-							className="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm"
+							className="w-full rounded-lg border-gray-200 p-4 pr-12 text-sm shadow-sm"
 							placeholder="Title"
 							onChange={(e) => setTitle(e.target.value)}
 							value={title}
@@ -69,7 +75,7 @@ export const PostMessage = () => {
 							<button
 								type="button"
 								className="rounded bg-gray-200 px-3 py-1.5 text-sm font-medium text-gray-700 hover:text-gray-600"
-								onClick={() => setQuestion('')}
+								onClick={() => handleClear()}
 							>
 								Clear
 							</button>

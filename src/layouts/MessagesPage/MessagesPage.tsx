@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { PostMessage } from './components/PostMessage';
 
 export const MessagesPage = () => {
 	const [messagesClick, setMessagesClick] = useState(false);
@@ -17,7 +18,7 @@ export const MessagesPage = () => {
 						defaultChecked
 					/>
 					<div role="tabpanel" className="tab-content p-10 ">
-						Submit Question
+						<PostMessage />
 					</div>
 
 					<input
