@@ -1,5 +1,6 @@
 import { useOktaAuth } from '@okta/okta-react';
-import { useState } from 'react';
+import { FormEvent, useState } from 'react';
+import { MessageModel } from '../../../models/MessageModel';
 
 export const PostMessage = () => {
 	const { authState } = useOktaAuth();
@@ -7,6 +8,41 @@ export const PostMessage = () => {
 	const [question, setQuestion] = useState('');
 	const [displayWarning, setDisplayWarning] = useState(false);
 	const [displaySuccess, setDisplaySuccess] = useState(false);
+
+	const submitQuestion = async (e: FormEvent) => {
+		e.preventDefault();
+		const url = `http://localhost:8080/api/messages/secure/add/message`;
+
+		if (authState?.isAuthenticated && title !== '' && question !== '') {
+			const messageRequestModel: MessageModel = new MessageModel(
+				title,
+				question
+			);
+
+			const requestOptions = {
+				method: 'POST',
+				headers: {
+					Authorization: `Bearer ${authState.accessToken?.accessToken}`,
+					'Content-Type': 'application/json'
+				},
+				body: JSON.stringify(messageRequestModel)
+			};
+
+			const response = await fetch(url, requestOptions);
+
+			if (!response.ok) {
+				throw new Error('Something went wrong');
+			}
+
+			setTitle('');
+			setQuestion('');
+			setDisplayWarning(false);
+			setDisplaySuccess(true);
+		} else {
+			setDisplayWarning(true);
+			setDisplaySuccess(false);
+		}
+	};
 
 	const handleClear = () => {
 		setTitle('');
@@ -16,7 +52,7 @@ export const PostMessage = () => {
 	return (
 		<div className="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">
 			<div className="mx-auto max-w-lg text-center">
-				<h1 className="text-2xl font-bold sm:text-3xl">
+				<h1 className="text-2xl font-bold sm:text-3xl text-neutral-500">
 					Ask our team a question!
 				</h1>
 			</div>
@@ -75,7 +111,7 @@ export const PostMessage = () => {
 							<button
 								type="button"
 								className="rounded bg-gray-200 px-3 py-1.5 text-sm font-medium text-gray-700 hover:text-gray-600"
-								onClick={() => handleClear()}
+								onClick={handleClear}
 							>
 								Clear
 							</button>
@@ -86,7 +122,8 @@ export const PostMessage = () => {
 				<div className="flex items-center justify-between">
 					<button
 						type="submit"
-						className="inline-block rounded-lg bg-blue-500 px-5 py-3 text-sm font-medium text-white"
+						className="inline-block btn border-teal-500 bg-teal-500 hover:bg-teal-500/80 hover:border-teal-500/80 text-white"
+						onClick={submitQuestion}
 					>
 						Submit
 					</button>
