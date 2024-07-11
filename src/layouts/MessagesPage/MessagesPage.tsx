@@ -31,7 +31,7 @@ export const MessagesPage = () => {
 						aria-label="Pending"
 					/>
 					<div role="tabpanel" className="tab-content p-10">
-						<Messages />
+						{messagesClick ? <Messages /> : <></>}
 					</div>
 				</div>
 			</div>

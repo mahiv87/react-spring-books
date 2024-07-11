@@ -117,7 +117,7 @@ const Loans = () => {
 											/>
 										)}
 									</div>
-									<div className="card flex mt-5 container md:w-1/2 lg:w-1/3 xl:w-1/4 md:mb-5 shadow-xl">
+									<div className="card flex mt-5 container md:w-1/2 lg:w-1/3 xl:w-1/4 md:mb-5 shadow-lg">
 										<div className="card-body">
 											<div className="mt-3">
 												<h5 className="font-semibold text-xl">Loan Options</h5>

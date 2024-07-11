@@ -63,28 +63,34 @@ export const Messages = () => {
 	}
 
 	return (
-		<div className="mt-2">
+		<div className="container md:w-3/4 mx-auto my-2 text-neutral-500">
 			{messages.length ? (
 				<>
-					<h3>Current Q/A: </h3>
+					<h3 className="text-2xl font-semibold">Current Q/A: </h3>
+
 					{messages.map((message) => (
 						<div key={message.id}>
-							<div className="card flex mt-5 container md:w-1/2 lg:w-1/3 xl:w-1/4 md:mb-5 shadow-xl">
-								<h4>
-									Case #{message.id}: {message.title}{' '}
+							<div className="card flex my-5 p-5 container shadow-lg">
+								<h4 className="text-xl font-semibold">
+									Case #{message.id}:{' '}
+									<span className="text-orange-500">{message.title}</span>{' '}
 								</h4>
-								<h5>{message.userEmail}</h5>
-								<p>{message.question}</p>
+								<div className="mb-2">
+									<h5 className="text-lg italic mb-2 indent-2">
+										{message.userEmail}
+									</h5>
+									<p className="indent-5">{message.question}</p>
+								</div>
 								<hr />
-								<div>
-									<h4>Response: </h4>
+								<div className="mt-2">
+									<h4 className="text-xl font-semibold">Response: </h4>
 									{message.response && message.adminEmail ? (
 										<>
 											<h6>{message.adminEmail} (admin)</h6>
 											<p>{message.response}</p>
 										</>
 									) : (
-										<p className="italic">
+										<p className="italic mt-2 indent-2">
 											Pending response from administration.
 										</p>
 									)}

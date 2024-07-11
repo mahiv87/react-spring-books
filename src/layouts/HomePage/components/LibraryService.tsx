@@ -18,7 +18,7 @@ const LibraryService = () => {
 					<div className="grid gap-2 md:justify-start mb-4 lg:mb-3">
 						{authState?.isAuthenticated ? (
 							<Link
-								to="#"
+								to="messages"
 								className="w-max main-color text-white py-3 px-6 text-lg rounded-lg hover:bg-teal-500/75"
 							>
 								Library Services
