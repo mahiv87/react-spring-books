@@ -6,14 +6,14 @@ export const MessagesPage = () => {
 	return (
 		<div className="container mx-auto">
 			<div className="mt-3">
-				<div role="tablist" className="tabs tabs-lifted tabs-lg">
+				<div role="tablist" className="tabs tabs-lifted tabs-lg ml-4">
 					<input
 						onClick={() => setMessagesClick(false)}
 						type="radio"
 						name="my_tabs_1"
 						role="tab"
 						className="tab font-semibold text-main-color [--tab-bg:white] [--tab-border:2px] [--tab-border-color:lightgray]"
-						aria-label="Loans"
+						aria-label="Submit Question"
 						defaultChecked
 					/>
 					<div role="tabpanel" className="tab-content p-10 ">
@@ -26,7 +26,7 @@ export const MessagesPage = () => {
 						name="my_tabs_1"
 						role="tab"
 						className="tab font-semibold text-main-color [--tab-bg:white] [--tab-border:2px] [--tab-border-color:lightgray]"
-						aria-label="History"
+						aria-label="Pending"
 					/>
 					<div role="tabpanel" className="tab-content p-10">
 						Pending

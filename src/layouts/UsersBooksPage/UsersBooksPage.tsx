@@ -8,7 +8,7 @@ const UsersBooksPage = () => {
 	return (
 		<div className="container mx-auto">
 			<div className="mt-3">
-				<div role="tablist" className="tabs tabs-lifted tabs-lg">
+				<div role="tablist" className="tabs tabs-lifted tabs-lg ml-4">
 					<input
 						onClick={() => setHistoryClick(false)}
 						type="radio"

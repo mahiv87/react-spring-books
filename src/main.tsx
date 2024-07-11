@@ -13,6 +13,7 @@ import { LoginCallback } from '@okta/okta-react';
 import ReviewListPage from './layouts/BookCheckoutPage/ReviewListPage/ReviewListPage.tsx';
 import UsersBooksPage from './layouts/UsersBooksPage/UsersBooksPage.tsx';
 import SecureRoute from './layouts/utils/SecureRoute.tsx';
+import { MessagesPage } from './layouts/MessagesPage/MessagesPage.tsx';
 
 const router = createBrowserRouter([
 	{
@@ -41,6 +42,14 @@ const router = createBrowserRouter([
 				element: (
 					<SecureRoute>
 						<UsersBooksPage />
+					</SecureRoute>
+				)
+			},
+			{
+				path: 'messages',
+				element: (
+					<SecureRoute>
+						<MessagesPage />
 					</SecureRoute>
 				)
 			},
