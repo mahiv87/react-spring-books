@@ -84,7 +84,7 @@ export const PostMessage = () => {
 						<input
 							id="title"
 							type="text"
-							className="w-full rounded-lg border-gray-200 p-4 pr-12 text-sm shadow-sm"
+							className="w-full rounded-md bg-gray-200 border-gray-200 p-4 pr-12 text-md text-black shadow-sm"
 							placeholder="Title"
 							onChange={(e) => setTitle(e.target.value)}
 							value={title}
@@ -100,7 +100,7 @@ export const PostMessage = () => {
 					<div className="overflow-hidden">
 						<textarea
 							id="question"
-							className="w-full resize-none border-x-0 border-t-0 border-gray-200 px-0 align-top sm:text-sm"
+							className="w-full resize-none border-x-0 border-t-0 bg-gray-200 border-gray-200 text-black p-4 align-top sm:text-sm"
 							rows={4}
 							placeholder="Enter question or message here..."
 							onChange={(e) => setQuestion(e.target.value)}
@@ -119,10 +119,10 @@ export const PostMessage = () => {
 					</div>
 				</div>
 
-				<div className="flex items-center justify-between">
+				<div className="flex items-center justify-center">
 					<button
 						type="submit"
-						className="inline-block btn border-teal-500 bg-teal-500 hover:bg-teal-500/80 hover:border-teal-500/80 text-white"
+						className="inline-block w-full btn border-teal-500 bg-teal-500 hover:bg-teal-500/80 hover:border-teal-500/80 text-white"
 						onClick={submitQuestion}
 					>
 						Submit
