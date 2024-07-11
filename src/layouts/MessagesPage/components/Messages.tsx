@@ -2,6 +2,7 @@ import { useOktaAuth } from '@okta/okta-react';
 import Spinner from '../../utils/Spinner';
 import { useEffect, useState } from 'react';
 import { MessageModel } from '../../../models/MessageModel';
+import Pagination from '../../utils/Pagination';
 
 export const Messages = () => {
 	const { authState } = useOktaAuth();
@@ -101,6 +102,13 @@ export const Messages = () => {
 				</>
 			) : (
 				<h3>All questions or messages you submit will be shown here</h3>
+			)}
+			{totalPages > 1 && (
+				<Pagination
+					currentPage={currentPage}
+					totalPages={totalPages}
+					paginate={paginate}
+				/>
 			)}
 		</div>
 	);
