@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { PostMessage } from './components/PostMessage';
+import { Messages } from './components/Messages';
 
 export const MessagesPage = () => {
 	const [messagesClick, setMessagesClick] = useState(false);
@@ -30,7 +31,7 @@ export const MessagesPage = () => {
 						aria-label="Pending"
 					/>
 					<div role="tabpanel" className="tab-content p-10">
-						Pending
+						<Messages />
 					</div>
 				</div>
 			</div>

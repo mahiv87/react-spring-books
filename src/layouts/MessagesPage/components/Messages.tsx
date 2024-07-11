@@ -63,8 +63,39 @@ export const Messages = () => {
 	}
 
 	return (
-		<div>
-			<div>Messages</div>
+		<div className="mt-2">
+			{messages.length ? (
+				<>
+					<h3>Current Q/A: </h3>
+					{messages.map((message) => (
+						<div key={message.id}>
+							<div className="card flex mt-5 container md:w-1/2 lg:w-1/3 xl:w-1/4 md:mb-5 shadow-xl">
+								<h4>
+									Case #{message.id}: {message.title}{' '}
+								</h4>
+								<h5>{message.userEmail}</h5>
+								<p>{message.question}</p>
+								<hr />
+								<div>
+									<h4>Response: </h4>
+									{message.response && message.adminEmail ? (
+										<>
+											<h6>{message.adminEmail} (admin)</h6>
+											<p>{message.response}</p>
+										</>
+									) : (
+										<p className="italic">
+											Pending response from administration.
+										</p>
+									)}
+								</div>
+							</div>
+						</div>
+					))}
+				</>
+			) : (
+				<h3>All questions or messages you submit will be shown here</h3>
+			)}
 		</div>
 	);
 };
