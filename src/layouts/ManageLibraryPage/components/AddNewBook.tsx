@@ -149,7 +149,7 @@ const AddNewBook = () => {
 								<span className="sr-only">Choose profile photo</span>
 								<input
 									type="file"
-									className="block text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:bg-violet-50 file:text-violet-700 hover:file:bg-violet-100"
+									className="block text-sm text-slate-500 file:mt-4 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
 								/>
 							</label>
 						</div>
@@ -157,7 +157,7 @@ const AddNewBook = () => {
 						<div className="flex items-center justify-end gap-2 py-3">
 							<button
 								type="button"
-								className="rounded bg-gray-200 px-3 py-1.5 text-sm font-medium text-gray-700 hover:text-gray-600"
+								className="rounded bg-amber-200 px-3 py-1.5 text-sm font-medium text-amber-700 hover:text-amber-600"
 								onClick={handleClear}
 							>
 								Clear
@@ -167,7 +167,7 @@ const AddNewBook = () => {
 						<div className="flex items-center justify-center">
 							<button
 								type="submit"
-								className="inline-block w-full btn border-teal-500 bg-teal-500 hover:bg-teal-500/80 hover:border-teal-500/80 text-white"
+								className="inline-block w-1/2 btn border-teal-500 bg-teal-500 hover:bg-teal-500/80 hover:border-teal-500/80 text-white"
 							>
 								Submit
 							</button>

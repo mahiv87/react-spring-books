@@ -18,7 +18,7 @@ const UsersBooksPage = () => {
 						aria-label="Loans"
 						defaultChecked
 					/>
-					<div role="tabpanel" className="tab-content p-10 ">
+					<div role="tabpanel" className="tab-content p-2 ">
 						<Loans />
 					</div>
 
@@ -30,7 +30,7 @@ const UsersBooksPage = () => {
 						className="tab font-semibold text-main-color [--tab-bg:white] [--tab-border:2px] [--tab-border-color:lightgray]"
 						aria-label="History"
 					/>
-					<div role="tabpanel" className="tab-content p-10">
+					<div role="tabpanel" className="tab-content p-2">
 						{historyClick ? <HistoryPage /> : <></>}
 					</div>
 				</div>

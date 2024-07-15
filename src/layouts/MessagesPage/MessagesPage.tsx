@@ -18,7 +18,7 @@ export const MessagesPage = () => {
 						aria-label="Submit Question"
 						defaultChecked
 					/>
-					<div role="tabpanel" className="tab-content p-10 ">
+					<div role="tabpanel" className="tab-content p-2 ">
 						<PostMessage />
 					</div>
 
@@ -30,7 +30,7 @@ export const MessagesPage = () => {
 						className="tab font-semibold text-main-color [--tab-bg:white] [--tab-border:2px] [--tab-border-color:lightgray]"
 						aria-label="Messages"
 					/>
-					<div role="tabpanel" className="tab-content p-10">
+					<div role="tabpanel" className="tab-content p-2">
 						{messagesClick ? <Messages /> : <></>}
 					</div>
 				</div>

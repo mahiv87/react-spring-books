@@ -40,7 +40,7 @@ const ManageLibraryPage = () => {
 						aria-label="Add Book"
 						defaultChecked
 					/>
-					<div role="tabpanel" className="tab-content p-10 ">
+					<div role="tabpanel" className="tab-content p-2 ">
 						<AddNewBook />
 					</div>
 
@@ -52,7 +52,7 @@ const ManageLibraryPage = () => {
 						className="tab font-semibold text-main-color [--tab-bg:white] [--tab-border:2px] [--tab-border-color:lightgray]"
 						aria-label="Change Quantity"
 					/>
-					<div role="tabpanel" className="tab-content p-10">
+					<div role="tabpanel" className="tab-content p-2">
 						{changeQtyOfBooksClick ? <p>Change quantity</p> : <></>}
 					</div>
 
@@ -64,7 +64,7 @@ const ManageLibraryPage = () => {
 						className="tab font-semibold text-main-color [--tab-bg:white] [--tab-border:2px] [--tab-border-color:lightgray]"
 						aria-label="Messages"
 					/>
-					<div role="tabpanel" className="tab-content p-10">
+					<div role="tabpanel" className="tab-content p-2">
 						{messagesClick ? <AdminMessages /> : <></>}
 					</div>
 				</div>
