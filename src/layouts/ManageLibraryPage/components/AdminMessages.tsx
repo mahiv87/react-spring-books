@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { MessageModel } from '../../../models/MessageModel';
 import Spinner from '../../utils/Spinner';
 import Pagination from '../../utils/Pagination';
+import AdminMessage from './AdminMessage';
 
 const AdminMessages = () => {
 	const { authState } = useOktaAuth();
@@ -62,12 +63,12 @@ const AdminMessages = () => {
 	const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
 
 	return (
-		<div className="mt-3">
+		<div className="container mt-3">
 			{messages.length > 0 ? (
 				<>
 					<h3 className="text-2xl font-semibold">Pending Messages:</h3>
 					{messages.map((message) => (
-						<p>-- pending messages here --</p>
+						<AdminMessage message={message} key={message.id} />
 					))}
 				</>
 			) : (
