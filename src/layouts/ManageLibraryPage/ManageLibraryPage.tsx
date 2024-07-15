@@ -2,6 +2,7 @@ import { useOktaAuth } from '@okta/okta-react';
 import { useState } from 'react';
 import { Navigate } from 'react-router-dom';
 import AdminMessages from './components/AdminMessages';
+import AddNewBook from './components/AddNewBook';
 
 const ManageLibraryPage = () => {
 	const { authState } = useOktaAuth();
@@ -40,7 +41,7 @@ const ManageLibraryPage = () => {
 						defaultChecked
 					/>
 					<div role="tabpanel" className="tab-content p-10 ">
-						Add new book
+						<AddNewBook />
 					</div>
 
 					<input
