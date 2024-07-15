@@ -1,12 +1,23 @@
-import { useState } from 'react';
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { FormEvent, useState } from 'react';
 import { MessageModel } from '../../../models/MessageModel';
 
-const AdminMessage: React.FC<{ message: MessageModel }> = (
-	{ message },
+const AdminMessage: React.FC<{ message: MessageModel; submitResponse: any }> = (
+	{ message, submitResponse },
 	key
 ) => {
 	const [displayWarning, setDisplayWarning] = useState(false);
-	const [response, setResponse] = useState('');
+	const [adminResponse, setAdminResponse] = useState('');
+
+	const submitBtn = (e: FormEvent) => {
+		e.preventDefault();
+		if (message.id !== null && adminResponse !== '') {
+			submitResponse(message.id, adminResponse);
+			setDisplayWarning(false);
+		} else {
+			setDisplayWarning(true);
+		}
+	};
 
 	return (
 		<div key={message.id}>
@@ -47,8 +58,8 @@ const AdminMessage: React.FC<{ message: MessageModel }> = (
 									className="w-full resize-none border-x-0 border-t-0 bg-gray-200 border-gray-200 text-black p-4 align-top sm:text-sm"
 									rows={4}
 									placeholder="Enter response here.."
-									onChange={(e) => setResponse(e.target.value)}
-									value={response}
+									onChange={(e) => setAdminResponse(e.target.value)}
+									value={adminResponse}
 								></textarea>
 
 								<div className="flex items-center justify-end gap-2 py-3">
@@ -66,6 +77,7 @@ const AdminMessage: React.FC<{ message: MessageModel }> = (
 							<button
 								type="submit"
 								className="inline-block w-full btn border-teal-500 bg-teal-500 hover:bg-teal-500/80 hover:border-teal-500/80 text-white"
+								onClick={submitBtn}
 							>
 								Submit
 							</button>

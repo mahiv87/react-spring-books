@@ -4,6 +4,7 @@ import { MessageModel } from '../../../models/MessageModel';
 import Spinner from '../../utils/Spinner';
 import Pagination from '../../utils/Pagination';
 import AdminMessage from './AdminMessage';
+import { AdminMessageRequest } from '../../../models/AdminMessageRequest';
 
 const AdminMessages = () => {
 	const { authState } = useOktaAuth();
@@ -13,6 +14,7 @@ const AdminMessages = () => {
 	const [messagesPerPage] = useState(5);
 	const [currentPage, setCurrentPage] = useState(1);
 	const [totalPages, setTotalPages] = useState(0);
+	const [btnSubmit, setBtnSubmit] = useState(false);
 
 	useEffect(() => {
 		const fetchUserMessages = async () => {
@@ -46,7 +48,7 @@ const AdminMessages = () => {
 			setHttpError(error.message);
 		});
 		window.scrollTo(0, 0);
-	}, [authState, currentPage]);
+	}, [authState, currentPage, btnSubmit]);
 
 	if (isLoading) {
 		return <Spinner />;
@@ -60,6 +62,37 @@ const AdminMessages = () => {
 		);
 	}
 
+	const submitResponse = async (id: number, adminResponse: string) => {
+		const url = `http://localhost:8080/api/messages/secure/admin/message`;
+
+		if (
+			authState &&
+			authState.isAuthenticated &&
+			id !== null &&
+			adminResponse !== ''
+		) {
+			const messageAdminRequestModel: AdminMessageRequest =
+				new AdminMessageRequest(id, adminResponse);
+
+			const requestOptions = {
+				method: 'PUT',
+				headers: {
+					Authorization: `Bearer ${authState?.accessToken?.accessToken}`,
+					'Content-Type': 'application/json'
+				},
+				body: JSON.stringify(messageAdminRequestModel)
+			};
+
+			const response = await fetch(url, requestOptions);
+
+			if (!response.ok) {
+				throw new Error('Something went wrong');
+			}
+
+			setBtnSubmit(!btnSubmit);
+		}
+	};
+
 	const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
 
 	return (
@@ -68,7 +101,11 @@ const AdminMessages = () => {
 				<>
 					<h3 className="text-2xl font-semibold">Pending Messages:</h3>
 					{messages.map((message) => (
-						<AdminMessage message={message} key={message.id} />
+						<AdminMessage
+							message={message}
+							submitResponse={submitResponse}
+							key={message.id}
+						/>
 					))}
 				</>
 			) : (
