@@ -74,21 +74,27 @@ export const Messages = () => {
 							<div className="card flex my-5 p-5 container shadow-lg">
 								<h4 className="text-xl font-semibold">
 									Case #{message.id}:{' '}
-									<span className="text-orange-500">{message.title}</span>{' '}
+									<span className="text-amber-600">{message.title}</span>{' '}
 								</h4>
 								<div className="mb-2">
-									<h5 className="text-lg italic mb-2 indent-2">
+									<h5 className="text-lg italic my-2 indent-2">
 										{message.userEmail}
 									</h5>
-									<p className="indent-5">{message.question}</p>
+									<p className="indent-5 text-blue-500 font-semibold">
+										{message.question}
+									</p>
 								</div>
 								<hr />
 								<div className="mt-2">
 									<h4 className="text-xl font-semibold">Response: </h4>
 									{message.response && message.adminEmail ? (
 										<>
-											<h6>{message.adminEmail} (admin)</h6>
-											<p>{message.response}</p>
+											<h5 className="text-lg italic my-2 indent-2">
+												{message.adminEmail} (admin)
+											</h5>
+											<p className="indent-5 text-main-color font-semibold">
+												{message.response}
+											</p>
 										</>
 									) : (
 										<p className="italic mt-2 indent-2">

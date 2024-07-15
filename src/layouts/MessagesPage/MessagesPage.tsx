@@ -28,7 +28,7 @@ export const MessagesPage = () => {
 						name="my_tabs_1"
 						role="tab"
 						className="tab font-semibold text-main-color [--tab-bg:white] [--tab-border:2px] [--tab-border-color:lightgray]"
-						aria-label="Pending"
+						aria-label="Messages"
 					/>
 					<div role="tabpanel" className="tab-content p-10">
 						{messagesClick ? <Messages /> : <></>}

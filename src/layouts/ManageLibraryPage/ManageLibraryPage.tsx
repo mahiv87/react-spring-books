@@ -52,7 +52,7 @@ const ManageLibraryPage = () => {
 						aria-label="Change Quantity"
 					/>
 					<div role="tabpanel" className="tab-content p-10">
-						Change quantity
+						{changeQtyOfBooksClick ? <p>Change quantity</p> : <></>}
 					</div>
 
 					<input

@@ -2,10 +2,10 @@
 import { FormEvent, useState } from 'react';
 import { MessageModel } from '../../../models/MessageModel';
 
-const AdminMessage: React.FC<{ message: MessageModel; submitResponse: any }> = (
-	{ message, submitResponse },
-	key
-) => {
+const AdminMessage: React.FC<{
+	message: MessageModel;
+	submitResponse: any;
+}> = ({ message, submitResponse }) => {
 	const [displayWarning, setDisplayWarning] = useState(false);
 	const [adminResponse, setAdminResponse] = useState('');
 
@@ -24,7 +24,7 @@ const AdminMessage: React.FC<{ message: MessageModel; submitResponse: any }> = (
 			<div className="card flex mx-auto my-5 p-5 container lg:w-7/12 shadow-lg">
 				<h4 className="text-xl font-semibold">
 					Case #{message.id}:{' '}
-					<span className="text-orange-500">{message.title}</span>{' '}
+					<span className="text-amber-600">{message.title}</span>{' '}
 				</h4>
 				<div className="my-4">
 					<h5 className="text-lg italic mb-2 indent-2">{message.userEmail}</h5>

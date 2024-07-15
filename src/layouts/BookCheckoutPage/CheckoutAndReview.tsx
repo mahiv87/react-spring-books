@@ -36,7 +36,7 @@ const CheckoutAndReview: React.FC<{
 					{book && book.copiesAvailable && book.copiesAvailable > 0 ? (
 						<h4 className="text-teal-500 text-xl font-semibold">Available</h4>
 					) : (
-						<h4 className="text-orange-500">Wait List</h4>
+						<h4 className="text-amber-600">Wait List</h4>
 					)}
 					<div className="flex">
 						<p className="w-1/2 text-lg  my-4">
