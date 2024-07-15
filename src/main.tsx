@@ -14,6 +14,7 @@ import ReviewListPage from './layouts/BookCheckoutPage/ReviewListPage/ReviewList
 import UsersBooksPage from './layouts/UsersBooksPage/UsersBooksPage.tsx';
 import SecureRoute from './layouts/utils/SecureRoute.tsx';
 import { MessagesPage } from './layouts/MessagesPage/MessagesPage.tsx';
+import ManageLibraryPage from './layouts/ManageLibraryPage/ManageLibraryPage.tsx';
 
 const router = createBrowserRouter([
 	{
@@ -50,6 +51,14 @@ const router = createBrowserRouter([
 				element: (
 					<SecureRoute>
 						<MessagesPage />
+					</SecureRoute>
+				)
+			},
+			{
+				path: 'admin',
+				element: (
+					<SecureRoute>
+						<ManageLibraryPage />
 					</SecureRoute>
 				)
 			},
