@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useOktaAuth } from '@okta/okta-react';
-import { useRef, useState } from 'react';
+import { ChangeEvent, useState } from 'react';
 
 const AddNewBook = () => {
 	const { authState } = useOktaAuth();
@@ -21,6 +21,24 @@ const AddNewBook = () => {
 
 	const toggleDropdown = () => {
 		setIsOpen(!isOpen);
+	};
+
+	const convertImages = (e: ChangeEvent<HTMLInputElement>) => {
+		if (e.target.files && e.target.files[0]) {
+			getBase64(e.target.files[0]);
+		}
+	};
+
+	const getBase64 = (file: File) => {
+		const reader = new FileReader();
+
+		reader.readAsDataURL(file);
+		reader.onload = function () {
+			setImage(reader.result);
+		};
+		reader.onerror = function (error) {
+			console.log('Error', error);
+		};
 	};
 
 	const handleClear = () => {
@@ -150,6 +168,7 @@ const AddNewBook = () => {
 								<input
 									type="file"
 									className="block text-sm text-slate-500 file:mt-4 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
+									onChange={(e) => convertImages(e)}
 								/>
 							</label>
 						</div>
