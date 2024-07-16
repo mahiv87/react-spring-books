@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useOktaAuth } from '@okta/okta-react';
-import { ChangeEvent, useState } from 'react';
+import { ChangeEvent, FormEvent, useState } from 'react';
+import { AddBookRequest } from '../../../models/AddBookRequest';
 
 const AddNewBook = () => {
 	const { authState } = useOktaAuth();
@@ -10,13 +11,13 @@ const AddNewBook = () => {
 	const [copies, setCopies] = useState(0);
 	const [category, setCategory] = useState('Category');
 	const [image, setImage] = useState<any>(null);
-	const [displayWarning, setDisplayWaring] = useState(false);
+	const [displayWarning, setDisplayWarning] = useState(false);
 	const [displaySuccess, setDisplaySuccess] = useState(false);
 	const [isOpen, setIsOpen] = useState(false);
 
 	const categoryField = (value: string) => {
 		setCategory(value);
-		setIsOpen(false);
+		toggleDropdown();
 	};
 
 	const toggleDropdown = () => {
@@ -48,6 +49,56 @@ const AddNewBook = () => {
 		setCopies(0);
 		setCategory('Category');
 		setImage(null);
+	};
+
+	const submitNewBook = async (e: FormEvent) => {
+		e.preventDefault();
+		const url = `http://localhost:8080/api/admin/secure/add/book`;
+
+		if (
+			authState?.isAuthenticated &&
+			title !== '' &&
+			author !== '' &&
+			category !== 'Category' &&
+			description !== '' &&
+			copies >= 0
+		) {
+			const book: AddBookRequest = new AddBookRequest(
+				title,
+				author,
+				description,
+				copies,
+				category
+			);
+			book.img = image;
+
+			const requestOptions = {
+				method: 'POST',
+				headers: {
+					Authorization: `Bearer ${authState.accessToken?.accessToken}`,
+					'Content-Type': 'application/json'
+				},
+				body: JSON.stringify(book)
+			};
+
+			const response = await fetch(url, requestOptions);
+
+			if (!response.ok) {
+				throw new Error('Something went wrong');
+			}
+
+			setTitle('');
+			setAuthor('');
+			setDescription('');
+			setCopies(0);
+			setCategory('Category');
+			setImage(null);
+			setDisplayWarning(false);
+			setDisplaySuccess(true);
+		} else {
+			setDisplayWarning(true);
+			setDisplaySuccess(false);
+		}
 	};
 
 	return (
@@ -187,6 +238,7 @@ const AddNewBook = () => {
 							<button
 								type="submit"
 								className="inline-block w-1/2 btn border-teal-500 bg-teal-500 hover:bg-teal-500/80 hover:border-teal-500/80 text-white"
+								onClick={submitNewBook}
 							>
 								Submit
 							</button>
