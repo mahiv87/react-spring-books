@@ -12,6 +12,7 @@ const ChangeBooksQty = () => {
 	const [booksPerPage] = useState(5);
 	const [totalAmountOfBooks, setTotalAmountOfBooks] = useState(0);
 	const [totalPages, setTotalPages] = useState(0);
+	const [bookDelete, setBookDelete] = useState(false);
 
 	useEffect(() => {
 		const fetchBooks = async () => {
@@ -48,7 +49,7 @@ const ChangeBooksQty = () => {
 			setIsLoading(false);
 			setHttpError(error.message);
 		});
-	}, [currentPage]);
+	}, [currentPage, bookDelete]);
 
 	if (isLoading) {
 		return <Spinner />;
@@ -71,6 +72,8 @@ const ChangeBooksQty = () => {
 
 	const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
 
+	const deleteBook = () => setBookDelete(!bookDelete);
+
 	return (
 		<div className="container mt-5">
 			{totalAmountOfBooks > 0 ? (
@@ -83,7 +86,7 @@ const ChangeBooksQty = () => {
 					</p>
 
 					{books.map((book) => (
-						<ChangeBook book={book} key={book.id} />
+						<ChangeBook book={book} key={book.id} delBook={deleteBook} />
 					))}
 				</>
 			) : (

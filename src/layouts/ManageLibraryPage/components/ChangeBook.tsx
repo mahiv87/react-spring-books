@@ -1,11 +1,14 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useEffect, useState } from 'react';
 import { BookModel } from '../../../models/BookModel';
 import { useOktaAuth } from '@okta/okta-react';
 
 import defaultImg from '../../../Images/BooksImages/book-luv2code-1000.png';
-import { Link } from 'react-router-dom';
 
-const ChangeBook: React.FC<{ book: BookModel }> = ({ book }) => {
+const ChangeBook: React.FC<{ book: BookModel; delBook: any }> = ({
+	book,
+	delBook
+}) => {
 	const { authState } = useOktaAuth();
 
 	const [qty, setQty] = useState<number>(0);
@@ -58,6 +61,26 @@ const ChangeBook: React.FC<{ book: BookModel }> = ({ book }) => {
 		setRemaining(remaining - 1);
 	};
 
+	const deleteBook = async () => {
+		const url = `http://localhost:8080/api/admin/secure/delete/book?bookId=${book.id}`;
+
+		const requestOptions = {
+			method: 'DELETE',
+			headers: {
+				Authorization: `Bearer ${authState?.accessToken?.accessToken}`,
+				'Content-Type': 'application/json'
+			}
+		};
+
+		const response = await fetch(url, requestOptions);
+
+		if (!response.ok) {
+			throw new Error('Something went wrong');
+		}
+
+		delBook();
+	};
+
 	return (
 		<div className="card lg:card-side md:w-2/3 md:mx-auto mx-5 my-5 shadow-xl">
 			<figure className="lg:w-1/3 lg:mx-auto">
@@ -92,7 +115,10 @@ const ChangeBook: React.FC<{ book: BookModel }> = ({ book }) => {
 
 				<div className="mt-3">
 					<div className="flex justify-end">
-						<button className="btn bg-rose-500 border-rose-500 hover:bg-rose-500/80 hover:border-rose-500 text-white text-lg">
+						<button
+							className="btn bg-rose-500 border-rose-500 hover:bg-rose-500/80 hover:border-rose-500 text-white text-lg"
+							onClick={deleteBook}
+						>
 							Delete
 						</button>
 					</div>
