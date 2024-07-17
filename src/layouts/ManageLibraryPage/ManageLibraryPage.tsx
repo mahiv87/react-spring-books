@@ -31,7 +31,7 @@ const ManageLibraryPage = () => {
 	return (
 		<div className="container mx-auto">
 			<div className="mt-3">
-				<div role="tablist" className="tabs tabs-lifted tabs-lg ml-4">
+				<div role="tablist" className="tabs tabs-lifted tabs-lg ml-4 w-full">
 					<input
 						onClick={handleAddBook}
 						type="radio"

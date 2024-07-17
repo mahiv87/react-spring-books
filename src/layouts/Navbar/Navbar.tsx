@@ -34,8 +34,8 @@ const Navbar = () => {
 						<ul
 							className={
 								navOpen
-									? 'flex flex-col mx-auto gap-2 px-4 sm:px-6'
-									: 'flex items-center gap-6 text-lg'
+									? 'flex flex-col mx-auto gap-2 px-4 sm:px-6 font-semibold'
+									: 'flex items-center gap-6 text-lg font-semibold'
 							}
 						>
 							<li>
@@ -61,6 +61,16 @@ const Navbar = () => {
 										to="/shelf"
 									>
 										Your Books
+									</Link>
+								</li>
+							)}
+							{authState.isAuthenticated && (
+								<li>
+									<Link
+										className="text-gray-100 transition hover:text-gray-100/75"
+										to="/admin"
+									>
+										Admin
 									</Link>
 								</li>
 							)}
