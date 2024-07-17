@@ -34,35 +34,35 @@ const ChangeBook: React.FC<{ book: BookModel }> = ({ book }) => {
 					{book.author}
 				</h4>
 				<p>{book.description}</p>
-			</div>
 
-			<div className="mt-3 md:w-1/3">
-				<div className="flex justify-center items-center">
-					<p>
-						Total Quantity: <b>{qty}</b>
-					</p>
+				<div className="mt-10 mb-3 md:w-1/3">
+					<div className="flex justify-center items-center">
+						<p className="text-xl">
+							Total Quantity: <b>{qty}</b>
+						</p>
+					</div>
+					<div className="flex justify-center items-center">
+						<p className="text-xl">
+							Total Remaining: <b>{remaining}</b>
+						</p>
+					</div>
 				</div>
-				<div className="flex justify-center items-center">
-					<p>
-						Total Remaining: <b>{remaining}</b>
-					</p>
-				</div>
-			</div>
 
-			<div className="mt-3 md:w-1/12">
-				<div className="flex justify-start">
-					<button className="btn bg-rose-500 border-rose-500 hover:bg-rose-500/80 hover:border-rose-500 text-white">
-						Delete
-					</button>
+				<div className="mt-3">
+					<div className="flex justify-end">
+						<button className="btn bg-rose-500 border-rose-500 hover:bg-rose-500/80 hover:border-rose-500 text-white text-lg">
+							Delete
+						</button>
+					</div>
 				</div>
-			</div>
 
-			<button className="btn bg-main-color border-main-color hover:bg-main-color/80 hover:border-main-color text-white">
-				Add Quantity
-			</button>
-			<button className="btn bg-amber-500 border-amber-500 hover:bg-amber-500/80 hover:border-amber-500 text-white">
-				Decrease Quantity
-			</button>
+				<button className="btn bg-main-color border-main-color hover:bg-main-color/80 hover:border-main-color text-white text-lg">
+					Add Quantity
+				</button>
+				<button className="btn bg-amber-500 border-amber-500 hover:bg-amber-500/80 hover:border-amber-500 text-white text-lg">
+					Decrease Quantity
+				</button>
+			</div>
 		</div>
 	);
 };
