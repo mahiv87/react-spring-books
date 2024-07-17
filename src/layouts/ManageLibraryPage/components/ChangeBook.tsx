@@ -37,6 +37,27 @@ const ChangeBook: React.FC<{ book: BookModel }> = ({ book }) => {
 		setRemaining(remaining + 1);
 	};
 
+	const decreaseQty = async () => {
+		const url = `http://localhost:8080/api/admin/secure/decrease/book/quantity?bookId=${book.id}`;
+
+		const requestOptions = {
+			method: 'PUT',
+			headers: {
+				Authorization: `Bearer ${authState?.accessToken?.accessToken}`,
+				'Content-Type': 'application/json'
+			}
+		};
+
+		const response = await fetch(url, requestOptions);
+
+		if (!response.ok) {
+			throw new Error('Something went wrong');
+		}
+
+		setQty(qty - 1);
+		setRemaining(remaining - 1);
+	};
+
 	return (
 		<div className="card lg:card-side md:w-2/3 md:mx-auto mx-5 my-5 shadow-xl">
 			<figure className="lg:w-1/3 lg:mx-auto">
@@ -83,7 +104,10 @@ const ChangeBook: React.FC<{ book: BookModel }> = ({ book }) => {
 				>
 					Add Quantity
 				</button>
-				<button className="btn bg-amber-500 border-amber-500 hover:bg-amber-500/80 hover:border-amber-500 text-white text-lg">
+				<button
+					className="btn bg-amber-500 border-amber-500 hover:bg-amber-500/80 hover:border-amber-500 text-white text-lg"
+					onClick={decreaseQty}
+				>
 					Decrease Quantity
 				</button>
 			</div>
