@@ -16,6 +16,27 @@ const ChangeBook: React.FC<{ book: BookModel }> = ({ book }) => {
 		setRemaining(book.copiesAvailable || 0);
 	}, [book.copies, book.copiesAvailable]);
 
+	const increaseQty = async () => {
+		const url = `http://localhost:8080/api/admin/secure/increase/book/quantity?bookId=${book.id}`;
+
+		const requestOptions = {
+			method: 'PUT',
+			headers: {
+				Authorization: `Bearer ${authState?.accessToken?.accessToken}`,
+				'Content-Type': 'application/json'
+			}
+		};
+
+		const response = await fetch(url, requestOptions);
+
+		if (!response.ok) {
+			throw new Error('Something went wrong');
+		}
+
+		setQty(qty + 1);
+		setRemaining(remaining + 1);
+	};
+
 	return (
 		<div className="card lg:card-side md:w-2/3 md:mx-auto mx-5 my-5 shadow-xl">
 			<figure className="lg:w-1/3 lg:mx-auto">
@@ -37,13 +58,13 @@ const ChangeBook: React.FC<{ book: BookModel }> = ({ book }) => {
 
 				<div className="mt-10 mb-3 md:w-1/3">
 					<div className="flex justify-center items-center">
-						<p className="text-xl">
-							Total Quantity: <b>{qty}</b>
+						<p className="text-xl text-neutral-500">
+							Total Quantity: <b className="text-neutral-700">{qty}</b>
 						</p>
 					</div>
 					<div className="flex justify-center items-center">
-						<p className="text-xl">
-							Total Remaining: <b>{remaining}</b>
+						<p className="text-xl text-neutral-500">
+							Total Remaining: <b className="text-neutral-700">{remaining}</b>
 						</p>
 					</div>
 				</div>
@@ -56,7 +77,10 @@ const ChangeBook: React.FC<{ book: BookModel }> = ({ book }) => {
 					</div>
 				</div>
 
-				<button className="btn bg-main-color border-main-color hover:bg-main-color/80 hover:border-main-color text-white text-lg">
+				<button
+					className="btn bg-main-color border-main-color hover:bg-main-color/80 hover:border-main-color text-white text-lg"
+					onClick={increaseQty}
+				>
 					Add Quantity
 				</button>
 				<button className="btn bg-amber-500 border-amber-500 hover:bg-amber-500/80 hover:border-amber-500 text-white text-lg">
