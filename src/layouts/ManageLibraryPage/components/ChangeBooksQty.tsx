@@ -82,7 +82,9 @@ const ChangeBooksQty = () => {
 					</p>
 
 					{books.map((book) => (
-						<p>Display different qty of books</p>
+						<div>
+							<img src={book.img} alt="" />
+						</div>
 					))}
 				</>
 			) : (

@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { Navigate } from 'react-router-dom';
 import AdminMessages from './components/AdminMessages';
 import AddNewBook from './components/AddNewBook';
+import ChangeBooksQty from './components/ChangeBooksQty';
 
 const ManageLibraryPage = () => {
 	const { authState } = useOktaAuth();
@@ -53,7 +54,7 @@ const ManageLibraryPage = () => {
 						aria-label="Change Quantity"
 					/>
 					<div role="tabpanel" className="tab-content p-2">
-						{changeQtyOfBooksClick ? <p>Change quantity</p> : <></>}
+						{changeQtyOfBooksClick ? <ChangeBooksQty /> : <></>}
 					</div>
 
 					<input
