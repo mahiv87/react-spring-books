@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { BookModel } from '../../../models/BookModel';
 import Spinner from '../../utils/Spinner';
 import Pagination from '../../utils/Pagination';
+import ChangeBook from './ChangeBook';
 
 const ChangeBooksQty = () => {
 	const [books, setBooks] = useState<BookModel[]>([]);
@@ -82,9 +83,7 @@ const ChangeBooksQty = () => {
 					</p>
 
 					{books.map((book) => (
-						<div>
-							<img src={book.img} alt="" />
-						</div>
+						<ChangeBook book={book} key={book.id} />
 					))}
 				</>
 			) : (
