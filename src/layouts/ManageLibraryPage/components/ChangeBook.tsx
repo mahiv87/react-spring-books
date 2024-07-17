@@ -5,9 +5,9 @@ import { useOktaAuth } from '@okta/okta-react';
 
 import defaultImg from '../../../Images/BooksImages/book-luv2code-1000.png';
 
-const ChangeBook: React.FC<{ book: BookModel; delBook: any }> = ({
+const ChangeBook: React.FC<{ book: BookModel; deleteBook: any }> = ({
 	book,
-	delBook
+	deleteBook
 }) => {
 	const { authState } = useOktaAuth();
 
@@ -61,7 +61,7 @@ const ChangeBook: React.FC<{ book: BookModel; delBook: any }> = ({
 		setRemaining(remaining - 1);
 	};
 
-	const deleteBook = async () => {
+	const delBook = async () => {
 		const url = `http://localhost:8080/api/admin/secure/delete/book?bookId=${book.id}`;
 
 		const requestOptions = {
@@ -78,7 +78,7 @@ const ChangeBook: React.FC<{ book: BookModel; delBook: any }> = ({
 			throw new Error('Something went wrong');
 		}
 
-		delBook();
+		deleteBook();
 	};
 
 	return (
@@ -117,7 +117,7 @@ const ChangeBook: React.FC<{ book: BookModel; delBook: any }> = ({
 					<div className="flex justify-end">
 						<button
 							className="btn bg-rose-500 border-rose-500 hover:bg-rose-500/80 hover:border-rose-500 text-white text-lg"
-							onClick={deleteBook}
+							onClick={delBook}
 						>
 							Delete
 						</button>

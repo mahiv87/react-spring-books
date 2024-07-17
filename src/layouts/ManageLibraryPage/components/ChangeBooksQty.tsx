@@ -72,7 +72,7 @@ const ChangeBooksQty = () => {
 
 	const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
 
-	const deleteBook = () => setBookDelete(!bookDelete);
+	const delBook = () => setBookDelete(!bookDelete);
 
 	return (
 		<div className="container mt-5">
@@ -86,7 +86,7 @@ const ChangeBooksQty = () => {
 					</p>
 
 					{books.map((book) => (
-						<ChangeBook book={book} key={book.id} delBook={deleteBook} />
+						<ChangeBook book={book} key={book.id} deleteBook={delBook} />
 					))}
 				</>
 			) : (
