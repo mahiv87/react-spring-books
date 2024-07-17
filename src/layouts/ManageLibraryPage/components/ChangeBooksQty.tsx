@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { BookModel } from '../../../models/BookModel';
 import Spinner from '../../utils/Spinner';
+import Pagination from '../../utils/Pagination';
 
 const ChangeBooksQty = () => {
 	const [books, setBooks] = useState<BookModel[]>([]);
@@ -46,7 +47,6 @@ const ChangeBooksQty = () => {
 			setIsLoading(false);
 			setHttpError(error.message);
 		});
-		window.scrollTo(0, 0);
 	}, [currentPage]);
 
 	if (isLoading) {
@@ -61,7 +61,43 @@ const ChangeBooksQty = () => {
 		);
 	}
 
-	return <div>ChangeBooksQty</div>;
+	const indexOfLastBook: number = currentPage * booksPerPage;
+	const indexOfFirstBook: number = indexOfLastBook - booksPerPage;
+	const lastItem =
+		booksPerPage * currentPage <= totalAmountOfBooks
+			? booksPerPage * currentPage
+			: totalAmountOfBooks;
+
+	const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
+
+	return (
+		<div className="container mt-5">
+			{totalAmountOfBooks > 0 ? (
+				<>
+					<div className="mt-3">
+						<h3>Number of results: ({totalAmountOfBooks}) </h3>
+					</div>
+					<p>
+						{indexOfFirstBook + 1} to {lastItem} of {totalAmountOfBooks} books:
+					</p>
+
+					{books.map((book) => (
+						<p>Display different qty of books</p>
+					))}
+				</>
+			) : (
+				<h5>Add a book before changing quantity</h5>
+			)}
+
+			{totalPages > 1 && (
+				<Pagination
+					currentPage={currentPage}
+					totalPages={totalPages}
+					paginate={paginate}
+				/>
+			)}
+		</div>
+	);
 };
 
 export default ChangeBooksQty;
