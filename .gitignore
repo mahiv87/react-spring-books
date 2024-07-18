@@ -11,6 +11,8 @@ node_modules
 dist
 dist-ssr
 *.local
+ssl-localhost
+localhost.conf
 
 .env
 .env.local
