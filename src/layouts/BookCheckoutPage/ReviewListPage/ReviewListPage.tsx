@@ -13,11 +13,13 @@ const ReviewListPage = () => {
 	const [totalAmountOfReviews, setTotalAmountOfReviews] = useState(0);
 	const [totalPages, setTotalPages] = useState(0);
 
+	const baseAPIUrl = import.meta.env.VITE_API;
+
 	const bookId = window.location.pathname.split('/')[2];
 
 	useEffect(() => {
 		const fetchBookReviews = async () => {
-			const url: string = `http://localhost:8080/api/reviews/search/findByBookId?bookId=${bookId}&page=${
+			const url: string = `${baseAPIUrl}/reviews/search/findByBookId?bookId=${bookId}&page=${
 				currentPage - 1
 			}&size=${reviewsPerPage}`;
 

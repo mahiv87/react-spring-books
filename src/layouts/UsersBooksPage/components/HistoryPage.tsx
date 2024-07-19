@@ -13,10 +13,12 @@ export const HistoryPage = () => {
 	const [currentPage, setCurrentPage] = useState(1);
 	const [totalPages, setTotalPages] = useState(0);
 
+	const baseAPIUrl = import.meta.env.VITE_API;
+
 	useEffect(() => {
 		const fetchUserHistory = async () => {
 			if (authState && authState.isAuthenticated) {
-				const url = `http://localhost:8080/api/histories/search/findBooksByUserEmail?userEmail=${
+				const url = `${baseAPIUrl}/histories/search/findBooksByUserEmail?userEmail=${
 					authState.accessToken?.claims.sub
 				}&page=${currentPage - 1}&size=5`;
 

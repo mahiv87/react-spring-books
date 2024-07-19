@@ -13,10 +13,12 @@ export const Messages = () => {
 	const [currentPage, setCurrentPage] = useState(1);
 	const [totalPages, setTotalPages] = useState(0);
 
+	const baseAPIUrl = import.meta.env.VITE_API;
+
 	useEffect(() => {
 		const fetchUserMessages = async () => {
 			if (authState && authState.isAuthenticated) {
-				const url = `http://localhost:8080/api/messages/search/findByUserEmail?userEmail=${
+				const url = `${baseAPIUrl}/messages/search/findByUserEmail?userEmail=${
 					authState?.accessToken?.claims.sub
 				}&page=${currentPage - 1}&size=${messagesPerPage}`;
 

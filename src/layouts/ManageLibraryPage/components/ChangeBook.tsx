@@ -14,13 +14,15 @@ const ChangeBook: React.FC<{ book: BookModel; deleteBook: any }> = ({
 	const [qty, setQty] = useState<number>(0);
 	const [remaining, setRemaining] = useState<number>(0);
 
+	const baseAPIUrl = import.meta.env.VITE_API;
+
 	useEffect(() => {
 		setQty(book.copies || 0);
 		setRemaining(book.copiesAvailable || 0);
 	}, [book.copies, book.copiesAvailable]);
 
 	const increaseQty = async () => {
-		const url = `http://localhost:8080/api/admin/secure/increase/book/quantity?bookId=${book.id}`;
+		const url = `${baseAPIUrl}/admin/secure/increase/book/quantity?bookId=${book.id}`;
 
 		const requestOptions = {
 			method: 'PUT',
@@ -41,7 +43,7 @@ const ChangeBook: React.FC<{ book: BookModel; deleteBook: any }> = ({
 	};
 
 	const decreaseQty = async () => {
-		const url = `http://localhost:8080/api/admin/secure/decrease/book/quantity?bookId=${book.id}`;
+		const url = `${baseAPIUrl}/admin/secure/decrease/book/quantity?bookId=${book.id}`;
 
 		const requestOptions = {
 			method: 'PUT',
@@ -62,7 +64,7 @@ const ChangeBook: React.FC<{ book: BookModel; deleteBook: any }> = ({
 	};
 
 	const delBook = async () => {
-		const url = `http://localhost:8080/api/admin/secure/delete/book?bookId=${book.id}`;
+		const url = `${baseAPIUrl}/admin/secure/delete/book?bookId=${book.id}`;
 
 		const requestOptions = {
 			method: 'DELETE',

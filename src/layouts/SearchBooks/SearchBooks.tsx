@@ -18,9 +18,11 @@ const SearchBooks = () => {
 	const [isOpen, setIsOpen] = useState(false);
 	const detailsRef = useRef<HTMLDetailsElement>(null);
 
+	const baseAPIUrl = import.meta.env.VITE_API;
+
 	useEffect(() => {
 		const fetchBooks = async () => {
-			const baseUrl: string = 'http://localhost:8080/api/books';
+			const baseUrl: string = `${baseAPIUrl}/books`;
 			let url: string = '';
 
 			if (searchUrl === '') {

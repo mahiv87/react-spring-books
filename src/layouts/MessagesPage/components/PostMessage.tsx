@@ -9,9 +9,11 @@ export const PostMessage = () => {
 	const [displayWarning, setDisplayWarning] = useState(false);
 	const [displaySuccess, setDisplaySuccess] = useState(false);
 
+	const baseAPIUrl = import.meta.env.VITE_API;
+
 	const submitQuestion = async (e: FormEvent) => {
 		e.preventDefault();
-		const url = `http://localhost:8080/api/messages/secure/add/message`;
+		const url = `${baseAPIUrl}/messages/secure/add/message`;
 
 		if (authState?.isAuthenticated && title !== '' && question !== '') {
 			const messageRequestModel: MessageModel = new MessageModel(

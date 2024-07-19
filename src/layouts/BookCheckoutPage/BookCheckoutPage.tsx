@@ -26,6 +26,9 @@ const BookCheckoutPage = () => {
 	const [isCheckedOut, setIsCheckedOut] = useState(false);
 	const [isAlreadyReviewed, setIsAlreadyReviewed] = useState(false);
 
+	const baseAPIUrl = import.meta.env.VITE_API;
+	console.log('BookCheckoutPage ~ baseAPIUrl:', baseAPIUrl);
+
 	const { authState } = useOktaAuth();
 
 	const bookId = window.location.pathname.split('/')[2];
@@ -127,7 +130,7 @@ const BookCheckoutPage = () => {
 	}
 
 	const checkoutBook = async () => {
-		const url = `http://localhost:8080/api/books/secure/checkout?bookId=${book?.id}`;
+		const url = `${baseAPIUrl}/books/secure/checkout?bookId=${book?.id}`;
 		const requestOptions = {
 			method: 'PUT',
 			headers: {
@@ -155,7 +158,7 @@ const BookCheckoutPage = () => {
 			bookId,
 			reviewDescription
 		);
-		const url = `http://localhost:8080/api/reviews/secure`;
+		const url = `${baseAPIUrl}/reviews/secure`;
 		const requestOptions = {
 			method: 'POST',
 			headers: {

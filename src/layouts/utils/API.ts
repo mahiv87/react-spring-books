@@ -3,9 +3,11 @@ import { AuthState } from '@okta/okta-auth-js';
 import { BookModel } from '../../models/BookModel';
 import { ReviewModel } from '../../models/ReviewModel';
 
+const baseAPIUrl = import.meta.env.VITE_API;
+
 // Fetch books for Carousel
 export const fetchBooks = async (query: string): Promise<BookModel[]> => {
-	const baseUrl: string = 'http://localhost:8080/api/books';
+	const baseUrl: string = `${baseAPIUrl}/books`;
 	const url: string = `${baseUrl}${query}`;
 
 	const response = await fetch(url);
@@ -32,7 +34,7 @@ export const fetchBooks = async (query: string): Promise<BookModel[]> => {
 
 // Fetch a single book by id
 export const fetchBook = async (query: string): Promise<BookModel> => {
-	const baseUrl: string = 'http://localhost:8080/api/books';
+	const baseUrl: string = `${baseAPIUrl}/books`;
 	const url: string = `${baseUrl}${query}`;
 
 	const response = await fetch(url);
@@ -60,7 +62,7 @@ export const fetchBook = async (query: string): Promise<BookModel> => {
 export const fetchBookReviews = async (
 	bookId: string
 ): Promise<ReviewModel[]> => {
-	const url: string = `http://localhost:8080/api/reviews/search/findByBookId?bookId=${bookId}`;
+	const url: string = `${baseAPIUrl}/reviews/search/findByBookId?bookId=${bookId}`;
 
 	const response = await fetch(url);
 
@@ -86,7 +88,7 @@ export const fetchBookReviews = async (
 // Fetch users current loans
 export const fetchUserCurrentLoans = async (authState: AuthState | null) => {
 	if (authState && authState.isAuthenticated) {
-		const url = `http://localhost:8080/api/books/secure/currentloans`;
+		const url = `${baseAPIUrl}/books/secure/currentloans`;
 		const requestOptions = {
 			method: 'GET',
 			headers: {
@@ -112,7 +114,7 @@ export const fetchUserCurrentLoansCount = async (
 	authState: AuthState | null
 ) => {
 	if (authState && authState.isAuthenticated) {
-		const url = `http://localhost:8080/api/books/secure/currentloans/count`;
+		const url = `${baseAPIUrl}/books/secure/currentloans/count`;
 		const requestOptions = {
 			method: 'GET',
 			headers: {
@@ -139,7 +141,7 @@ export const fetchUserCheckedOutBook = async (
 	bookId: string
 ): Promise<any> => {
 	if (authState && authState.isAuthenticated) {
-		const url = `http://localhost:8080/api/books/secure/ischeckedout/byuser?bookId=${bookId}`;
+		const url = `${baseAPIUrl}/books/secure/ischeckedout/byuser?bookId=${bookId}`;
 		const requestOptions = {
 			method: 'GET',
 			headers: {
@@ -165,7 +167,7 @@ export const fetchUserReviewBook = async (
 	bookId: string
 ): Promise<any> => {
 	if (authState && authState.isAuthenticated) {
-		const url = `http://localhost:8080/api/reviews/secure/user/book?bookId=${bookId}`;
+		const url = `${baseAPIUrl}/reviews/secure/user/book?bookId=${bookId}`;
 		const requestOptions = {
 			method: 'GET',
 			headers: {

@@ -16,10 +16,12 @@ const AdminMessages = () => {
 	const [totalPages, setTotalPages] = useState(0);
 	const [btnSubmit, setBtnSubmit] = useState(false);
 
+	const baseAPIUrl = import.meta.env.VITE_API;
+
 	useEffect(() => {
 		const fetchUserMessages = async () => {
 			if (authState && authState.isAuthenticated) {
-				const url = `http://localhost:8080/api/messages/search/findByClosed?closed=false&page=${
+				const url = `${baseAPIUrl}/messages/search/findByClosed?closed=false&page=${
 					currentPage - 1
 				}&size=${messagesPerPage}`;
 				const requestOptions = {
@@ -63,7 +65,7 @@ const AdminMessages = () => {
 	}
 
 	const submitResponse = async (id: number, adminResponse: string) => {
-		const url = `http://localhost:8080/api/messages/secure/admin/message`;
+		const url = `${baseAPIUrl}/messages/secure/admin/message`;
 
 		if (
 			authState &&

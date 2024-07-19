@@ -14,9 +14,11 @@ const ChangeBooksQty = () => {
 	const [totalPages, setTotalPages] = useState(0);
 	const [bookDelete, setBookDelete] = useState(false);
 
+	const baseAPIUrl = import.meta.env.VITE_API;
+
 	useEffect(() => {
 		const fetchBooks = async () => {
-			const url: string = `http://localhost:8080/api/books?page=${
+			const url: string = `${baseAPIUrl}/books?page=${
 				currentPage - 1
 			}&size=${booksPerPage}`;
 

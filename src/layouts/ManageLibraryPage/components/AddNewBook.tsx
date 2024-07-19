@@ -15,6 +15,8 @@ const AddNewBook = () => {
 	const [displaySuccess, setDisplaySuccess] = useState(false);
 	const [isOpen, setIsOpen] = useState(false);
 
+	const baseAPIUrl = import.meta.env.VITE_API;
+
 	const categoryField = (value: string) => {
 		setCategory(value);
 		toggleDropdown();
@@ -53,7 +55,7 @@ const AddNewBook = () => {
 
 	const submitNewBook = async (e: FormEvent) => {
 		e.preventDefault();
-		const url = `http://localhost:8080/api/admin/secure/add/book`;
+		const url = `${baseAPIUrl}/admin/secure/add/book`;
 
 		if (
 			authState?.isAuthenticated &&
