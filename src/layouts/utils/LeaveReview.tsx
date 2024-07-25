@@ -11,7 +11,7 @@ const LeaveReview: React.FC<{ submitReview: any }> = ({ submitReview }) => {
 
 	const starValue = (value: number) => {
 		setStarInput(value);
-		console.log('rating', starInput);
+		// console.log('rating', starInput);
 		setIsOpen(false);
 
 		if (detailsRef.current) {
