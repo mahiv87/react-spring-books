@@ -96,7 +96,7 @@ const Navbar = () => {
 									>
 										Login
 									</Link>
-									<Link
+									{/* <Link
 										className={
 											navOpen
 												? 'block rounded-md bg-gray-100 px-5 py-2.5 text-sm font-medium text-teal-600 transition hover:text-teal-600/75'
@@ -105,7 +105,7 @@ const Navbar = () => {
 										to="#"
 									>
 										Register
-									</Link>
+									</Link> */}
 								</>
 							) : (
 								<button
