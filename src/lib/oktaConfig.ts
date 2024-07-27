@@ -4,5 +4,8 @@ export const oktaConfig = {
 	redirectUri: import.meta.env.VITE_OKTA_REDIRECT_URI!,
 	scopes: ['openid', 'profile', 'email'],
 	pkce: true,
-	disableHttpsCheck: true
+	disableHttpsCheck: true,
+	features: {
+		registration: true
+	}
 };
