@@ -33,7 +33,7 @@ const LibraryService = () => {
 						)}
 					</div>
 				</div>
-				<div className="lg:w-1/3 lg:ml-1/12 shadow-lg lost-image"></div>
+				<div className="w-full lg:w-1/3 lg:ml-1/12 shadow-lg lost-image"></div>
 			</div>
 		</div>
 	);
