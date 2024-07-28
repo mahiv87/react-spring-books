@@ -7,6 +7,7 @@ import { fetchBooks } from '../../utils/API';
 
 const Carousel = () => {
 	const [books, setBooks] = useState<BookModel[]>([]);
+	const [currentSlide, setCurrentSlide] = useState(0);
 	const [isLoading, setIsLoading] = useState(true);
 	const [httpError, setHttpError] = useState(null);
 
@@ -35,85 +36,106 @@ const Carousel = () => {
 		);
 	}
 
+	const handlePrevSlide = () => {
+		setCurrentSlide((prev) => (prev === 0 ? 2 : prev - 1));
+	};
+
+	const handleNextSlide = () => {
+		setCurrentSlide((prev) => (prev === 2 ? 0 : prev + 1));
+	};
+
+	const booksPerSlide = 3;
+	const slides = [
+		books.slice(0, booksPerSlide),
+		books.slice(booksPerSlide, booksPerSlide * 2),
+		books.slice(booksPerSlide * 2, booksPerSlide * 3)
+	];
+
 	return (
 		<div
-			className="container flex flex-col w-full mx-auto justify-start items-center my-10"
-			style={{ height: 550 }}
+			className="container flex flex-col w-full mx-auto justify-center items-center my-10"
+			style={{ height: 600 }}
 		>
-			<div className="homepage-carousel-title text-center">
+			<div className="homepage-carousel-title text-center pb-4">
 				<h3 className="text-2xl text-neutral-900 pb-4">
 					Find your next "I stayed up too late reading" book
 				</h3>
 			</div>
-			<div className="carousel rounded-box w-11/12">
-				<div
-					id="slide1"
-					className="carousel-item relative w-full justify-center items-center"
-				>
-					{books.slice(0, 3).map((book) => (
-						<ReturnBook book={book} key={book.id} />
-					))}
-					<div className="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between text-center">
-						<a
-							href="#slide3"
-							className="text-xl text-neutral-500 hover:text-neutral-500/50"
-						>
-							❮
-						</a>
-						<a
-							href="#slide2"
-							className="text-xl text-neutral-500 hover:text-neutral-500/50"
-						>
-							❯
-						</a>
+
+			<div className="carousel rounded-box w-11/12 hidden md:flex">
+				{slides.map((slideBooks, index) => (
+					<div
+						key={index}
+						className={`carousel-item relative w-full justify-center items-center ${
+							index === currentSlide ? 'flex' : 'hidden'
+						}`}
+					>
+						{slideBooks.map((book) => (
+							<ReturnBook book={book} key={book.id} />
+						))}
+						<div className="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between text-center">
+							<a
+								href="#"
+								className="text-xl text-neutral-500 hover:text-neutral-500/50"
+								onClick={(e) => {
+									e.preventDefault();
+									handlePrevSlide();
+								}}
+							>
+								❮
+							</a>
+							<a
+								href="#"
+								className="text-xl text-neutral-500 hover:text-neutral-500/50"
+								onClick={(e) => {
+									e.preventDefault();
+									handleNextSlide();
+								}}
+							>
+								❯
+							</a>
+						</div>
 					</div>
-				</div>
-				<div
-					id="slide2"
-					className="carousel-item relative w-full justify-center items-center"
-				>
-					{books.slice(3, 6).map((book) => (
-						<ReturnBook book={book} key={book.id} />
-					))}
-					<div className="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between text-center">
-						<a
-							href="#slide1"
-							className="text-xl text-neutral-500 hover:text-neutral-500/50"
-						>
-							❮
-						</a>
-						<a
-							href="#slide3"
-							className="text-xl text-neutral-500 hover:text-neutral-500/50"
-						>
-							❯
-						</a>
-					</div>
-				</div>
-				<div
-					id="slide3"
-					className="carousel-item relative w-full justify-center items-center"
-				>
-					{books.slice(6, 9).map((book) => (
-						<ReturnBook book={book} key={book.id} />
-					))}
-					<div className="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between text-center">
-						<a
-							href="#slide2"
-							className="text-xl text-neutral-500 hover:text-neutral-500/50"
-						>
-							❮
-						</a>
-						<a
-							href="#slide1"
-							className="text-xl text-neutral-500 hover:text-neutral-500/50"
-						>
-							❯
-						</a>
-					</div>
-				</div>
+				))}
 			</div>
-			<div className="homepage-carousel-title mt-3">
+
+			{/* Single Book View */}
+			<div className="carousel rounded-box w-11/12 md:hidden">
+				{books.slice(0, 3).map((book, index) => (
+					<div
+						key={index}
+						className={`carousel-item relative w-full justify-center items-center ${
+							index === currentSlide ? 'block' : 'hidden'
+						}`}
+					>
+						<ReturnBook book={book} key={book.id} />
+						<div className="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between text-center">
+							<a
+								href="#"
+								className="text-xl text-neutral-500 hover:text-neutral-500/50"
+								onClick={(e) => {
+									e.preventDefault();
+									handlePrevSlide();
+								}}
+							>
+								❮
+							</a>
+							<a
+								href="#"
+								className="text-xl text-neutral-500 hover:text-neutral-500/50"
+								onClick={(e) => {
+									e.preventDefault();
+									handleNextSlide();
+								}}
+							>
+								❯
+							</a>
+						</div>
+					</div>
+				))}
+			</div>
+
+			<div className="homepage-carousel-title mt-4">
 				<Link
 					className="py-3 px-6 text-lg border border-solid rounded-lg hover:bg-neutral-500/50 hover:text-white"
 					to="/search"
