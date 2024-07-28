@@ -64,16 +64,17 @@ const Navbar = () => {
 									</Link>
 								</li>
 							)}
-							{authState.isAuthenticated && (
-								<li>
-									<Link
-										className="text-gray-100 transition hover:text-gray-100/75"
-										to="/admin"
-									>
-										Admin
-									</Link>
-								</li>
-							)}
+							{authState.isAuthenticated &&
+								authState?.accessToken?.claims.userType === 'admin' && (
+									<li>
+										<Link
+											className="text-gray-100 transition hover:text-gray-100/75"
+											to="/admin"
+										>
+											Admin
+										</Link>
+									</li>
+								)}
 						</ul>
 					</nav>
 					<div className="flex items-center gap-4">
