@@ -89,23 +89,13 @@ const Navbar = () => {
 									<Link
 										className={
 											navOpen
-												? 'block rounded-md bg-teal-600 px-5 py-2.5 text-sm font-medium text-white transition hover:bg-teal-700'
-												: 'hidden md:block rounded-md bg-teal-600 px-5 py-2.5 text-sm font-medium text-white transition hover:bg-teal-700'
+												? 'block rounded-md bg-gray-100 px-5 py-2.5 text-sm font-medium text-teal-600 transition hover:text-teal-600/75'
+												: 'hidden md:block rounded-md bg-gray-100 px-5 py-2.5 text-sm font-medium text-teal-600 transition hover:text-teal-600/75'
 										}
 										to="/login"
 									>
 										Login
 									</Link>
-									{/* <Link
-										className={
-											navOpen
-												? 'block rounded-md bg-gray-100 px-5 py-2.5 text-sm font-medium text-teal-600 transition hover:text-teal-600/75'
-												: 'hidden md:block rounded-md bg-gray-100 px-5 py-2.5 text-sm font-medium text-teal-600 transition hover:text-teal-600/75'
-										}
-										to="#"
-									>
-										Register
-									</Link> */}
 								</>
 							) : (
 								<button

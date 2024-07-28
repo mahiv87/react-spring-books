@@ -5,7 +5,7 @@ const ExploreTopBooks = () => {
 		<>
 			<div className="p5 mb-4 bg-neutral-900 header">
 				<div className="w-full py-20 text-white flex justify-center items-center">
-					<div>
+					<div className="pl-4">
 						<h1 className="font-bold text-5xl">Find your next adventure</h1>
 						<p className="md:w-8/12 text-2xl mt-4 mb-8">
 							Where would you like to go next?
