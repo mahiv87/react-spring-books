@@ -11,6 +11,7 @@ const Carousel = () => {
 	const [isLoading, setIsLoading] = useState(true);
 	const [httpError, setHttpError] = useState(null);
 
+	// Fetch book details
 	useEffect(() => {
 		const query = '?page=0size=9';
 		fetchBooks(query)
@@ -36,14 +37,17 @@ const Carousel = () => {
 		);
 	}
 
+	// Handles previous page action
 	const handlePrevSlide = () => {
 		setCurrentSlide((prev) => (prev === 0 ? 2 : prev - 1));
 	};
 
+	// Handles next page action
 	const handleNextSlide = () => {
 		setCurrentSlide((prev) => (prev === 2 ? 0 : prev + 1));
 	};
 
+	// Set books per slide
 	const booksPerSlide = 3;
 	const slides = [
 		books.slice(0, booksPerSlide),

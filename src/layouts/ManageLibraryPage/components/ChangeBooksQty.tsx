@@ -16,6 +16,7 @@ const ChangeBooksQty = () => {
 
 	const baseAPIUrl = import.meta.env.VITE_API;
 
+	// Fetch book details
 	useEffect(() => {
 		const fetchBooks = async () => {
 			const url: string = `${baseAPIUrl}/books?page=${

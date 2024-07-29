@@ -3,6 +3,8 @@ import '@okta/okta-signin-widget/dist/css/okta-sign-in.min.css';
 import { useEffect, useRef } from 'react';
 import { oktaConfig } from '../lib/oktaConfig';
 
+// Okta's Sign-In Widget for authentication.
+// Displays a sign-in form using Okta's widget and handles authentication
 const OktaSignInWidget = ({ onSuccess, onError }) => {
 	const widgetRef = useRef();
 

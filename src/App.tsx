@@ -12,10 +12,12 @@ const oktaAuth = new OktaAuth(oktaConfig);
 function App() {
 	const navigate = useNavigate();
 
+	// Navigates the user to the login route when authentication is required.
 	const customAuthHandler = () => {
 		navigate('/login');
 	};
 
+	// Navigates to the original URI or the root URL if no original URI is provided
 	const restoreOriginalUri = async (_oktaAuth: any, originalUri: any) => {
 		navigate(toRelativeUrl(originalUri || '/', window.location.origin));
 	};

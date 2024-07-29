@@ -2,6 +2,7 @@
 import { useRef, useState } from 'react';
 import StarRating from './StarRating';
 
+// Allows users to leave a review for a book
 const LeaveReview: React.FC<{ submitReview: any }> = ({ submitReview }) => {
 	const [starInput, setStarInput] = useState(0);
 	const [displayInput, setDisplayInput] = useState(false);
@@ -9,6 +10,7 @@ const LeaveReview: React.FC<{ submitReview: any }> = ({ submitReview }) => {
 	const [isOpen, setIsOpen] = useState(false);
 	const detailsRef = useRef<HTMLDetailsElement>(null);
 
+	// Sets the star rating and manages the display of the review form
 	const starValue = (value: number) => {
 		setStarInput(value);
 		// console.log('rating', starInput);
@@ -21,6 +23,7 @@ const LeaveReview: React.FC<{ submitReview: any }> = ({ submitReview }) => {
 		setDisplayInput(true);
 	};
 
+	// Toggles the dropdown for selecting star ratings
 	const toggleDropdown = () => {
 		setIsOpen(!isOpen);
 	};

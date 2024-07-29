@@ -15,6 +15,7 @@ export const Messages = () => {
 
 	const baseAPIUrl = import.meta.env.VITE_API;
 
+	// Fetch messages
 	useEffect(() => {
 		const fetchUserMessages = async () => {
 			if (authState && authState.isAuthenticated) {

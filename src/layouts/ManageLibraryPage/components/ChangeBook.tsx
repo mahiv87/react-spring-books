@@ -16,11 +16,13 @@ const ChangeBook: React.FC<{ book: BookModel; deleteBook: any }> = ({
 
 	const baseAPIUrl = import.meta.env.VITE_API;
 
+	// Updates the qty and remaining state variables when the book prop changes. Sets the initial values based on book.copies and book.copiesAvailable
 	useEffect(() => {
 		setQty(book.copies || 0);
 		setRemaining(book.copiesAvailable || 0);
 	}, [book.copies, book.copiesAvailable]);
 
+	// Sends a request to increase the book's quantity by 1
 	const increaseQty = async () => {
 		const url = `${baseAPIUrl}/admin/secure/increase/book/quantity?bookId=${book.id}`;
 
@@ -42,6 +44,7 @@ const ChangeBook: React.FC<{ book: BookModel; deleteBook: any }> = ({
 		setRemaining(remaining + 1);
 	};
 
+	// Sends a request to decrease the book's quantity by 1
 	const decreaseQty = async () => {
 		const url = `${baseAPIUrl}/admin/secure/decrease/book/quantity?bookId=${book.id}`;
 
@@ -63,6 +66,7 @@ const ChangeBook: React.FC<{ book: BookModel; deleteBook: any }> = ({
 		setRemaining(remaining - 1);
 	};
 
+	// Sends a request to delete the book
 	const delBook = async () => {
 		const url = `${baseAPIUrl}/admin/secure/delete/book?bookId=${book.id}`;
 

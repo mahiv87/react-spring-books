@@ -18,6 +18,7 @@ const AdminMessages = () => {
 
 	const baseAPIUrl = import.meta.env.VITE_API;
 
+	// Fetch messages
 	useEffect(() => {
 		const fetchUserMessages = async () => {
 			if (authState && authState.isAuthenticated) {
@@ -64,6 +65,7 @@ const AdminMessages = () => {
 		);
 	}
 
+	// Submits an admin's response to a specific message
 	const submitResponse = async (id: number, adminResponse: string) => {
 		const url = `${baseAPIUrl}/messages/secure/admin/message`;
 

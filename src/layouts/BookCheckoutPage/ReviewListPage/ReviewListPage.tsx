@@ -17,6 +17,7 @@ const ReviewListPage = () => {
 
 	const bookId = window.location.pathname.split('/')[2];
 
+	// Fetches reviews from the API based on the bookId and currentPage
 	useEffect(() => {
 		const fetchBookReviews = async () => {
 			const url: string = `${baseAPIUrl}/reviews/search/findByBookId?bookId=${bookId}&page=${

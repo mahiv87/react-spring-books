@@ -17,6 +17,7 @@ const Loans = () => {
 
 	const baseAPIUrl = import.meta.env.VITE_API;
 
+	// Fetch users current loans
 	useEffect(() => {
 		fetchUserCurrentLoans(authState)
 			.then((loans) => {
@@ -42,6 +43,7 @@ const Loans = () => {
 		);
 	}
 
+	// Sends request to return the book
 	const returnBook = async (bookId: number) => {
 		const url = `${baseAPIUrl}/books/secure/return?bookId=${bookId}`;
 		const requestOptions = {
@@ -61,6 +63,7 @@ const Loans = () => {
 		setCheckout(!checkout);
 	};
 
+	// Sends request to renew a book loan
 	const renewLoan = async (bookId: number) => {
 		const url = `${baseAPIUrl}/books/secure/renew/loan?bookId=${bookId}`;
 		const requestOptions = {
@@ -80,6 +83,7 @@ const Loans = () => {
 		setCheckout(!checkout);
 	};
 
+	// Shows the modal dialog with the specified ID
 	const handleModal = (id: string) => {
 		const dialog = document.getElementById(id) as HTMLDialogElement | null;
 		if (dialog && typeof dialog.showModal === 'function') {

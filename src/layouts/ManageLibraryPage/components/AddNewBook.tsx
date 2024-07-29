@@ -17,21 +17,25 @@ const AddNewBook = () => {
 
 	const baseAPIUrl = import.meta.env.VITE_API;
 
+	// Sets the selected category and toggles the dropdown menu
 	const categoryField = (value: string) => {
 		setCategory(value);
 		toggleDropdown();
 	};
 
+	// Toggles the visibility of the category dropdown menu
 	const toggleDropdown = () => {
 		setIsOpen(!isOpen);
 	};
 
+	// Converts the selected image file to a base64 encoded string
 	const convertImages = (e: ChangeEvent<HTMLInputElement>) => {
 		if (e.target.files && e.target.files[0]) {
 			getBase64(e.target.files[0]);
 		}
 	};
 
+	// Reads the file as a base64 encoded string and sets the image state
 	const getBase64 = (file: File) => {
 		const reader = new FileReader();
 
@@ -53,6 +57,7 @@ const AddNewBook = () => {
 		setImage(null);
 	};
 
+	// Handles form submission by sending a POST request to the API with the book details
 	const submitNewBook = async (e: FormEvent) => {
 		e.preventDefault();
 		const url = `${baseAPIUrl}/admin/secure/add/book`;

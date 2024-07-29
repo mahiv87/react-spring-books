@@ -15,6 +15,7 @@ export const HistoryPage = () => {
 
 	const baseAPIUrl = import.meta.env.VITE_API;
 
+	// Fetch books user has previously checked out
 	useEffect(() => {
 		const fetchUserHistory = async () => {
 			if (authState && authState.isAuthenticated) {

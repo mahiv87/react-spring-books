@@ -35,6 +35,7 @@ const BookCheckoutPage = () => {
 
 	const weightedStarReviews = useRef<number>(0);
 
+	// Fetch book details
 	useEffect(() => {
 		const query = `/${bookId}`;
 
@@ -49,6 +50,7 @@ const BookCheckoutPage = () => {
 			});
 	}, [bookId, isCheckedOut]);
 
+	// Fetch book reviews
 	useEffect(() => {
 		fetchBookReviews(bookId)
 			.then((reviews) => {
@@ -74,6 +76,7 @@ const BookCheckoutPage = () => {
 			});
 	}, [bookId, isAlreadyReviewed]);
 
+	// Fetch user review status
 	useEffect(() => {
 		fetchUserReviewBook(authState, bookId)
 			.then((review) => {
@@ -86,6 +89,7 @@ const BookCheckoutPage = () => {
 			});
 	}, [authState, bookId]);
 
+	// Fetch users current loans count
 	useEffect(() => {
 		const clcAuthState = authState;
 
@@ -105,6 +109,7 @@ const BookCheckoutPage = () => {
 		}
 	}, [authState, isCheckedOut]);
 
+	// Fetch user checkout status
 	useEffect(() => {
 		fetchUserCheckedOutBook(authState, bookId)
 			.then((book) => {
@@ -129,6 +134,7 @@ const BookCheckoutPage = () => {
 		);
 	}
 
+	// Handles the book checkout process
 	const checkoutBook = async () => {
 		const url = `${baseAPIUrl}/books/secure/checkout?bookId=${book?.id}`;
 		const requestOptions = {
@@ -146,6 +152,7 @@ const BookCheckoutPage = () => {
 		setIsCheckedOut(true);
 	};
 
+	// Handles the submission of a new review
 	const submitReview = async (starInput: number, reviewDescription: string) => {
 		let bookId: number = 0;
 

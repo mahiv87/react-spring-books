@@ -20,6 +20,7 @@ const SearchBooks = () => {
 
 	const baseAPIUrl = import.meta.env.VITE_API;
 
+	// Fetch book details
 	useEffect(() => {
 		const fetchBooks = async () => {
 			const baseUrl: string = `${baseAPIUrl}/books`;
