@@ -26,6 +26,7 @@ React Spring Library is a dynamic and user-friendly web application designed for
 - React
 - Vite
 - MySQL
+- AWS RDS
 - Tailwind
 - DaisyUi
 - Okta Authentication
